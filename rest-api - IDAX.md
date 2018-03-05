@@ -1,9 +1,24 @@
 # Public Rest API for IDAX (2018-02-22)
 # General API Information
-* The base endpoint is: **https://api.idax.com**
+* The base endpoint is: **https://openapi.idax.mn**
 * All endpoints return either a JSON object or array.
 
 ## General endpoints
+
+## Sign简述 ##
+
+### 主要参数 ###
+
+```
+[key]：
+[Secret]：
+[timestamp]：Unix
+
+```
+### 生成方法 ###
+
+#### 将key、timestamp、以及其它参数的键值以升序排列，用&符号隔开转为字符串。将字符串和Secret以(HMAC)SHA256哈希函数加密生成Sign。 ####
+
 ### Test connectivity
 ```
 GET /api/v1/ping
@@ -145,46 +160,6 @@ Sign | STRING | YES |
 }
 ```
 
-### Recent tradeHelperMarkets
-```
-GET /api/v1/tradeHelperMarkets
-```
-Get recent trades (up to last 500).
-
-**Weight:**
-1
-
-**Parameters:**
-
-Name | Type | Mandatory | Description
------------- | ------------ | ------------ | ------------
-
-**Caution:** setting limit=0 can return a lot of data.
-
-**Response:**
-```javascript
-{
-  "data": [
-    {
-      "baseCode": "sample string 1",
-      "quoteCode": "sample string 2",
-      "lastPrice": 3.0,
-      "volume": 4.0,
-      "total": 5.0,
-      "change": 6.0,
-      "high": 7.0,
-      "low": 8.0,
-      "isShowIndex": true,
-      "maxAmount": 10.0,
-      "minAmount": 11.0,
-      "priceDecimalPlace": 12,
-      "qtyDecimalPlace": 13
-    }
-  ],
-  "success": true,
-  "message": "sample string 2"
-}
-```
 ### Recent kline
 ```
 GET /api/v1/kline
@@ -385,7 +360,7 @@ Sign | STRING | YES |
 ## Aggregate Trade Streams
 The Aggregate Trade Streams push trade information that is aggregated for a single taker order.
 
-**ws://api.idax.mn/api/v1/aggtrade@ETH_BTC**
+**ws://openapi.idax.mn/api/v1/aggtrade@ETH_BTC**
 
 **Stream Name:** aggTrade@\<pair\>
 
