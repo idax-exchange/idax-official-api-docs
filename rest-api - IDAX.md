@@ -5,19 +5,19 @@
 
 ## General endpoints
 
-## Sign简述 ##
+## Sign Sketch ##
 
-### 主要参数 ###
+### Main Parameter ###
 
 ```
 [key]：
-[Secret]：
-[timestamp]：Unix
+[secret]：
+[timestamp]：Unix（毫秒）
 
 ```
-### 生成方法 ###
+### Generation method ###
 
-#### 将key、timestamp、以及其它参数的键值以升序排列，用&符号隔开转为字符串。将字符串和Secret以(HMAC)SHA256哈希函数加密生成Sign。 ####
+#### 将key、timestamp、以及其它参数的键值以升序排列，用&符号隔开转为字符串。将字符串和secret以(HMAC)SHA256哈希函数加密生成sign。 ####
 
 ### Test connectivity
 ```
@@ -137,8 +137,8 @@ Name | Type | Mandatory | Description
 pair | STRING | YES | 
 limit | INT | NO | Default 100; max 1000. Valid limits:[5, 10, 20, 50, 100, 500, 1000]
 key | STRING | YES |
-TimeStamp | INT | YES
-Sign | STRING | YES |
+timeStamp | INT | YES
+sign | STRING | YES |
 
 **Caution:** setting limit=0 can return a lot of data.
 
@@ -209,9 +209,9 @@ Get recent trades (up to last 500).
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-Key | STRING | YES | 
-TimeStamp | INT | YES |
-Sign | STRING | YES |
+key | STRING | YES | 
+timestamp | INT | YES |
+sign | STRING | YES |
 
 **Caution:** setting limit=0 can return a lot of data.
 
@@ -248,14 +248,14 @@ Send in a new order.
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-OrderSide | INT | YES | 0:Buy  1:Sell
-OrderType | INT | YES | 1:Limit
-Pair | STRING | YES | 
-Price | DECIMAL | YES |
-Amount | DECIMAL | YES | 
-Key | STRING | YES |
-TimeStamp | INT | YES |
-Sign | STRING | YES |
+orderSide | INT | YES | 1:Buy  2:Sell
+orderType | INT | YES | 1:Limit
+pair | STRING | YES | 
+price | DECIMAL | YES |
+amount | DECIMAL | YES | 
+key | STRING | YES |
+timestamp | INT | YES |
+sign | STRING | YES |
 
 **Response:**
 ```javascript
@@ -278,10 +278,10 @@ Check an order's status.
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-Top | int | YES |
-Key | STRING | YES |
-TimeStamp | INT | YES |
-Sign | STRING | YES |
+top | int | YES |
+key | STRING | YES |
+timestamp | INT | YES |
+sign | STRING | YES |
 
 **Response:**
 ```javascript
@@ -313,10 +313,10 @@ Cancel an active order.
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-OrderId | STRING | YES |
-Key | STRING | YES |
-TimeStamp | INT | YES |
-Sign | STRING | YES |
+orderId | STRING | YES |
+key | STRING | YES |
+timestamp | INT | YES |
+sign | STRING | YES |
 
 **Response:**
 ```javascript
@@ -339,10 +339,10 @@ Get trades for a specific account and symbol.
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-Top | STRING | YES |
-Key | STRING | YES |
-TimeStamp | INT | YES |
-Sign | STRING | YES |
+top | STRING | YES |
+key | STRING | YES |
+timestamp | INT | YES |
+sign | STRING | YES |
 
 **Response:**
 ```javascript
