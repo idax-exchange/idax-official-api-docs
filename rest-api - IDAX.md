@@ -12,7 +12,7 @@
 ```
 [key]：
 [secret]：
-[timestamp]：Unix（毫秒）
+[timestamp]：Unix（毫秒），允许时间差在120秒,即120 * 1000毫秒
 
 ```
 ### Generation method ###
