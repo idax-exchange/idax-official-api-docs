@@ -1,4 +1,4 @@
-# Public Rest API for IDAX (2018-02-22)
+# Public Rest API for IDAX (2018-03-13)
 # General API Information
 * The base endpoint is: **https://openapi.idax.mn**
 * All endpoints return either a JSON object or array.
