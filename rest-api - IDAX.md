@@ -360,7 +360,7 @@ sign | STRING | YES |
 ## Aggregate Trade Streams
 The Aggregate Trade Streams push trade information that is aggregated for a single taker order.
 
-**ws://openapi.idax.mn/api/v1/aggtrade@ETH_BTC**
+**wss://openapi.idax.mn/api/v1/aggtrade@ETH_BTC**
 
 **Stream Name:** aggTrade@\<pair\>
 
