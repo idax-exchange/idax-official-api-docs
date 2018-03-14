@@ -78,6 +78,36 @@ NONE
 }
 ```
 
+### Get the market
+```
+GET /api/v1/marketinfo
+```
+
+
+**Weight:**
+1
+
+**Parameters:**
+NONE
+
+**Response:**
+```javascript
+{
+"data": [
+    {
+      "pairName": "sample string 1", //交易对
+      "buyerFeeRate": 2.0, //买家手续费率
+      "sellerFeeRate": 3.0, //卖家手续费率
+      "maxAmount": 4.0,     //单笔最大成交额
+      "minAmount": 5.0,     //单笔最小成交额
+      "priceDecimalPlace": 6, //价格小数位
+      "qtyDecimalPlace": 7   //数量小数位
+    }
+  ],
+  "success": true,
+  "message": "sample string 2"
+}
+```
 
 
 ## Market Data endpoints
