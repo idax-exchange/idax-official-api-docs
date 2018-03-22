@@ -7,16 +7,24 @@
 
 ## Sign Sketch ##
 
-### Main Parameter ###
+### Main request parameters ###
 
 ```
-[key]：
-[secret]：
-[timestamp]：Unix（毫秒），允许时间差在120秒,即120 * 1000毫秒
-
+[key]：the apikey
+[timestamp]：client unix timestamp，allow 120 seconds differ from the server timestamp
+[sign]：the signature generate by api key and secret and request parameters
 ```
-### Generation method ###
+### How to genreate the sign ###
 
+order the key,timestamp and other request parameters ascending, the concat each parameter with '&', then exec a hmacsha256 hash computer.
+
+Pseudocode as following:
+```
+var params = [{param1,val1},{param2,val2},{key,apikey},{timestamp,1499827319559}]
+var sortedParams = sortbykey(params); // result: [{key,apikey},{param1,val1},{param2,val2},{timestamp,1499827319559}]
+var sortedQueryString = concatSortedParams(sortedParams);// result : key=apikey&param1=val1&param2=val2&timestamp=1499827319559
+var sign = hmacsha256(sortedQueryString);
+```
 #### 将key、timestamp、以及其它参数的键值以升序排列，用&符号隔开转为字符串。将字符串和secret以(HMAC)SHA256哈希函数加密生成sign。 ####
 
 ### Test connectivity
@@ -95,13 +103,13 @@ NONE
 {
 "data": [
     {
-      "pairName": "sample string 1", //交易对
-      "buyerFeeRate": 2.0, //买家手续费率
-      "sellerFeeRate": 3.0, //卖家手续费率
-      "maxAmount": 4.0,     //单笔最大成交额
-      "minAmount": 5.0,     //单笔最小成交额
-      "priceDecimalPlace": 6, //价格小数位
-      "qtyDecimalPlace": 7   //数量小数位
+      "pairName": "sample string 1", //trading pair name
+      "buyerFeeRate": 2.0, //buyer feerate
+      "sellerFeeRate": 3.0, //seller feerate
+      "maxAmount": 4.0,     //max order amount in quote asset
+      "minAmount": 5.0,     //min order amount in quote asset
+      "priceDecimalPlace": 6, //price decimal place
+      "qtyDecimalPlace": 7   //qty decimal place
     }
   ],
   "success": true,
