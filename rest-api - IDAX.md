@@ -25,7 +25,6 @@ var sortedParams = sortbykey(params); // result: [{key,apikey},{param1,val1},{pa
 var sortedQueryString = concatSortedParams(sortedParams);// result : key=apikey&param1=val1&param2=val2&timestamp=1499827319559
 var sign = hmacsha256(sortedQueryString);
 ```
-#### 将key、timestamp、以及其它参数的键值以升序排列，用&符号隔开转为字符串。将字符串和secret以(HMAC)SHA256哈希函数加密生成sign。 ####
 
 ### Test connectivity
 ```
