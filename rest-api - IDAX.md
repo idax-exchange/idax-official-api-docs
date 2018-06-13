@@ -84,6 +84,82 @@ NONE
   "time": 1499827319559
 }
 ```
+### Get the all market Quotation
+```
+GET /api/v1/tickers
+```
+
+
+**Weight:**
+1
+
+**Parameters:**
+NONE
+
+**Response:**
+```javascript
+{
+"data": [
+    {
+      "market": "sample string 1", 
+      "baseCode": "sample string 1",
+      "quoteCode": "sample string 1",
+      "lastPrice": 2.0,
+      "volume": 2.0, 
+      "total": 2.0, 
+      "change": 2.0,
+      "high": 2.0,
+      "low": 2.0, 
+      "isShowIndex": 2.0, 
+      "maxAmount": 2.0,
+      "minAmount": 2.0, 
+      "priceDecimalPlace": 2.0, 
+      "qtyDecimalPlace": 2.0, 
+    }
+  ],
+  "success": true,
+  "message": "sample string 2"
+}
+```
+
+### Get the single market Quotation
+```
+GET api/v1/ticker
+```
+
+
+**Weight:**
+1
+
+**Parameters:**
+
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+pairName | STRING | YES | 
+
+**Response:**
+```javascript
+{
+"data": [
+      "market": "sample string 1", 
+      "baseCode": "sample string 1",
+      "quoteCode": "sample string 1",
+      "lastPrice": 2.0,
+      "volume": 2.0, 
+      "total": 2.0, 
+      "change": 2.0,
+      "high": 2.0,
+      "low": 2.0, 
+      "isShowIndex": 2.0, 
+      "maxAmount": 2.0,
+      "minAmount": 2.0, 
+      "priceDecimalPlace": 2.0, 
+      "qtyDecimalPlace": 2.0, 
+  ],
+  "success": true,
+  "message": "sample string 2"
+}
+```
 
 ### Get the market
 ```
@@ -339,7 +415,7 @@ sign | STRING | YES |
 
 ### Cancel cancelorder (TRADE)
 ```
-DELETE /api/v1/cancelorder  (HMAC SHA256)
+POST /api/v1/cancelorder  (HMAC SHA256)
 ```
 Cancel an active order.
 
