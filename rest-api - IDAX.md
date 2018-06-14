@@ -52,8 +52,6 @@ GET /api/v1/verifyapi
 ```
 Test connectivity to the Rest API.
 
-**Weight:**
-1
 
 **Parameters:**
 NONE
@@ -72,8 +70,6 @@ GET /api/v1/time
 ```
 Test connectivity to the Rest API and get the current server time.
 
-**Weight:**
-1
 
 **Parameters:**
 NONE
@@ -89,9 +85,6 @@ NONE
 GET /api/v1/tickers
 ```
 
-
-**Weight:**
-1
 
 **Parameters:**
 NONE
@@ -127,9 +120,6 @@ NONE
 GET api/v1/ticker
 ```
 
-
-**Weight:**
-1
 
 **Parameters:**
 
@@ -167,8 +157,6 @@ GET /api/v1/marketinfo
 ```
 
 
-**Weight:**
-1
 
 **Parameters:**
 NONE
@@ -199,7 +187,6 @@ NONE
 GET /api/v1/depth
 ```
 
-**Weight:**
 Adjusted based on the limit:
 
 
@@ -240,8 +227,6 @@ GET /api/v1/trades
 ```
 Get recent trades (up to last 500).
 
-**Weight:**
-1
 
 **Parameters:**
 
@@ -279,9 +264,6 @@ GET /api/v1/kline
 ```
 Get recent trades (up to last 500).
 
-**Weight:**
-1
-
 
 **Parameters:**
 
@@ -314,8 +296,7 @@ GET /api/v1/balances
 ```
 Get recent trades (up to last 500).
 
-**Weight:**
-1
+
 
 
 **Parameters:**
@@ -354,8 +335,6 @@ POST /api/v1/createorder  (HMAC SHA256)
 ```
 Send in a new order.
 
-**Weight:**
-1
 
 **Parameters:**
 
@@ -374,7 +353,8 @@ sign | STRING | YES |
 ```javascript
 {
     "success": true,
-    "message":"success"
+    "message":"success",
+    "data":2000000000000 //this is order id
 }
 ```
 
@@ -384,8 +364,6 @@ GET /api/v1/myOrders (HMAC SHA256)
 ```
 Check an order's status.
 
-**Weight:**
-1
 
 **Parameters:**
 
@@ -419,9 +397,6 @@ POST /api/v1/cancelorder  (HMAC SHA256)
 ```
 Cancel an active order.
 
-**Weight:**
-1
-
 **Parameters:**
 
 Name | Type | Mandatory | Description
@@ -445,8 +420,7 @@ GET /api/v1/myTrades  (HMAC SHA256)
 ```
 Get trades for a specific account and symbol.
 
-**Weight:**
-5
+
 
 **Parameters:**
 
