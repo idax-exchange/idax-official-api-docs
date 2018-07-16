@@ -390,6 +390,50 @@ sign | STRING | YES |
   ]
 }
 ```
+### Query orderinfo (USER_DATA)
+```
+GET /api/v1/orderinfo (HMAC SHA256)
+```
+Check an order's status.
+
+
+**Parameters:**
+
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+orderId | STRING | YES |
+key | STRING | YES |
+timestamp | INT | YES |
+sign | STRING | YES |
+
+**Response:**
+```javascript
+{
+  "data": {   
+    "orderId": "sample string 1",
+    "orderType": "sample string 2",
+    "orderSide": 1,
+    "pairName": "sample string 3",
+    "price": 4.0,
+    "avgTradingPrice": 5.0,
+    "fee": 6.0,
+    "total": 7.0,
+    "filledQty": 8.0,
+    "orderState": 1,
+    "time": "sample string 9",
+    "filledAmount": 10.0,
+    "orderTradeDetailDTOs": [
+      {
+        "createTime": "2018-07-16T21:39:34.482075+08:00",
+        "price": 2.0,
+        "qty": 3.0
+      }
+    ]
+  },
+  "success": true,
+  "message": "sample string 2"
+}
+```
 
 ### Cancel cancelorder (TRADE)
 ```
