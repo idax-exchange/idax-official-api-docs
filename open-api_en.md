@@ -247,7 +247,7 @@ GET https://openapi.idax.mn/api/v2/kline?pair=ETH_BTC&period=1min
 ```
 
 # Response
-
+ 
 ```java
 {
     "code":10000,
