@@ -751,7 +751,7 @@ POST
 > Request
 
 ```bash
-TODO
+
 ```
 
 > Response
@@ -778,24 +778,24 @@ TODO
         "pageLength": 1, // number of orders per page
         "total": 3 // The total number of records
 }
+```
 
 ## 7, FAQ
 
-> Access restrictions
+> 1, Access restrictions
 
 Answer: Each IP can send maximum of 10 https requests within 1 second. If the 10 limit is exceeded, the system will automatically block the IP for one hour. After that hour, the IP will be automatically unfrozen.
 
-> Server returns 10000 error code
+> 2, Server returns 10000 error code
 
 Answer:All requests go over https protocol, The field 'contentType' in request header should be: 'application/x-www-form-urlencoded'.
 
 ## 8, The error codes
 
-
-| Error Code | Error Description|
-|------------|------------------|
-|10000|    Successful request processing|
-|10001|    System exception/server busy|
+| Code | Description |
+| ------|------|
+| 10000 |    Successful request processing |
+| 10001 |    System exception/server busy |
 |10002|    This IP is not allowed to access|
 |10003|    Only support https request|
 |10004|    Request frequency too high to exceed the limit allowed|
@@ -828,5 +828,4 @@ Answer:All requests go over https protocol, The field 'contentType' in request h
 |10031|    No market depth information|
 |10032|    incorrect ID|
 |10033|    No chart type|
-|......|    .....|
 |10999|    According to relevant laws, your country or region cannot use this function.|
