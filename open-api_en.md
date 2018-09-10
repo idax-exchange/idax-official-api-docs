@@ -1,483 +1,568 @@
-**Chapter 1 : API Overview**
+# Overview
 
-IDAX brings you a powerful and robust suite of APIs. You can select only the features that optimize your trading experience.
+IDAX provide powerful and robust APIs to help user write program to automatic the tradings. With this guide you can learn how to use APIs.
 
-IDAX provides APIs for fast access to both spot and contract markets, with the following features:
+The main features of the API is as following:
 
-Market data
-Depths of bids and asks
-Trade history
-K-Line data
-Trade execution
-Order information
-Order history
-Account information
-In case of any problem, please contact our support team.
+* get latest market data easily
+* get depths of the orderbook easily
+* get the latest trades for speicific trading pairs
+* get the K-Line data easily
+* query account info easily
+* quickly place and cancel orders
+* get order details easily
 
-**Chapter 2 : Create API**
+If you have any problem when using APIs , pls contact our support team.
 
-Get your 'key' and 'secretKey'
-'key' is the user's secret key provided by IDAX, 'secretKey' is the private key used to sign your request data. To get your apiKey and SecretKey, go to [Personal Center] -> [My API].
+## 1, General Information
 
-Important Note: Do not reveal your 'key' and 'secretKey' to anyone. They are as important as your password.
+* The base endpoint is [https://openapi.idax.mn/api/v2](https://openapi.idax.mn/api/v2)
+* All endpoints return either a JSON object or array.
+* All time and timestamp related fields are in milliseconds.
+* Any endpoint can return an ERROR; the error payload is as following:
 
-**Chapter 3 : Call Mode**
+```json
+{
+  "code": 10007,
+  "msg": "key does not exist"
+}
+```
 
-IDAX provides 2 different methods for our users to call our API interface. Developers can adjust based on their own preference to inquire the market, conduct trading.
+* All url is case-sensitive.
+* All parameter name is in Camel-Case style and case-sensitive.
+* All request in http-post, the parameters should be sererilized in json format and in body payload.
+* All request in http-get, the parameters is in query string.
 
-REST API
-REST , a.k.a Respresntational State Transfer, is one of the most common web services protocol. REST emphasis on its readability, standardization, interoperabilty and scalability.Advantages:
+## 2, Get start
 
-Each URL respresented one web resources in RESTful architecture;
-Act as a representation of resources between client and server;
-Client-end is enabled to operate server-side resources with 4 HTTP requests - representational state transfer.
-*We strongly recommend developers to use REST API to proceed spot trading.
+Before get start, you need get the api key and secret first. The 'api key' is a unique string IDAX allocated for you (you can think it as the speicial username used in api) and the 'secret' is the private key used to sign your request data(and you can think it as the password for api).
 
-WebSocket API
-WebSocket protocol is a new HTML5 protocol, which provides full-duplex communication between web browsers and web servers. Connection can be established after one handshake. Web server can then push business logic data to web browsers.Advantages:
+You can get the apiKey and secret key from idax website : https://www.idax.mn.
 
-Request header is small in size (around 2 bytes) during communication
-Web servers and clients can send data bi-directionaly
-Since there is no need to create and delete TCP connection repeatedly, it saves resources
-*We strongly recommend developers to use Websocket API to access market related information and trading depth.
+To get the API key and secret, please visit the "My API" links in user center.(only available on PC website)
 
-**Chapter 4 : Sign Params**
+> *WARNINGS* : \
+> The api key and secret is security related, it is as *IMPORTANT* as your password. so *DO NOT* use it in any place you don't know well to prevent it leak out. 
 
-Prepare for signing
-All parameters except for "sign" must be signed. The parameters must be re-ordered according to the initials of the parameter name, alphabetically.
+## 3, The REST API and Websocket API
 
-For example, [placeOrder], The result string is:
-amount=1.05&key=123456789&orderSide=buy&orderType=limit&pair=ETH_BTC&price=0.069249&timestamp=1532522823039
+IDAX provides both REST API and Websocket API :
 
-MD5 signature
-'secretKey' is required to generate HmacSha256 signature. encode the array of bytes using hexadecimal code. Pass the encrypted string to 'sign' parameter. 
+### REST API
 
+ REST , a.k.a Respresntational State Transfer, is one of the most common web services protocol. REST emphasis on its readability, standardization, interoperabilty and scalability.
 
-**Chapter 5 : Rest API**
+REST API has following advantages:
 
-The root url is: https://openapi.idax.mn/api/v2  
-All requests go over https protocol, The field 'contentType' in request header should be: 'application/json'. 
+* Each URL respresented one web resources in RESTful architecture;
+* Act as a representation of resources between client and server;
+* Client-end is enabled to operate server-side resources with 4 HTTP requests - representational state transfer.
 
-Request Process 
+> We strongly recommend developers to use REST API to proceed spot trading.
+
+### WebSocket API
+
+WebSocket protocol is a new HTML5 protocol, which provides full-duplex communication between web browsers and web servers. Connection can be established after one handshake. Web server can then push business logic data to web browsers.
+
+Websocket has follwoing advantages:
+
+* Request header is small in size (around 2 bytes) during communication
+* Web servers and clients can send data bi-directionaly
+* Since there is no need to create and delete TCP connection repeatedly, it saves resources
+
+> We strongly recommend developers to use Websocket API to access market related information and trading depth.
+
+## 4, Sign Params
+
+All parameters (include both http querystring and http reqeust body) need to be signed with the secret key before submit to the server.
+
+sign parameters typically has 3 steps.
+
+* step 1 : re-order parameters according to the parameter name, alphabetically.
+* step 2 : make HmacSha256 calculate use the ordered parameters as the input.
+* step 3 : add 'sign' to the parameters and submit data to server.
+
+Here is a step-by-step example of how to send a vaild signed payload from the Linux command line using echo, openssl, and curl.
+
+apikey and secret:
+
+| Name | Value |
+|-----|-------|
+| key | VmhrcrQEF3ATxV2JtVMEH4dFpGEmYzixOL4VrvAeR2COXtc9pzXbvFV1jLbFXEQf |
+| secret | UdfW0hs7uIXPBzS6EE7yMhciZdMPu5rnlw3UoqiihZQWSgzT3fbsGsDNb66WFMNz |
+
+parameters:
+
+| Parameter Name | Parameter Value |
+| --------- | ----- |
+| pair      |ETH_BTC|
+| orderType | limit |
+| orderSide | buy   |
+| price     | 0.034775 |
+| amount    | 1.05  |
+| timestamp | 1532522823039 |
+
+step 1:
+sort parameters alphabetically (include 'key'):
+
+```javascript
+amount=1.05&key=VmhrcrQEF3ATxV2JtVMEH4dFpGEmYzixOL4VrvAeR2COXtc9pzXbvFV1jLbFXEQf&orderSide=buy&orderType=limit&pair=ETH_BTC&price=0.034775&timestamp=1532522823039
+```
+
+step 2:
+hmacSha256 calculation:
+
+```bash
+echo -n "amount=1.05&key=VmhrcrQEF3ATxV2JtVMEH4dFpGEmYzixOL4VrvAeR2COXtc9pzXbvFV1jLbFXEQf&orderSide=buy&orderType=limit&pair=ETH_BTC&price=0.034775&timestamp=1532522823039"| openssl dgst -sha256 -hmac "UdfW0hs7uIXPBzS6EE7yMhciZdMPu5rnlw3UoqiihZQWSgzT3fbsGsDNb66WFMNz"
+(stdin)= c69d8ec9e274dd20126972b2dfaedc8c74cf06fbb19f968eedcc0a300a95b9f6
+```
+
+step 3:
+add sign to the parameters and send request to server
+
+```bash
+curl -H "Content-Type: application/json" -X POST "https://openapi.idax.mn/api/v2/placeOrder" --data '{"amount": 1.05,"key": "VmhrcrQEF3ATxV2JtVMEH4dFpGEmYzixOL4VrvAeR2COXtc9pzXbvFV1jLbFXEQf","orderSide": "buy","orderType": "limit","pair": "ETH_BTC","price": 0.034775,"sign": "c69d8ec9e274dd20126972b2dfaedc8c74cf06fbb19f968eedcc0a300a95b9f6","timestamp":1532522823039}'
+```
+
+## 5, Rest API
+
+* The base endpoint is : [https://openapi.idax.mn/api/v2](https://openapi.idax.mn/api/v2)
+* All requests go over https protocol
+* The field 'contentType' in request header should be: 'application/json'. 
+
+### Request Process
 
 There are four simple steps to the request process.
+
 1. Request parameter: construct the request parameters according to each API interface.
 2. Submit request: use POST or GET method to send request to server.
 3. Server respond: server processes request and returns data to users in JSON format after authentication check.
 4. Data processing: the client processes the returned data.
 
-**Chapter 6 : API Reference**
+## 6, API Reference
 
-> 1.Get /api/v2/time  Get server timestamp
+### 1, get server timestamp
 
-  （1）request demo
-  # Request 
+> url : /api/v2/time
 
-```java
-  GET https://openapi.idax.mn/api/v2/time
+> http method : get
+
+> sample request:
+
+```javascript
+curl https://openapi.idax.mn/api/v2/time
 ```
 
-  # Response
+> sample response:
 
-```java
-  {
-      "code":10000,
-      "msg":"request success",
-      "timestamp":1417449600000
-  } 
-```
-
-  （2）response description
-
-```
-  timestamp: 1417449600000：server timestamp
-```
-
-> 2．Get /api/v2/ticker  Get Price Ticker
-
-（1）request demo
-# Request 
-
-```java
-GET https://openapi.idax.mn/api/v2/ticker?pair=ETH_BTC  
-```
-
-# Response
-
-```java
-{
-	"code":10000,
-	"msg":"request success",
-	"timestamp":1417449600000,
-	"ticker":[{
-		"pair":"ETH_BTC"
-		"open":"33.15",
-		"high":"34.15",
-		"low":"32.05",
-		"last":"33.15",
-		"vol":"1053.3919"
-	}]
-} 
-```
-
-（2）response description
-
-```
-timestamp: server time for returned data
-pair: pair
-open: best bid
-high: highest price
-low:  lowest price
-last: latest price
-vol: volume (in the last rolling 24 hours)
-```
-
-（3）request parameters
-
-
-```
-name		type	   require						describe
-pair		String		false          IDAX supports trade pairs. Returns a specific trade against the market when specifying a pair,Returns all trading to market prices without specifying pair;
-
-```
-> 3．Get /api/api/v2/depth  Get Market Depth
-
-（1）request demo
-# Request
-
-```java
-GET https://openapi.idax.mn/api/v2/depth?pair=ETH_BTC
-```
-
-# Response
-
-```java
-{
-	"code":10000,
-	"msg":"request success",
-	"asks": [
-		["792", "5"],
-		["789.68", "0.018"],
-		["788.99", "0.042"],
-		["788.43", "0.036"],
-		["787.27", "0.02"]
-	],
-	"bids": [
-		["787.1", "0.35"],
-		["787", "12.071"],
-		["786.5", "0.014"],
-		["786.2", "0.38"],
-		["786", "3.217"]
-	]
-}
-```
-
-（2）response description
-
-```
-asks: ask depth
-bids: bid depth
-```
-
-（3）request parameters
-
-```
-name			type		   require						 	      description
-pair			String			true 						     IDAX supports trade pairs
-size			Integer			false		              	     value: must be between 1 - 200
-merge			Integer			false                            value: 1, 0.00000001 (merge depth)
-```
-
-> 4．Get /api/api/v2/trades Get Trade Recently 60
-
-（1）request demo
-# Request
-
-```java
-GET https://openapi.idax.mn/api/v2/trades?pair=ETH_BTC
-```
-
-# Response
-
-```java
-{
-	"code":10000,
-	"msg":"request success",
-	"trades":[{
-		"timestamp": 1417449600000,
-		"price": "787.71",
-		"quantity": "0.003",
-		"id": "230433",
-		"maker": "buy"
-	},
-	{
-		"timestamp": 1417449600000,
-		"price": "787.71",
-		"quantity": "0.003",
-		"id": "230433",
-		"maker": "sell"
-	}]
-}
-```
-
-（2）response description
-
-```
-timestamp: transaction time
-price:  transaction price
-quantity: quantity in BTC (or other coin)
-id:  transaction ID
-maker: buy/sell
-```
-
-（3）request parameters
-
-```
-name		type		require			description
-pair		String		 true			IDAX supports trade pairs
-```
-
-> 5．Get /api/api/v2/kline  approximately 2000 pieces of data are returned each cycle
-
-（1）request demo
-# Request
-
-```java
-GET https://openapi.idax.mn/api/v2/kline?pair=ETH_BTC&period=1min
-```
-
-# Response
- 
-```java
+```javascript
 {
     "code":10000,
     "msg":"request success",
-    "kline":[
-        1417449600000,
-        "2339.11",
-        "2383.15",
-        "2322",
-        "2369.85",
-        "83850.06"
+    "timestamp":1536318118202 --server timestamp
+}
+```
+
+### 2, Get Price Ticker
+
+> url : /api/v2/ticker
+
+> http method : get
+
+> sample request:
+
+```javascript
+curl https://openapi.idax.mn/api/v2/ticker?pair=ETH_BTC
+```
+
+> sample response:
+
+```javascript
+{
+"code":10000,
+"msg":"request success",
+"timestamp":1536320917805, --server time for returned data
+"ticker":
+    [
+        {
+            "pair":"ETH_BTC", --pair
+            "open":"0.03528700", --open price
+            "high":"0.03587400", --high price
+            "low":"0.03389300",--low price
+            "last":"0.03428700",--last price
+            "vol":"18484.75200000"--volume(in the last 24hours sliding window)
+        }
     ]
 }
 ```
 
-（2）response description
+### 3, Get Market Depth
 
-```
-[
-	1417449600000,		timestamp
-	"2370.16",			open
-	"2380",				high
-	"2352",				low
-	"2367.37",			close
-	"17259.83",			volume
-]
-```
+> url : /api/api/v2/depth
 
-（3）request parameters
+> http method : get
 
-```
-name		type		 required				description
-pair		String			true			IDAX supports trade pairs
-period		String			true			1min,5min,15min,30min,1hour,2hour,4hour,6hour,12hour,1day,1week
-size		Integer			false	        specify data size to be acquired
-since		Long			false           timestamp(eg:1417536000000). data after the timestamp will be returned
+> request parameters:
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| pair | string | true  | IDAX supports trade pairs. Returns a specific trade against the market when specifying a pair,Returns all trading to market prices without specifying pair;|
+| size | integer | true | how many price level should be response. must be between 1 - 200|
+| merge| integer | true | price decimal price should be merged. |
+
+> sample request:
+
+```javascript
+curl https://openapi.idax.mn/api/v2/depth?pair=ETH_BTC&size=5&merge=8
 ```
 
-> 6．POST /api/api/v2/userinfo Get User Account Info
+>sample response:
 
-（1）request demo
-# Request
-
-```java
-POST https://openapi.idax.mn/api/v2/userinfo
-```
-
-# Response
-
-```java
+```javascript
 {
-	"code":10000,
-	"msg":"request success",
-	"total": {
-		"BTC": "0",
-		"ETH": "0"
-	},
-	"free": {
-		"BTC": "0",
-		"ETH": "0"
-	},
-	"freezed": {
-		"BTC": "0",
-		"ETH": "0"
-	}
+    "code": 10000,
+    "msg": "request success",
+    "asks": [ --ask depth
+        [
+            "0.03434400",
+            "0.31100000"
+        ],
+        [
+            "0.03436300",
+            "0.18900000"
+        ],
+        [
+            "0.03436400",
+            "1.01900000"
+        ],
+        [
+            "0.03437100",
+            "0.17200000"
+        ],
+        [
+            "0.03437400", --sell price
+            "0.43400000"  --sell qty
+        ]
+    ],
+    "bids": [ --bid depth
+        [
+            "0.03427400", --buy price
+            "0.21100000"  --buy qty
+        ],
+        [
+            "0.03427100",
+            "22.05400000"
+        ],
+        [
+            "0.03427000",
+            "0.44700000"
+        ],
+        [
+            "0.03426800",
+            "2.95100000"
+        ],
+        [
+            "0.03426700",
+            "0.94900000"
+        ]
+    ]
 }
 ```
 
-（2）response description
+### 4, Get Recently 60 Trades
 
-```
-total:total Equity
-free:available fund
-freezed:frozen fund
-```
+> url : /api/api/v2/trades
 
-（3）request parameters
+> http method : get
 
-```
-name		type  	   required			description
-key			String		true     	apiKey of the user
-timestamp	Long		true		Request timestamp (valid for 3 minutes)
-sign		String		true		signature of request parameters
-```
+> request parameters :
 
-> 7．POST /api/api/v2/placeOrder  Place Orders
+| name | type | required | description |
+|------|------|----------|-------------|
+| pair | string | true  | IDAX supports trade pairs. |
 
-（1）request demo
-# Request
+> sample request:
 
-```java
-POST https://openapi.idax.mn/api/v2/placeOrder
+```javascript
+curl https://openapi.idax.mn/api/v2/trades?pair=ETH_BTC
 ```
 
-# Response
+> sample response:
 
-```java
-{"code":10000, "msg":"request success", "orderId":123456789}
-```
-
-（2）response description
-
-```
-orderId: order ID
-```
-
-（3）request parameters
-
-```
-name		type		required			description
-key			String		  true			apiKey of the user
-pair		String		  true			IDAX supports trade pairs
-orderType	String		  true			order type: (limit/market)
-orderSide	String		  true	     	order side:(buy/sell)
-price		Double		  true			Order price
-amount		Double		  true			Order quantity
-timestamp	Long		  true			Request timestamp (valid for 3 minutes)
-sign		String		  true			signature of request parameters
-```
-
-> 8．POST /api/api/v2/tradesHistory Not for Personal
-
-（1）request demo
-
-# Request
-
-```java
-POST https://openapi.idax.mn/api/v2/tradesHistory
-```
-
-# Response
-
-```java
+```javascript
 {
-	"code":10000,
-	"msg":"request success",
-	"trades":[{
-		"timestamp": 1367130137,
-		"price": "787.71",
-		"quantity": "0.003",
-		"id": 2304331234,
-		"maker":"buy"
-	},
-	{
-		"timestamp": 1367130137,
-		"price": "787.71",
-		"quantity": "0.003",
-		"id": 2304330000,
-		"maker":"sell"
-	}]
+    "code": 10000,
+    "msg": "request success",
+    "trades": [
+        {
+            "timestamp": 1536322351000, --trade time
+            "price": "0.03428800", --deal price
+            "quantity": "1.19400000",--qty in base coin
+            "id": "6ce36df8-c87a-4517-8a6f-a67affe0481b",--trade id
+            "maker": "Sell" --deal direction Buy/Sell
+        },
+        {
+            "timestamp": 1536322353000,
+            "price": "0.03428800",
+            "quantity": "0.97200000",
+            "id": "a1870119-fdd1-484e-b86b-794554075326",
+            "maker": "Buy"
+        },
+        {
+            "timestamp": 1536322354000,
+            "price": "0.03428700",
+            "quantity": "0.96700000",
+            "id": "c0e752c4-f20c-48ac-8cd9-c65823b1ea01",
+            "maker": "Sell"
+        },
+        .....
+    ]
 }
 ```
 
-（2）response description
+### 5, Get kline data
 
-```
-timestamp: transaction time
-price: transaction price
-quantity: quantity in BTC (or other coin)
-id: transaction ID
-maker:buy / sell
-```
+> url : /api/api/v2/kline
 
-（3）request parameters
+> http method : get
 
-```
-name			type	 required				description
-key				String		true			apiKey of the user
-pair			String		true			IDAX supports trade pairs
-since			Long		true			get 600 pieces of data starting from the given tid (Required)
-timestamp		Long		true			Request timestamp (valid for 3 minutes)
-sign			String		true			signature of request parameters
-```
+> request parameters :
 
-> 9．POST /api/api/v2/cancelOrder  Cancel the order (support mass order cancellation)
+| name | type | required | description |
+|------|------|----------|-------------|
+| pair | string | true  | IDAX supports trade pairs. |
+| period | string | true | 1min,5min,15min,30min,1hour,2hour,4hour,6hour,12hour,1day,1week|
+| size | integer | false | specify data size to be acquired |
+| since | long | false | timestamp(eg:1417536000000). data after the timestamp will be returned|
 
-（1）request demo
-# Request
+> sample request:
 
-```java
-POST https://openapi.idax.mn/api/v2/cancelOrder
+```javascript
+curl https://openapi.idax.mn/api/v2/kline?pair=ETH_BTC&period=1min
 ```
 
-# Response
+> sample response:
+approximately 2000 pieces of data are returned each cycle
 
-```java
-{"code":10000,"msg":"request success","accepted":"123456789,123456000"}
+```json
+{
+    "code": 10000,
+    "msg": "request success",
+    "kline": [
+        [
+            1536323160000, --timestamp
+            "0.03449400", --open price
+            "0.03449400", --high price
+            "0.03449400", --low price
+            "0.03449400", --close price
+            "0.71900000"  --volume
+        ],
+        [
+            1536323220000,
+            "0.03448500",
+            "0.03448500",
+            "0.03448500",
+            "0.03448500",
+            "1.48500000"
+        ],
+        ...
+    ]
+}
 ```
 
-（2）response description
+### 6， Get account info
 
-```
-accepted:ID(Accepted request for cancellation of order)
-```
+> url : /api/api/v2/userinfo
 
-（3）request parameters
+> http method : get
 
-```
-name		type	  required			description
-key			String		true			apiKey of the user
-orderId		String		true			order ID (multiple orders are separated by a comma ',', Max of 5 orders are allowed per request)
-timestamp	Long		true			Request timestamp (valid for 3 minutes)
-sign		String		true			signature of request parameters
-```
+> request parameters:
 
-> 10．POST /api/api/v2/orderInfo  Get Order Info
+| name | type | required | description |
+|------|------|----------|-------------|
+| key | string | true  | apiKey of the user. |
+| timestamp | long | true | Request timestamp (valid for 3 minutes)|
+| sign | string | true | signature of request parameters |
 
-（1）request demo
-# Request
+> sample request
 
-```java
-POST https://openapi.idax.mn/api/v2/orderInfo
+```bash
+curl -H "Content-Type: application/json" -x POST https://openapi.idax.mn/api/v2/userinfo --data '{"key":"VmhrcrQEF3ATxV2JtVMEH4dFpGEmYzixOL4VrvAeR2COXtc9pzXbvFV1jLbFXEQf","timestamp":1536323160000,"sign":"c69d8ec9e274dd20126972b2dfaedc8c74cf06fbb19f968eedcc0a300a95b9f6"}'
 ```
 
-# Response
+> sample resonse
 
-```java
+```json
 {
     "code":10000,
     "msg":"request success",
-    "orders": [{
-            "quantity": "0.1",
-            "avgPrice": "0",
-            "timestamp": 1418008467000,
-            "dealQuantity": "0",
-            "orderId": 10000591,
-            "price": "500",
-            "orderState":1,
+    "total": { --total fund
+        "BTC": "0",
+        "ETH": "0"
+    },
+    "free": { -- available fund
+        "BTC": "0",
+        "ETH": "0"
+    },
+    "freezed": { -- frozen fund
+        "BTC": "0",
+        "ETH": "0"
+    }
+}
+```
+
+### 7, Place Orders
+
+> url : /api/api/v2/placeOrder
+
+> http method : POST
+
+> request parameters:
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| key | string | true  | apiKey of the user. |
+| pair | string | true | IDAX supports trade pairs|
+| orderType | string | true | order type: (limit/market) |
+| orderSide | string | true | order side:(buy/sell) |
+| price | decimal | true | order price |
+| amount | decimal | true | order qty |
+| timestamp | long | true | Request timestamp (valid for 3 minutes) |
+| sign | string | true | signature of request parameters |
+
+> sample request :
+
+```bash
+curl -H "Content-Type: application/json" -X POST "https://openapi.idax.mn/api/v2/placeOrder" --data '{"amount": 1.05,"key": "VmhrcrQEF3ATxV2JtVMEH4dFpGEmYzixOL4VrvAeR2COXtc9pzXbvFV1jLbFXEQf","orderSide": "buy","orderType": "limit","pair": "ETH_BTC","price": 0.034775,"sign": "c69d8ec9e274dd20126972b2dfaedc8c74cf06fbb19f968eedcc0a300a95b9f6","timestamp":1532522823039}'
+```
+
+> sample response :
+
+```json
+{
+    "code":10000,
+    "msg":"request success",
+    "orderId":123456789 --order ID
+}
+```
+
+### 8, get trade history for specific pairs
+
+> url : /api/api/v2/tradesHistory
+
+> http method : POST
+
+> request parameters:
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| key | string | true | apiKey of the user |
+| pair | string | true | IDAX supports trade pairs |
+| since | long | true|get 600 pieces of data starting from the given tid (Required)|
+| timestamp | long | true | Request timestamp (valid for 3 minutes) |
+| sign | string | true | signature of request parameters |
+
+> sample request :
+
+```bash
+TODO
+```
+
+> sample response :
+
+```json
+{
+    "code":10000,
+    "msg":"request success",
+    "trades":[{
+        "timestamp": 1367130137, -- trade time
+        "price": "787.71", --deal price
+        "quantity": "0.003", -- qty in base coin
+        "id": 2304331234, -- trade id
+        "maker":"buy" -- buy/sell
+    },
+    {
+        "timestamp": 1367130137,
+        "price": "787.71",
+        "quantity": "0.003",
+        "id": 2304330000,
+        "maker":"sell"
+    }]
+}
+```
+
+### 9, Cancel Order (Support multiple orders per request)
+
+> URL : /api/api/v2/cancelOrder
+
+> Http Method : POST
+
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| key | string | true | apiKey of the user |
+| orderId | string | true | order ID (multiple orders are separated by a comma ',', Max of 5 orders are allowed per request)|
+| timestamp | long | true |Request timestamp (valid for 3 minutes)|
+| sign | string | true | signature of request parameters|
+
+> Request
+
+```bash
+TODO
+```
+
+> Response
+
+```json
+{
+    "code":10000,
+    "msg":"request success",
+    "accepted":"123456789,123456000" -- IDs(Accepted request for cancellation of order)
+}
+```
+
+### 10, Get Order Info
+
+> URL :　/api/api/v2/orderInfo
+
+> Http Method : POST
+
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| key| string | true | apiKey of the user |
+| pair | string | true | IDAX supports trade pairs|
+| orderId | long | true |if order_id is -1, then return all unfilled orders, otherwise return the order specified|
+| pageIndex | int | true | current page number |
+| pageSize | int | true | number of orders returned per page, maximum 100 |
+| timestamp | long | true | request timestamp (valid for 3 minutes) |
+| sign| string | true | signature of request parameters|
+
+> Request
+
+```bash
+TODO
+```
+
+> Response
+
+```json
+{
+    "code":10000,
+    "msg":"request success",
+    "orders": [
+        {
+            "quantity": "0.1", -- order quantity
+            "avgPrice": "0", -- average transaction price
+            "timestamp": 1418008467000,-- order time
+            "dealQuantity": "0", -- filled quantity
+            "orderId": 10000591, -- order ID
+            "price": "500", -- order price
+            "orderState":1, -- 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
             "pair": "ETH_BTC",
-            "orderSide":"buy"
+            "orderSide":"buy" -- buy/sell
         },
         {
             "quantity": "0.2",
@@ -494,58 +579,45 @@ POST https://openapi.idax.mn/api/v2/orderInfo
 }
 ```
 
-（2）response description
+### 11, Get Order Information in Batch
 
-```
-quantity: order quantity
-timestamp: order time
-avgPrice:average transaction price
-dealQuantity:filled quantity
-orderId:order ID
-price:order price
-orderState: 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
-orderSide: buy/sell
-total: total number
-```
+> URL : /api/api/v2/orderList
 
-（3）request parameters
+> Http Method : POST
 
-```
-name		type	  required			description
-key			String		true	    apiKey of the user
-pair		String		true		IDAX supports trade pairs
-orderId		Long		true	  	if order_id is -1, then return all unfilled orders, otherwise return the order specified
-pageIndex   int         true        current page number
-pageSize    int         true        number of orders returned per page, maximum 100
-timestamp	Long		true		Request timestamp (valid for 3 minutes)
-sign		String		true    	signature of request parameters
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| key | string | true | apiKey of the user |
+| pair | string | true | IDAX supports trade pairs |
+| orderId | string | true | order ID (multiple orders are separated by ',', 50 orders at most are allowed per request)|
+| timestamp | long | true | Request timestamp (valid for 3 minutes) |
+| sign | string | true | signature of request parameters|
+
+> Request
+
+```bash
+TODO
 ```
 
-> 11．POST /api/api/v2/orderList  Get Order Information in Batch
+> Response
 
-（1）request demo
-# Request
-
-```java
-POST https://openapi.idax.mn/api/v2/orderList
-```
-
-# Response
-
-```java
+```json
 {
     "code":10000,
     "msg":"request success",
-    "orders": [{
-            "quantity": "0.1",
-            "avgPrice": "0",
-            "timestamp": 1418008467000,
-            "dealQuantity": "0",
-            "orderId": 10000591,
-            "price": "500",
-            "orderState":1,
+    "orders": [
+        {
+            "quantity": "0.1", -- order quantity
+            "avgPrice": "0", -- average transaction price
+            "timestamp": 1418008467000, -- order time
+            "dealQuantity": "0", -- filled quantity
+            "orderId": 10000591, -- order ID
+            "price": "500", -- order price
+            "orderState":1, -- 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
             "pair": "ETH_BTC",
-            "orderSide":"buy"
+            "orderSide":"buy" -- buy/sell
         },
         {
             "quantity": "0.2",
@@ -561,142 +633,110 @@ POST https://openapi.idax.mn/api/v2/orderList
 }
 ```
 
-（2）response description
+### 12, Order History
 
-```
-quantity: order quantity
-timestamp: order time
-avgPrice:average transaction price
-dealQuantity:filled quantity
-orderId:order ID
-price:order price
-orderState: 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
-orderSide: buy/sell
-```
+> Description
 
-（3）request parameters
+Get historical order information and return information only for the last two days
 
-```
-name         type      required			desctiption
-key			String		true		apiKey of the user
-pair		String		true		IDAX supports trade pairs
-orderId		String		true		order ID (multiple orders are separated by ',', 50 orders at most are allowed per request)
-timestamp	Long		true		Request timestamp (valid for 3 minutes)
-sign		String		true		signature of request parameters
+> URL
 
-```
+/api/api/v2/orderHistory  
 
-> 12．POST /api/api/v2/orderHistory  Get historical order information and return information only for the last two days
+> Http Method
 
-（1）request demo
-# Request
+POST
 
-```java
-POST https://openapi.idax.mn/api/v2/orderHistory
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| key | string | true | apiKey of the user |
+| pair | string | true | IDAX supports trade pairs |
+| orderState | integer | true | query status: 0 for all orders,query status: 0 for unfilled orders, 1 for filled orders  (only the data of the last two days are returned) |
+| currentPage | integer | true | current page number |
+| pageLength | integer | true | number of orders returned per page, maximum 100 |
+| timestamp | long | true | request timestamp (valid for 3 minutes) |
+| sign | string | true | signature of request parameters |
+
+> Request
+
+```bash
+TODO
 ```
 
-# Response
+> Response
 
-```java
+```json
 {
-    	"code":10000,
-    	"msg":"request success",
-		"currentPage": 1,
-		"orders": [{
-            "quantity": "0.2",
-            "avgPrice": "0",
-            "timestamp": 1417417957000,
-            "dealQuantity": "0",
-            "orderId": 10000724,
-            "price": "0.1",
-            "orderState":1,
-            "pair": "ETH_BTC",
-            "orderSide":"buy"
-		}],
-		"pageLength": 1,
-		"total": 3
+        "code":10000,
+        "msg":"request success",
+        "currentPage": 1, -- current page number
+        "orders": --detailed order information
+        [
+            {
+                "quantity": "0.2", -- order quantity
+                "avgPrice": "0", -- average transaction price
+                "timestamp": 1417417957000, -- order time
+                "dealQuantity": "0", -- filled quantity
+                "orderId": 10000724, -- order ID
+                "price": "0.1", -- order price
+                "orderState":1, -- orderState: 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
+                "pair": "ETH_BTC",
+                "orderSide":"buy" -- buy/sell
+            }
+        ],
+        "pageLength": 1, --number of orders per page
+        "total": 3 -- The total number of records
 }
-```
 
-（2）response description
+## 7, FAQ
 
-```
-currentPage:current page number
-orders:detailed order information
-quantity:order quantity
-avgPrice:average transaction price
-timestamp:order time
-dealQuantity:filled quantity
-orderId:order ID
-price:order price
-orderState:orderState: 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
-orderSide: 1:buy / 2:sell
-pageLength:number of orders per page
-total: The total number of records
-```
-
-（3）request parameters
-
-```
-name			type	 required			description
-key				String		true		apiKey of the user
-pair			String		true		IDAX supports trade pairs
-orderState		Integer		true		query status: 0 for all orders,query status: 0 for unfilled orders, 1 for filled orders  (only the data of the last two days are returned)
-currentPage		Integer		true		current page number
-pageLength		Integer		true		number of orders returned per page, maximum 100
-timestamp		Long		true		Request timestamp (valid for 3 minutes)
-sign			String		true		signature of request parameters
-```
-
-
-** senven Common problems of RestAPI**
-
-1、Access restrictions
+1,Access restrictions
 
 Answer: Each IP can send maximum of 10 https requests within 1 second. If the 10 limit is exceeded, the system will automatically block the IP for one hour. After that hour, the IP will be automatically unfrozen.
-2、Server returns 10000 error code
+2,Server returns 10000 error code
 
-Answer:All requests go over https protocol, The field 'contentType' in request header should be: 'application/x-www-form-urlencoded'. 
+Answer:All requests go over https protocol, The field 'contentType' in request header should be: 'application/x-www-form-urlencoded'.
+
+## 8, The error codes
 
 
-
-
-**Chapter 8、The error code**
-```java
-
-10000	Successful request processing
-10001	System exception/server busy
-10002	This IP is not allowed to access
-10003	Only support https request
-10004	Request frequency too high to exceed the limit allowed	
-10005	Non-available API	
-10006	Required field, can not be null	
-10007	'Api_key' does not exist	
-10008	'SecretKey' does not exist
-10009	Signature does not match	
-10010	API authorization error
-10011	Illegal parameter	
-10012	IDAX not supports trade pairs
-10013	Insufficient funds	
-10014	Insufficient coins balance
-10015	The Trading volume is less than the minimum requirement	
-10016	The transaction amount is less than the minimum requirement	
-10017	Trading volume is greater than the maximum volume	
-10018	The transaction amount is greater than the maximum requirement	
-10019	The deviation between the order price and the latest transaction price is too large	
-10020	the Decimal places of Order number over limit	
-10021	the Decimal places of Order price over limit	
-10022	Order does not exist	
-10023	order type is wrong	
-10024	Wrong buying and selling direction	
-10025	Order failed	
-10026	Cancel the order  failure	
-10027	User account frozen
-10028	Account does not exist	
-10029	No trading market information	
-10030	No latest market information
-10031	No market depth information
-10032	incorrect ID
-10033	No chart type
-......	.....	
-10999	According to relevant laws, your country or region cannot use this function。	
+| Error Code | Error Description|
+|------------|------------------|
+|10000|    Successful request processing|
+|10001|    System exception/server busy|
+|10002|    This IP is not allowed to access|
+|10003|    Only support https request|
+|10004|    Request frequency too high to exceed the limit allowed|
+|10005|    Non-available API|
+|10006|    Required field, can not be null|
+|10007|    'Api_key' does not exist|
+|10008|    'SecretKey' does not exist|
+|10009|    Signature does not match|
+|10010|    API authorization error|
+|10011|    Illegal parameter|
+|10012|    IDAX not supports trade pairs|
+|10013|    Insufficient funds|
+|10014|    Insufficient coins balance|
+|10015|    The Trading volume is less than the minimum requirement|
+|10016|    The transaction amount is less than the minimum requirement|
+|10017|    Trading volume is greater than the maximum volume|
+|10018|    The transaction amount is greater than the maximum requirement|
+|10019|    The deviation between the order price and the latest transaction price is too large|
+|10020|    the Decimal places of Order number over limit|
+|10021|    the Decimal places of Order price over limit|
+|10022|    Order does not exist|
+|10023|    order type is wrong|
+|10024|    Wrong buying and selling direction|
+|10025|    Order failed|
+|10026|    Cancel the order  failure|
+|10027|    User account frozen|
+|10028|    Account does not exist|
+|10029|    No trading market information|
+|10030|    No latest market information|
+|10031|    No market depth information|
+|10032|    incorrect ID|
+|10033|    No chart type|
+|......|    .....|
+|10999|    According to relevant laws, your country or region cannot use this function.|
