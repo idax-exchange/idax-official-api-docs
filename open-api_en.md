@@ -105,7 +105,7 @@ parameters:
 step 1:
 sort parameters alphabetically (include 'key'):
 
-```javascript
+```bash
 amount=1.05&key=VmhrcrQEF3ATxV2JtVMEH4dFpGEmYzixOL4VrvAeR2COXtc9pzXbvFV1jLbFXEQf&orderSide=buy&orderType=limit&pair=ETH_BTC&price=0.034775&timestamp=1532522823039
 ```
 
@@ -141,21 +141,29 @@ There are four simple steps to the request process.
 
 ## 6, API Reference
 
-### 1, get server timestamp
+### 1, Server Time
 
-> url : /api/v2/time
+> Description
 
-> http method : get
+Get Server timestamp
 
-> sample request:
+> URL
 
-```javascript
+/api/v2/time
+
+> Http Method
+
+GET
+
+> Request
+
+```bash
 curl https://openapi.idax.mn/api/v2/time
 ```
 
-> sample response:
+> Response
 
-```javascript
+```json
 {
     "code":10000,
     "msg":"request success",
@@ -163,46 +171,62 @@ curl https://openapi.idax.mn/api/v2/time
 }
 ```
 
-### 2, Get Price Ticker
+### 2, Ticker Price
 
-> url : /api/v2/ticker
+> Description
 
-> http method : get
+Get the price of specific ticker.
 
-> sample request:
+> URL
 
-```javascript
+/api/v2/ticker
+
+> Http Method
+
+GET
+
+> Request
+
+```bash
 curl https://openapi.idax.mn/api/v2/ticker?pair=ETH_BTC
 ```
 
-> sample response:
+> Response
 
-```javascript
+```json
 {
-"code":10000,
-"msg":"request success",
-"timestamp":1536320917805, --server time for returned data
-"ticker":
+    "code":10000,
+    "msg":"request success",
+    "timestamp":1536320917805, //server time for returned data
+    "ticker":
     [
         {
-            "pair":"ETH_BTC", --pair
-            "open":"0.03528700", --open price
-            "high":"0.03587400", --high price
-            "low":"0.03389300",--low price
-            "last":"0.03428700",--last price
-            "vol":"18484.75200000"--volume(in the last 24hours sliding window)
+            "pair":"ETH_BTC", //pair
+            "open":"0.03528700", //open price
+            "high":"0.03587400", //high price
+            "low":"0.03389300",//low price
+            "last":"0.03428700",//last price
+            "vol":"18484.75200000"//volume(in the last 24hours sliding window)
         }
     ]
 }
 ```
 
-### 3, Get Market Depth
+### 3, Depth
 
-> url : /api/api/v2/depth
+> Description
 
-> http method : get
+Get the market depth for specific market.
 
-> request parameters:
+> URL
+
+/api/api/v2/depth
+
+> Http Method
+
+GET
+
+> Parameters
 
 | name | type | required | description |
 |------|------|----------|-------------|
@@ -210,19 +234,19 @@ curl https://openapi.idax.mn/api/v2/ticker?pair=ETH_BTC
 | size | integer | true | how many price level should be response. must be between 1 - 200|
 | merge| integer | true | price decimal price should be merged. |
 
-> sample request:
+> Request
 
-```javascript
+```bash
 curl https://openapi.idax.mn/api/v2/depth?pair=ETH_BTC&size=5&merge=8
 ```
 
->sample response:
+> Response
 
-```javascript
+```json
 {
     "code": 10000,
     "msg": "request success",
-    "asks": [ --ask depth
+    "asks": [ //ask depth
         [
             "0.03434400",
             "0.31100000"
@@ -240,14 +264,14 @@ curl https://openapi.idax.mn/api/v2/depth?pair=ETH_BTC&size=5&merge=8
             "0.17200000"
         ],
         [
-            "0.03437400", --sell price
-            "0.43400000"  --sell qty
+            "0.03437400", //sell price
+            "0.43400000"  //sell qty
         ]
     ],
-    "bids": [ --bid depth
+    "bids": [ //bid depth
         [
-            "0.03427400", --buy price
-            "0.21100000"  --buy qty
+            "0.03427400", //buy price
+            "0.21100000"  //buy qty
         ],
         [
             "0.03427100",
@@ -269,37 +293,45 @@ curl https://openapi.idax.mn/api/v2/depth?pair=ETH_BTC&size=5&merge=8
 }
 ```
 
-### 4, Get Recently 60 Trades
+### 4, Trades
 
-> url : /api/api/v2/trades
+> Description
 
-> http method : get
+Get Recently 60 Trades
 
-> request parameters :
+> URL
+
+/api/api/v2/trades
+
+> Http Method
+
+GET
+
+> Parameters
 
 | name | type | required | description |
 |------|------|----------|-------------|
 | pair | string | true  | IDAX supports trade pairs. |
 
-> sample request:
+> Request
 
-```javascript
+```bash
 curl https://openapi.idax.mn/api/v2/trades?pair=ETH_BTC
 ```
 
-> sample response:
+> Response
 
-```javascript
+```json
 {
     "code": 10000,
     "msg": "request success",
     "trades": [
         {
-            "timestamp": 1536322351000, --trade time
-            "price": "0.03428800", --deal price
-            "quantity": "1.19400000",--qty in base coin
-            "id": "6ce36df8-c87a-4517-8a6f-a67affe0481b",--trade id
-            "maker": "Sell" --deal direction Buy/Sell
+            "timestamp": 1536322351000, //trade time
+            "price": "0.03428800", //deal price
+            "quantity": "1.19400000", //qty in base coin
+            "id": "6ce36df8-c87a-4517-8a6f-a67affe0481b", //trade id
+            "maker": "Sell" //deal direction Buy/Sell
         },
         {
             "timestamp": 1536322353000,
@@ -315,18 +347,26 @@ curl https://openapi.idax.mn/api/v2/trades?pair=ETH_BTC
             "id": "c0e752c4-f20c-48ac-8cd9-c65823b1ea01",
             "maker": "Sell"
         },
-        .....
+        //.....
     ]
 }
 ```
 
-### 5, Get kline data
+### 5, Kline
 
-> url : /api/api/v2/kline
+> Description
 
-> http method : get
+Get kline data
 
-> request parameters :
+> URL
+
+/api/api/v2/kline
+
+> Http Method
+
+GET
+
+> Parameters
 
 | name | type | required | description |
 |------|------|----------|-------------|
@@ -335,13 +375,14 @@ curl https://openapi.idax.mn/api/v2/trades?pair=ETH_BTC
 | size | integer | false | specify data size to be acquired |
 | since | long | false | timestamp(eg:1417536000000). data after the timestamp will be returned|
 
-> sample request:
+> Request
 
-```javascript
+```bash
 curl https://openapi.idax.mn/api/v2/kline?pair=ETH_BTC&period=1min
 ```
 
-> sample response:
+> Response
+
 approximately 2000 pieces of data are returned each cycle
 
 ```json
@@ -350,12 +391,12 @@ approximately 2000 pieces of data are returned each cycle
     "msg": "request success",
     "kline": [
         [
-            1536323160000, --timestamp
-            "0.03449400", --open price
-            "0.03449400", --high price
-            "0.03449400", --low price
-            "0.03449400", --close price
-            "0.71900000"  --volume
+            1536323160000, //timestamp
+            "0.03449400", //open price
+            "0.03449400", //high price
+            "0.03449400", //low price
+            "0.03449400", //close price
+            "0.71900000"  //volume
         ],
         [
             1536323220000,
@@ -365,18 +406,26 @@ approximately 2000 pieces of data are returned each cycle
             "0.03448500",
             "1.48500000"
         ],
-        ...
+        //...
     ]
 }
 ```
 
-### 6， Get account info
+### 6， Account Info
 
-> url : /api/api/v2/userinfo
+> Description
 
-> http method : get
+Get account info
 
-> request parameters:
+> URL
+
+/api/api/v2/userinfo
+
+> Http Method
+
+GET
+
+> Parameters
 
 | name | type | required | description |
 |------|------|----------|-------------|
@@ -384,27 +433,27 @@ approximately 2000 pieces of data are returned each cycle
 | timestamp | long | true | Request timestamp (valid for 3 minutes)|
 | sign | string | true | signature of request parameters |
 
-> sample request
+> Request
 
 ```bash
 curl -H "Content-Type: application/json" -x POST https://openapi.idax.mn/api/v2/userinfo --data '{"key":"VmhrcrQEF3ATxV2JtVMEH4dFpGEmYzixOL4VrvAeR2COXtc9pzXbvFV1jLbFXEQf","timestamp":1536323160000,"sign":"c69d8ec9e274dd20126972b2dfaedc8c74cf06fbb19f968eedcc0a300a95b9f6"}'
 ```
 
-> sample resonse
+> Response
 
 ```json
 {
     "code":10000,
     "msg":"request success",
-    "total": { --total fund
+    "total": { //total fund
         "BTC": "0",
         "ETH": "0"
     },
-    "free": { -- available fund
+    "free": {  //available fund
         "BTC": "0",
         "ETH": "0"
     },
-    "freezed": { -- frozen fund
+    "freezed": { //frozen fund
         "BTC": "0",
         "ETH": "0"
     }
@@ -413,11 +462,19 @@ curl -H "Content-Type: application/json" -x POST https://openapi.idax.mn/api/v2/
 
 ### 7, Place Orders
 
-> url : /api/api/v2/placeOrder
+> Description
 
-> http method : POST
+Create new order
 
-> request parameters:
+> URL
+
+/api/api/v2/placeOrder
+
+> Http Method 
+
+POST
+
+> Parameters
 
 | name | type | required | description |
 |------|------|----------|-------------|
@@ -430,13 +487,13 @@ curl -H "Content-Type: application/json" -x POST https://openapi.idax.mn/api/v2/
 | timestamp | long | true | Request timestamp (valid for 3 minutes) |
 | sign | string | true | signature of request parameters |
 
-> sample request :
+> Request
 
 ```bash
 curl -H "Content-Type: application/json" -X POST "https://openapi.idax.mn/api/v2/placeOrder" --data '{"amount": 1.05,"key": "VmhrcrQEF3ATxV2JtVMEH4dFpGEmYzixOL4VrvAeR2COXtc9pzXbvFV1jLbFXEQf","orderSide": "buy","orderType": "limit","pair": "ETH_BTC","price": 0.034775,"sign": "c69d8ec9e274dd20126972b2dfaedc8c74cf06fbb19f968eedcc0a300a95b9f6","timestamp":1532522823039}'
 ```
 
-> sample response :
+> Response
 
 ```json
 {
@@ -446,13 +503,21 @@ curl -H "Content-Type: application/json" -X POST "https://openapi.idax.mn/api/v2
 }
 ```
 
-### 8, get trade history for specific pairs
+### 8, Trade History
 
-> url : /api/api/v2/tradesHistory
+> Description
 
-> http method : POST
+get trade history for specific pairs
 
-> request parameters:
+> URL
+
+/api/api/v2/tradesHistory
+
+> Http Method
+
+POST
+
+> Parameters
 
 | name | type | required | description |
 |------|------|----------|-------------|
@@ -462,24 +527,24 @@ curl -H "Content-Type: application/json" -X POST "https://openapi.idax.mn/api/v2
 | timestamp | long | true | Request timestamp (valid for 3 minutes) |
 | sign | string | true | signature of request parameters |
 
-> sample request :
+> Request
 
 ```bash
 TODO
 ```
 
-> sample response :
+> Response
 
 ```json
 {
     "code":10000,
     "msg":"request success",
     "trades":[{
-        "timestamp": 1367130137, -- trade time
-        "price": "787.71", --deal price
-        "quantity": "0.003", -- qty in base coin
-        "id": 2304331234, -- trade id
-        "maker":"buy" -- buy/sell
+        "timestamp": 1367130137, // trade time
+        "price": "787.71", // deal price
+        "quantity": "0.003", // qty in base coin
+        "id": 2304331234, // trade id
+        "maker":"buy" // buy/sell
     },
     {
         "timestamp": 1367130137,
@@ -491,11 +556,19 @@ TODO
 }
 ```
 
-### 9, Cancel Order (Support multiple orders per request)
+### 9, Cancel Order
 
-> URL : /api/api/v2/cancelOrder
+> Description
 
-> Http Method : POST
+Cancel orders (Support multiple orders per request)
+
+> URL
+
+/api/api/v2/cancelOrder
+
+> Http Method
+
+POST
 
 > Parameters
 
@@ -518,15 +591,23 @@ TODO
 {
     "code":10000,
     "msg":"request success",
-    "accepted":"123456789,123456000" -- IDs(Accepted request for cancellation of order)
+    "accepted":"123456789,123456000" // IDs(Accepted request for cancellation of order)
 }
 ```
 
-### 10, Get Order Info
+### 10, Order Info
 
-> URL :　/api/api/v2/orderInfo
+> Description
 
-> Http Method : POST
+Get Order Info
+
+> URL
+
+/api/api/v2/orderInfo
+
+> Http Method
+
+POST
 
 > Parameters
 
@@ -554,15 +635,15 @@ TODO
     "msg":"request success",
     "orders": [
         {
-            "quantity": "0.1", -- order quantity
-            "avgPrice": "0", -- average transaction price
-            "timestamp": 1418008467000,-- order time
-            "dealQuantity": "0", -- filled quantity
-            "orderId": 10000591, -- order ID
-            "price": "500", -- order price
-            "orderState":1, -- 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
+            "quantity": "0.1", // order quantity
+            "avgPrice": "0", // average transaction price
+            "timestamp": 1418008467000,// order time
+            "dealQuantity": "0", // filled quantity
+            "orderId": 10000591, // order ID
+            "price": "500", // order price
+            "orderState":1, // 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
             "pair": "ETH_BTC",
-            "orderSide":"buy" -- buy/sell
+            "orderSide":"buy" // buy/sell
         },
         {
             "quantity": "0.2",
@@ -579,11 +660,19 @@ TODO
 }
 ```
 
-### 11, Get Order Information in Batch
+### 11, Order List
 
-> URL : /api/api/v2/orderList
+> Description
 
-> Http Method : POST
+Get Order Information in Batch
+
+> URL
+
+/api/api/v2/orderList
+
+> Http Method
+
+POST
 
 > Parameters
 
@@ -609,15 +698,15 @@ TODO
     "msg":"request success",
     "orders": [
         {
-            "quantity": "0.1", -- order quantity
-            "avgPrice": "0", -- average transaction price
-            "timestamp": 1418008467000, -- order time
-            "dealQuantity": "0", -- filled quantity
-            "orderId": 10000591, -- order ID
-            "price": "500", -- order price
-            "orderState":1, -- 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
+            "quantity": "0.1", //order quantity
+            "avgPrice": "0", // average transaction price
+            "timestamp": 1418008467000, // order time
+            "dealQuantity": "0", // filled quantity
+            "orderId": 10000591, // order ID
+            "price": "500", // order price
+            "orderState":1, // 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
             "pair": "ETH_BTC",
-            "orderSide":"buy" -- buy/sell
+            "orderSide":"buy" // buy/sell
         },
         {
             "quantity": "0.2",
@@ -671,31 +760,32 @@ TODO
 {
         "code":10000,
         "msg":"request success",
-        "currentPage": 1, -- current page number
-        "orders": --detailed order information
+        "currentPage": 1, // current page number
+        "orders": // detailed order information
         [
             {
-                "quantity": "0.2", -- order quantity
-                "avgPrice": "0", -- average transaction price
-                "timestamp": 1417417957000, -- order time
-                "dealQuantity": "0", -- filled quantity
-                "orderId": 10000724, -- order ID
-                "price": "0.1", -- order price
-                "orderState":1, -- orderState: 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
+                "quantity": "0.2", // order quantity
+                "avgPrice": "0", // average transaction price
+                "timestamp": 1417417957000, // order time
+                "dealQuantity": "0", // filled quantity
+                "orderId": 10000724, // order ID
+                "price": "0.1", // order price
+                "orderState":1, // orderState: 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
                 "pair": "ETH_BTC",
-                "orderSide":"buy" -- buy/sell
+                "orderSide":"buy" // buy/sell
             }
         ],
-        "pageLength": 1, --number of orders per page
-        "total": 3 -- The total number of records
+        "pageLength": 1, // number of orders per page
+        "total": 3 // The total number of records
 }
 
 ## 7, FAQ
 
-1,Access restrictions
+> Access restrictions
 
 Answer: Each IP can send maximum of 10 https requests within 1 second. If the 10 limit is exceeded, the system will automatically block the IP for one hour. After that hour, the IP will be automatically unfrozen.
-2,Server returns 10000 error code
+
+> Server returns 10000 error code
 
 Answer:All requests go over https protocol, The field 'contentType' in request header should be: 'application/x-www-form-urlencoded'.
 
