@@ -423,7 +423,7 @@ Get account info
 
 > Http Method
 
-GET
+POST
 
 > Parameters
 
