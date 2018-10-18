@@ -220,7 +220,7 @@ Get the market depth for specific market.
 
 > URL
 
-/api/api/v2/depth
+/api/v2/depth
 
 > Http Method
 
@@ -301,7 +301,7 @@ Get Recently 60 Trades
 
 > URL
 
-/api/api/v2/trades
+/api/v2/trades
 
 > Http Method
 
@@ -360,7 +360,7 @@ Get kline data
 
 > URL
 
-/api/api/v2/kline
+/api/v2/kline
 
 > Http Method
 
@@ -419,7 +419,7 @@ Get account info
 
 > URL
 
-/api/api/v2/userinfo
+/api/v2/userinfo
 
 > Http Method
 
@@ -468,7 +468,7 @@ Create new order
 
 > URL
 
-/api/api/v2/placeOrder
+/api/v2/placeOrder
 
 > Http Method 
 
@@ -511,7 +511,7 @@ get trade history for specific pairs
 
 > URL
 
-/api/api/v2/tradesHistory
+/api/v2/tradesHistory
 
 > Http Method
 
@@ -564,7 +564,7 @@ Cancel orders (Support multiple orders per request)
 
 > URL
 
-/api/api/v2/cancelOrder
+/api/v2/cancelOrder
 
 > Http Method
 
@@ -603,7 +603,7 @@ Get Order Info
 
 > URL
 
-/api/api/v2/orderInfo
+/api/v2/orderInfo
 
 > Http Method
 
@@ -668,7 +668,7 @@ Get Order Information in Batch
 
 > URL
 
-/api/api/v2/orderList
+/api/v2/orderList
 
 > Http Method
 
@@ -730,7 +730,7 @@ Get historical order information and return information only for the last two da
 
 > URL
 
-/api/api/v2/orderHistory  
+/api/v2/orderHistory  
 
 > Http Method
 
