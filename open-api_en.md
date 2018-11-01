@@ -779,6 +779,41 @@ POST
         "total": 3 // The total number of records
 }
 ```
+### 13, PairLimits
+
+> Description
+
+Gets the maximum, minimum, price, and quantity of the supported transaction pairs.
+
+> URL
+
+/api/v2/pairLimits
+
+> Http Method
+
+GET
+
+> Request
+
+```bash
+curl https://openapi.idax.mn/api/v2/pairLimits?pair=ETH_BTC
+```
+
+> Response
+
+```json
+{
+    "code": 10000,
+    "msg": "request success",
+    "pairRuleVo": [{
+        "pairName": "ETH_BTC",  //pair
+        "maxAmount": "1000000000000.00000000",  //max amount
+        "minAmount": "0.00100000", //min amount
+        "priceDecimalPlace": 6,  // price decimal 
+        "qtyDecimalPlace": 3  //quantity decimal
+    }]
+}
+```
 
 ## 7, FAQ
 
@@ -820,7 +855,7 @@ Answer:All requests go over https protocol, The field 'contentType' in request h
 |10023|    order type is wrong|
 |10024|    Wrong buying and selling direction|
 |10025|    Order failed|
-|10026|    Cancel the order  failure|
+|10026|    Withdrawal failure|
 |10027|    User account frozen|
 |10028|    Account does not exist|
 |10029|    No trading market information|
