@@ -16,7 +16,7 @@ If you have any problem when using APIs , pls contact our support team.
 
 ## 1, General Information
 
-* The base endpoint is [https://openapi.idax.mn/api/v2](https://openapi.idax.mn/api/v2)
+* The base endpoint is [https://openapi.idax.pro/api/v2](https://openapi.idax.pro/api/v2)
 * All endpoints return either a JSON object or array.
 * All time and timestamp related fields are in milliseconds.
 * Any endpoint can return an ERROR; the error payload is as following:
