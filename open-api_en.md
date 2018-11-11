@@ -37,7 +37,7 @@ If you have any problem when using APIs , pls contact our support team.
 
 Before get start, you need get the api key and secret first. The 'api key' is a unique string IDAX allocated for you (you can think it as the speicial username used in api) and the 'secret' is the private key used to sign your request data(and you can think it as the password for api).
 
-You can get the apiKey and secret key from idax website : https://www.idax.mn.
+You can get the apiKey and secret key from idax website : https://www.idax.pro.
 
 To get the API key and secret, please visit the "My API" links in user center.(only available on PC website)
 
@@ -121,12 +121,12 @@ step 3:
 add sign to the parameters and send request to server
 
 ```bash
-curl -H "Content-Type: application/json" -X POST "https://openapi.idax.mn/api/v2/placeOrder" --data '{"amount": 1.05,"key": "VmhrcrQEF3ATxV2JtVMEH4dFpGEmYzixOL4VrvAeR2COXtc9pzXbvFV1jLbFXEQf","orderSide": "buy","orderType": "limit","pair": "ETH_BTC","price": 0.034775,"sign": "c69d8ec9e274dd20126972b2dfaedc8c74cf06fbb19f968eedcc0a300a95b9f6","timestamp":1532522823039}'
+curl -H "Content-Type: application/json" -X POST "https://openapi.idax.pro/api/v2/placeOrder" --data '{"amount": 1.05,"key": "VmhrcrQEF3ATxV2JtVMEH4dFpGEmYzixOL4VrvAeR2COXtc9pzXbvFV1jLbFXEQf","orderSide": "buy","orderType": "limit","pair": "ETH_BTC","price": 0.034775,"sign": "c69d8ec9e274dd20126972b2dfaedc8c74cf06fbb19f968eedcc0a300a95b9f6","timestamp":1532522823039}'
 ```
 
 ## 5, Rest API
 
-* The base endpoint is : [https://openapi.idax.mn/api/v2](https://openapi.idax.mn/api/v2)
+* The base endpoint is : [https://openapi.idax.pro/api/v2](https://openapi.idax.pro/api/v2)
 * All requests go over https protocol
 * The field 'contentType' in request header should be: 'application/json'. 
 
@@ -158,7 +158,7 @@ GET
 > Request
 
 ```bash
-curl https://openapi.idax.mn/api/v2/time
+curl https://openapi.idax.pro/api/v2/time
 ```
 
 > Response
@@ -188,7 +188,7 @@ GET
 > Request
 
 ```bash
-curl https://openapi.idax.mn/api/v2/ticker?pair=ETH_BTC
+curl https://openapi.idax.pro/api/v2/ticker?pair=ETH_BTC
 ```
 
 > Response
@@ -237,7 +237,7 @@ GET
 > Request
 
 ```bash
-curl https://openapi.idax.mn/api/v2/depth?pair=ETH_BTC&size=5&merge=8
+curl https://openapi.idax.pro/api/v2/depth?pair=ETH_BTC&size=5&merge=8
 ```
 
 > Response
@@ -316,7 +316,7 @@ GET
 > Request
 
 ```bash
-curl https://openapi.idax.mn/api/v2/trades?pair=ETH_BTC
+curl https://openapi.idax.pro/api/v2/trades?pair=ETH_BTC
 ```
 
 > Response
@@ -378,7 +378,7 @@ GET
 > Request
 
 ```bash
-curl https://openapi.idax.mn/api/v2/kline?pair=ETH_BTC&period=1min
+curl https://openapi.idax.pro/api/v2/kline?pair=ETH_BTC&period=1min
 ```
 
 > Response
@@ -436,7 +436,7 @@ POST
 > Request
 
 ```bash
-curl -H "Content-Type: application/json" -x POST https://openapi.idax.mn/api/v2/userinfo --data '{"key":"VmhrcrQEF3ATxV2JtVMEH4dFpGEmYzixOL4VrvAeR2COXtc9pzXbvFV1jLbFXEQf","timestamp":1536323160000,"sign":"c69d8ec9e274dd20126972b2dfaedc8c74cf06fbb19f968eedcc0a300a95b9f6"}'
+curl -H "Content-Type: application/json" -x POST https://openapi.idax.pro/api/v2/userinfo --data '{"key":"VmhrcrQEF3ATxV2JtVMEH4dFpGEmYzixOL4VrvAeR2COXtc9pzXbvFV1jLbFXEQf","timestamp":1536323160000,"sign":"c69d8ec9e274dd20126972b2dfaedc8c74cf06fbb19f968eedcc0a300a95b9f6"}'
 ```
 
 > Response
@@ -490,7 +490,7 @@ POST
 > Request
 
 ```bash
-curl -H "Content-Type: application/json" -X POST "https://openapi.idax.mn/api/v2/placeOrder" --data '{"amount": 1.05,"key": "VmhrcrQEF3ATxV2JtVMEH4dFpGEmYzixOL4VrvAeR2COXtc9pzXbvFV1jLbFXEQf","orderSide": "buy","orderType": "limit","pair": "ETH_BTC","price": 0.034775,"sign": "c69d8ec9e274dd20126972b2dfaedc8c74cf06fbb19f968eedcc0a300a95b9f6","timestamp":1532522823039}'
+curl -H "Content-Type: application/json" -X POST "https://openapi.idax.pro/api/v2/placeOrder" --data '{"amount": 1.05,"key": "VmhrcrQEF3ATxV2JtVMEH4dFpGEmYzixOL4VrvAeR2COXtc9pzXbvFV1jLbFXEQf","orderSide": "buy","orderType": "limit","pair": "ETH_BTC","price": 0.034775,"sign": "c69d8ec9e274dd20126972b2dfaedc8c74cf06fbb19f968eedcc0a300a95b9f6","timestamp":1532522823039}'
 ```
 
 > Response
@@ -796,7 +796,7 @@ GET
 > Request
 
 ```bash
-curl https://openapi.idax.mn/api/v2/pairLimits?pair=ETH_BTC
+curl https://openapi.idax.pro/api/v2/pairLimits?pair=ETH_BTC
 ```
 
 > Response
