@@ -5,7 +5,7 @@
 ## Service address
 
 ```
-wss://openws.idax.mn/ws
+wss://openws.idax.pro/ws
 ```
 
 ## Request Data Format
