@@ -831,36 +831,45 @@ Answer:All requests go over https protocol, The field 'contentType' in request h
 | ------|------|
 | 10000 |    Successful request processing |
 | 10001 |    System exception/server busy |
-|10002|    This IP is not allowed to access|
-|10003|    Only support https request|
-|10004|    Request frequency too high to exceed the limit allowed|
-|10005|    Non-available API|
-|10006|    Required field, can not be null|
-|10007|    'Api_key' does not exist|
-|10008|    'SecretKey' does not exist|
-|10009|    Signature does not match|
-|10010|    API authorization error|
-|10011|    Illegal parameter|
-|10012|    IDAX not supports trade pairs|
-|10013|    Insufficient funds|
-|10014|    Insufficient coins balance|
-|10015|    The Trading volume is less than the minimum requirement|
-|10016|    The transaction amount is less than the minimum requirement|
-|10017|    Trading volume is greater than the maximum volume|
-|10018|    The transaction amount is greater than the maximum requirement|
-|10019|    The deviation between the order price and the latest transaction price is too large|
-|10020|    the Decimal places of Order number over limit|
-|10021|    the Decimal places of Order price over limit|
-|10022|    Order does not exist|
-|10023|    order type is wrong|
-|10024|    Wrong buying and selling direction|
-|10025|    Order failed|
-|10026|    Withdrawal failure|
-|10027|    User account frozen|
-|10028|    Account does not exist|
-|10029|    No trading market information|
-|10030|    No latest market information|
-|10031|    No market depth information|
-|10032|    incorrect ID|
-|10033|    No chart type|
-|10999|    According to relevant laws, your country or region cannot use this function.|
+| 10002 |    Parameters can not be empty
+| 10003 |    Illegal parameter
+| 10004 |    Not supported pair
+| 10005 |    The transaction is not supported
+| 10006 |    order state is error
+| 10007 |    No account information
+| 10008 |    key does not exist
+| 10009 |    Timestamp is empty
+| 10010 |    Timestamp Expirated
+| 10011 |    Sign is empty
+| 10012 |    Ip is not on the white list of requests
+| 10013 |    Signature mismatch
+| 10014 |    Place Order failed
+| 10015 |    Cancel  Order  failed
+| 10016 |    The request interface is too frequent. Please try again later
+| 10017 |    Exchanges do not support trading pair
+| 10018 |    Currency price is empty
+| 10019 |    A maximum of 5 orders can be revoked at a time
+| 10020 |    orderId is empty
+| 101001|    Unlawful price input
+| 101002|    Unlawful quantity input
+| 101003|    Unlawful order side input
+| 101004|    Coin Pair UnKnown
+| 101005|    Trade CreateOrder Price Decimal Place Error
+| 101006|    Trade CreateOrder Qty Decimal Place Error
+| 101007|    Trade Amount Max
+| 101008|    Trade Amount Min
+| 101009|    Insufficient account balance
+| 101010|    Available Amount Not Enough
+| 101011|    OrderId NotExist
+| 101012|    cancel OrderFail
+| 101013|    Query  Floating Rate Fail
+| 101014|    Buy Price Fail
+| 101015|    Sell Price Fail
+| 101016|    Create order maintenance
+| 101017|    Query Setting Empty
+| 101018|    Price input is empty
+| 101019|    Amount input is empty
+| 101020|    the order is dell
+| 101021|    the order is cancel
+| 101022|    Trade is not allowed to be traded on no shelf
+| 101023|    This order is invalid
