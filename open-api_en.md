@@ -373,7 +373,7 @@ GET
 | pair | string | true  | IDAX supports trade pairs. |
 | period | string | true | 1min,5min,15min,30min,1hour,2hour,4hour,6hour,12hour,1day,1week|
 | size | integer | false | specify data size to be acquired |
-| since | long | false | timestamp(eg:1417536000000). data after the timestamp will be returned|
+| since | long | false | timestamp(eg:1417536000000). Data before returning timestamp|
 
 > Request
 
