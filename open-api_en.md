@@ -499,7 +499,7 @@ curl -H "Content-Type: application/json" -X POST "https://openapi.idax.pro/api/v
 {
     "code":10000,
     "msg":"request success",
-    "orderId":123456789 --order ID
+    "orderId":"2000000000008832432"  //type String  order ID
 }
 ```
 
