@@ -231,8 +231,8 @@ GET
 | name | type | required | description |
 |------|------|----------|-------------|
 | pair | string | true  | IDAX supports trade pairs. Returns a specific trade against the market when specifying a pair,Returns all trading to market prices without specifying pair;|
-| size | integer | true | how many price level should be response. must be between 1 - 200|
-| merge| integer | true | price decimal price should be merged. |
+| size | integer | false | how many price level should be response. must be between 1 - 200|
+| merge| integer | false | price decimal price should be merged. |
 
 > Request
 
