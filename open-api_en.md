@@ -711,7 +711,6 @@ TODO
             "orderId": 10000591, // order ID
             "price": "500", // order price
             "orderState":1, // 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
-            "pair": "ETH_BTC",
             "orderSide":"buy" // buy/sell
         },
         {
@@ -722,7 +721,6 @@ TODO
             "orderId": 10000724,
             "price": "0.1",
             "orderState":1,
-            "pair": "ETH_BTC",
             "orderSide":"sell"
         }]
 }
