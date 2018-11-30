@@ -13,13 +13,13 @@ Interface list:
 | Order information |[/api/v2/orderHistory](#12-order-history) | POST  |  Y   |Get historical order information and return information only for the last two days|
 | Account information|[/api/v2/userinfo](#6-account-info) | POST  |  Y   |Get account info|
 | trade information |[/api/v2/tradesHistory](#8-trade-history) | POST  |  Y   | get trade history for specific pairs|
-| system information|[/api/v2/time](#1-server-time) | POST  |  N   | Get Server timestamp |
-| Market quotation  |[/api/v2/depth](#3-depth) | POST  |  N   | Get the market depth for specific market.  |
-| Market quotation  |[/api/v2/ticker](#2-ticker-price) | POST  |  N   | Get the price of specific ticker |
-| Market quotation  |[/api/v2/kline](#5-kline) | POST  |  N   | Get kline data|
-| trade information |[/api/v2/trades](#4-trades) | POST  |  N   | Get Recently  Trades|
-| trade variety information|[/api/v2/pairs](#14-pairs) | POST  |  N   | All trading pairs supported by exchanges|
-| trade variety information|[/api/v2/pairLimits](#13-pairlimits) | POST  |  N   |Gets the maximum, minimum, price, and quantity of the supported transaction pairs|
+| system information|[/api/v2/time](#1-server-time) | GET  |  N   | Get Server timestamp |
+| Market quotation  |[/api/v2/depth](#3-depth) | GET  |  N   | Get the market depth for specific market.  |
+| Market quotation  |[/api/v2/ticker](#2-ticker-price) | GET  |  N   | Get the price of specific ticker |
+| Market quotation  |[/api/v2/kline](#5-kline) | GET |  N   | Get kline data|
+| trade information |[/api/v2/trades](#4-trades) | GET  |  N   | Get Recently  Trades|
+| trade variety information|[/api/v2/pairs](#14-pairs) | GET  |  N   | All trading pairs supported by exchanges|
+| trade variety information|[/api/v2/pairLimits](#13-pairlimits) | GET  |  N   |Gets the maximum, minimum, price, and quantity of the supported transaction pairs|
 
 
 If you have any problem when using APIs , pls contact our support team.
