@@ -184,6 +184,11 @@ Get the price of specific ticker.
 > Http Method
 
 GET
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| pair | string | false  | IDAX supports trade pairs. |
 
 > Request
 
