@@ -166,7 +166,7 @@ curl https://openapi.idax.pro/api/v2/time
 ```json
 {
     "code":10000,
-    "msg":"request success",
+    "msg":"Successful request processing",
     "timestamp":1536318118202 --server timestamp
 }
 ```
@@ -196,7 +196,7 @@ curl https://openapi.idax.pro/api/v2/ticker?pair=ETH_BTC
 ```json
 {
     "code":10000,
-    "msg":"request success",
+    "msg":"Successful request processing",
     "timestamp":1536320917805, //server time for returned data
     "ticker":
     [
@@ -245,7 +245,7 @@ curl https://openapi.idax.pro/api/v2/depth?pair=ETH_BTC&size=5&merge=8
 ```json
 {
     "code": 10000,
-    "msg": "request success",
+    "msg": "Successful request processing",
     "asks": [ //ask depth
         [
             "0.03434400",
@@ -324,7 +324,7 @@ curl https://openapi.idax.pro/api/v2/trades?pair=ETH_BTC
 ```json
 {
     "code": 10000,
-    "msg": "request success",
+    "msg": "Successful request processing",
     "trades": [
         {
             "timestamp": 1536322351000, //trade time
@@ -388,7 +388,7 @@ approximately 2000 pieces of data are returned each cycle
 ```json
 {
     "code": 10000,
-    "msg": "request success",
+    "msg": "Successful request processing",
     "kline": [
         [
             1536323160000, //timestamp
@@ -444,7 +444,7 @@ curl -H "Content-Type: application/json" -x POST https://openapi.idax.pro/api/v2
 ```json
 {
     "code":10000,
-    "msg":"request success",
+    "msg":"Successful request processing",
     "total": { //total fund
         "BTC": "0",
         "ETH": "0"
@@ -498,7 +498,7 @@ curl -H "Content-Type: application/json" -X POST "https://openapi.idax.pro/api/v
 ```json
 {
     "code":10000,
-    "msg":"request success",
+    "msg":"Successful request processing",
     "orderId":"2000000000008832432"  //type String  order ID
 }
 ```
@@ -538,7 +538,7 @@ TODO
 ```json
 {
     "code":10000,
-    "msg":"request success",
+    "msg":"Successful request processing",
     "trades":[{
         "timestamp": 1367130137, // trade time
         "price": "787.71", // deal price
@@ -590,7 +590,7 @@ TODO
 ```json
 {
     "code":10000,
-    "msg":"request success",
+    "msg":"Successful request processing",
     "accepted":"123456789,123456000" // IDs(Accepted request for cancellation of order)
 }
 ```
@@ -632,7 +632,7 @@ TODO
 ```json
 {
     "code":10000,
-    "msg":"request success",
+    "msg":"Successful request processing",
     "orders": [
         {
             "quantity": "0.1", // order quantity
@@ -693,7 +693,7 @@ TODO
 ```json
 {
     "code":10000,
-    "msg":"request success",
+    "msg":"Successful request processing",
     "orders": [
         {
             "quantity": "0.1", //order quantity
@@ -757,7 +757,7 @@ POST
 ```json
 {
         "code":10000,
-        "msg":"request success",
+        "msg":"Successful request processing",
         "currentPage": 1, // current page number
         "orders": // detailed order information
         [
@@ -802,7 +802,7 @@ curl https://openapi.idax.pro/api/v2/pairLimits?pair=ETH_BTC
 ```json
 {
     "code": 10000,
-    "msg": "request success",
+    "msg": "Successful request processing",
     "pairRuleVo": [{
         "pairName": "ETH_BTC",  //pair
         "maxAmount": "1000000000000.00000000",  //max amount
