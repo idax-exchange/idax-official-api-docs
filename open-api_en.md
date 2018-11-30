@@ -452,15 +452,18 @@ curl -H "Content-Type: application/json" -x POST https://openapi.idax.pro/api/v2
     "msg":"Successful request processing",
     "total": { //total fund
         "BTC": "0",
-        "ETH": "0"
+        "ETH": "0",
+        "USDT": "0"
     },
     "free": {  //available fund
         "BTC": "0",
-        "ETH": "0"
+        "ETH": "0",
+        "USDT": "0"
     },
     "freezed": { //frozen fund
         "BTC": "0",
-        "ETH": "0"
+        "ETH": "0",
+        "USDT": "0"
     }
 }
 ```
