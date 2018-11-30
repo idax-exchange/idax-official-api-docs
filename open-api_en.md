@@ -486,7 +486,7 @@ Create new order
 
 > URL
 
-/api/v2/placeOrder
+#/api/v2/placeOrder
 
 > Http Method 
 
