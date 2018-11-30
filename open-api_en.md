@@ -625,7 +625,7 @@ POST
 | pair | string | true | IDAX supports trade pairs|
 | orderId | long | true |if order_id is -1, then return all unfilled orders, otherwise return the order specified|
 | pageIndex | int | true | current page number |
-| pageSize | int | true | number of orders returned per page, maximum 100 |
+| pageSize | int | true | number of orders returned per page |
 | timestamp | long | true | request timestamp (valid for 3 minutes) |
 | sign| string | true | signature of request parameters|
 
