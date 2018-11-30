@@ -8,18 +8,18 @@ Interface list:
 | ------------------| ----------------- | ----- |----- |-----------------------|
 | trade             |[/api/v2/placeOrder](#7-place-orders) | POST  |  Y   | Create new order      |
 | trade             |[/api/v2/cancelOrder](#9-cancel-order) | POST  |  Y   | Cancel orders        |
-| Order information |/api/v2/orderList | POST  |  Y   | Get Order Information in Batch|
-| Order information |/api/v2/orderInfo | POST  |  Y   | Get Order Info |
-| Order information |/api/v2/orderHistory | POST  |  Y   |Get historical order information and return information only for the last two days|
-| Account information|/api/v2/userinfo | POST  |  Y   |Get account info|
-| trade information |/api/v2/tradesHistory | POST  |  Y   | get trade history for specific pairs|
-| system information|/api/v2/time | POST  |  N   | Get Server timestamp |
-| Market quotation  |/api/v2/depth | POST  |  N   | Get the market depth for specific market.  |
-| Market quotation  |/api/v2/ticker | POST  |  N   | Get the price of specific ticker |
-| Market quotation  |/api/v2/kline | POST  |  N   | Get kline data|
-| trade information |/api/v2/trades | POST  |  N   | Get Recently  Trades|
-| trade variety information|/api/v2/pairs | POST  |  N   | All trading pairs supported by exchanges|
-| trade variety information|/api/v2/pairLimits | POST  |  N   |Gets the maximum, minimum, price, and quantity of the supported transaction pairs|
+| Order information |[/api/v2/orderList](#11-order-list) | POST  |  Y   | Get Order Information in Batch|
+| Order information |[/api/v2/orderInfo](#10-order-info) | POST  |  Y   | Get Order Info |
+| Order information |[/api/v2/orderHistory](#12-order-history) | POST  |  Y   |Get historical order information and return information only for the last two days|
+| Account information|[/api/v2/userinfo](#6-account-info) | POST  |  Y   |Get account info|
+| trade information |[/api/v2/tradesHistory](#8-trade-history) | POST  |  Y   | get trade history for specific pairs|
+| system information|[/api/v2/time](#1-server-time) | POST  |  N   | Get Server timestamp |
+| Market quotation  |[/api/v2/depth](#3-depth) | POST  |  N   | Get the market depth for specific market.  |
+| Market quotation  |[/api/v2/ticker](#2-ticker-price) | POST  |  N   | Get the price of specific ticker |
+| Market quotation  |[/api/v2/kline](#5-kline) | POST  |  N   | Get kline data|
+| trade information |[/api/v2/trades](#4-trades) | POST  |  N   | Get Recently  Trades|
+| trade variety information|[/api/v2/pairs](#14-pairs) | POST  |  N   | All trading pairs supported by exchanges|
+| trade variety information|[/api/v2/pairLimits](#13-pairlimits) | POST  |  N   |Gets the maximum, minimum, price, and quantity of the supported transaction pairs|
 
 
 If you have any problem when using APIs , pls contact our support team.
