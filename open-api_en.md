@@ -2,15 +2,25 @@
 
 IDAX provide powerful and robust APIs to help user write program to automatic the tradings. With this guide you can learn how to use APIs.
 
-The main features of the API is as following:
+Interface list:
 
-* get latest market data easily
-* get depths of the orderbook easily
-* get the latest trades for speicific trading pairs
-* get the K-Line data easily
-* query account info easily
-* quickly place and cancel orders
-* get order details easily
+|Interface data type| Request  method   | type |Need to verify signature|describe|
+| ------------------| ----------------- | ----- |----- |-----------------------|
+| trade             |/api/v2/placeOrder | POST  |  Y   | Create new order      |
+| trade             |/api/v2/cancelOrder | POST  |  Y   | Cancel orders        |
+| Order information |/api/v2/orderList | POST  |  Y   | Get Order Information in Batch|
+| Order information |/api/v2/orderInfo | POST  |  Y   | Get Order Info |
+| Order information |/api/v2/orderHistory | POST  |  Y   |Get historical order information and return information only for the last two days|
+| Account information|/api/v2/userinfo | POST  |  Y   |Get account info|
+| trade information |/api/v2/tradesHistory | POST  |  Y   | get trade history for specific pairs|
+| system information|/api/v2/time | POST  |  N   | Get Server timestamp |
+| Market quotation  |/api/v2/depth | POST  |  N   | Get the market depth for specific market.  |
+| Market quotation  |/api/v2/ticker | POST  |  N   | Get the price of specific ticker |
+| Market quotation  |/api/v2/kline | POST  |  N   | Get kline data|
+| trade information |/api/v2/trades | POST  |  N   | Get Recently  Trades|
+| trade variety information|/api/v2/pairs | POST  |  N   | All trading pairs supported by exchanges|
+| trade variety information|/api/v2/pairLimits | POST  |  N   |Gets the maximum, minimum, price, and quantity of the supported transaction pairs|
+
 
 If you have any problem when using APIs , pls contact our support team.
 
