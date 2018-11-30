@@ -7,7 +7,7 @@ Interface list:
 |Interface data type| Request  method   | type |Need to verify signature|describe|
 | ------------------| ----------------- | ----- |----- |-----------------------|
 | trade             |[/api/v2/placeOrder](#7-place-orders) | POST  |  Y   | Create new order      |
-| trade             |/api/v2/cancelOrder | POST  |  Y   | Cancel orders        |
+| trade             |[/api/v2/cancelOrder](#9-cancel-order) | POST  |  Y   | Cancel orders        |
 | Order information |/api/v2/orderList | POST  |  Y   | Get Order Information in Batch|
 | Order information |/api/v2/orderInfo | POST  |  Y   | Get Order Info |
 | Order information |/api/v2/orderHistory | POST  |  Y   |Get historical order information and return information only for the last two days|
