@@ -541,7 +541,7 @@ POST
 |------|------|----------|-------------|
 | key | string | true | apiKey of the user |
 | pair | string | true | IDAX supports trade pairs |
-| since | long | true|get 600 pieces of data starting from the given tid (Required)|
+| since | long | false|get 600 pieces of data starting from the given tid (Required)|
 | timestamp | long | true | Request timestamp (valid for 3 minutes) |
 | sign | string | true | signature of request parameters |
 
