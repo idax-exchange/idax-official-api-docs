@@ -941,7 +941,7 @@ Answer:All requests go over https protocol, The field 'contentType' in request h
 | 101017|    Query Setting Empty
 | 101018|    Price input is empty
 | 101019|    Amount input is empty
-| 101020|    the order is dell
+| 101020|    the order is finished
 | 101021|    the order is cancel
 | 101022|    Trade is not allowed to be traded on no shelf
 | 101023|    This order is invalid
