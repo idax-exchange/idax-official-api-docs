@@ -651,7 +651,7 @@ POST
 }
 ```
 
-### 11， Account Info
+### 11，Account Info
 
 > Description
 
