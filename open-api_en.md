@@ -6,22 +6,23 @@ Interface list:
 
 |Interface data type| Request  method   | type |Need to verify signature|describe|
 | ------------------| ----------------- | ----- |----- |-----------------------|
-| trade             |[/api/v2/placeOrder](#7-place-orders) | POST  |  Y   | Create new order      |
-| trade             |[/api/v2/cancelOrder](#9-cancel-order) | POST  |  Y   | Cancel orders        |
-| Order information |[/api/v2/orderList](#11-order-list) | POST  |  Y   | Get Order Information in Batch|
-| Order information |[/api/v2/orderInfo](#10-order-info) | POST  |  Y   | Get Order Info |
-| Order information |[/api/v2/orderHistory](#12-order-history) | POST  |  Y   |Get historical order information and return information only for the last two days|
-| Account information|[/api/v2/userinfo](#6-account-info) | POST  |  Y   |Get account info|
-| trade information |[/api/v2/tradesHistory](#8-trade-history) | POST  |  Y   | get trade history for specific pairs|
 | system information|[/api/v2/time](#1-server-time) | GET  |  N   | Get Server timestamp |
-| Market quotation  |[/api/v2/depth](#3-depth) | GET  |  N   | Get the market depth for specific market.  |
-| Market quotation  |[/api/v2/ticker](#2-ticker-price) | GET  |  N   | Get the price of specific ticker |
-| Market quotation  |[/api/v2/kline](#5-kline) | GET |  N   | Get kline data|
-| trade information |[/api/v2/trades](#4-trades) | GET  |  N   | Get Recently  Trades|
-| trade variety information|[/api/v2/pairs](#14-pairs) | GET  |  N   | All trading pairs supported by exchanges|
-| trade variety information|[/api/v2/pairLimits](#13-pairlimits) | GET  |  N   |Gets the maximum, minimum, price, and quantity of the supported transaction pairs|
-| trade|[/api/v2/myTrades](#15-myTrades) | POST  |  Y   |Get my historical trading information|
-| system information|[/api/v2/getSign](#16-getSign) | GET  |  N   |Get signature|
+| system information|[/api/v2/getSign](#2-getSign) | GET  |  N   |Get signature|
+| trade             |[/api/v2/placeOrder](#3-place-orders) | POST  |  Y   | Create new order      |
+| trade             |[/api/v2/cancelOrder](#4-cancel-order) | POST  |  Y   | Cancel orders        |
+| Order information |[/api/v2/orderInfo](#5-order-info) | POST  |  Y   | Get Order Info |
+| Order information |[/api/v2/orderList](#6-order-list) | POST  |  Y   | Get Order Information in Batch|
+| Order information |[/api/v2/orderHistory](#7-order-history) | POST  |  Y   |Get historical order information and return information only for the last two days|
+| trade information |[/api/v2/trades](#8-trades) | GET  |  N   | Get Recently  Trades|
+| trade information |[/api/v2/tradesHistory](#9-trade-history) | POST  |  Y   | get trade history for specific pairs|
+| trade|[/api/v2/myTrades](#10-myTrades) | POST  |  Y   |Get my historical trading information|
+| Account information|[/api/v2/userinfo](#11-account-info) | POST  |  Y   |Get account info|
+| Market quotation  |[/api/v2/ticker](#12-ticker-price) | GET  |  N   | Get the price of specific ticker |
+| Market quotation  |[/api/v2/depth](#13-depth) | GET  |  N   | Get the market depth for specific market.  |
+| Market quotation  |[/api/v2/kline](#14-kline) | GET |  N   | Get kline data|
+| trade variety information|[/api/v2/pairs](#15-pairs) | GET  |  N   | All trading pairs supported by exchanges|
+| trade variety information|[/api/v2/pairLimits](#16-pairlimits) | GET  |  N   |Gets the maximum, minimum, price, and quantity of the supported transaction pairs|
+
 
 If you have any problem when using APIs , pls contact our support team.
 
