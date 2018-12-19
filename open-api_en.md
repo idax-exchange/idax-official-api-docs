@@ -299,8 +299,411 @@ TODO
 }
 ```
 
+### 5, Order Info
 
-### 2, Ticker Price
+> Description
+
+Get Order Info
+
+> URL
+
+/api/v2/orderInfo
+
+> Http Method
+
+POST
+
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| key| string | true | apiKey of the user |
+| pair | string | true | IDAX supports trade pairs|
+| orderId | string or long | true |if order_id is -1, then return all unfilled orders, otherwise return the order specified|
+| pageIndex | int | true | current page number |
+| pageSize | int | true | number of orders returned per page |
+| timestamp | long | true | request timestamp (valid for 3 minutes) |
+| sign| string | true | signature of request parameters|
+
+> Request
+
+```bash
+TODO
+```
+
+> Response
+
+```json
+{
+    "code":10000,
+    "msg":"Successful request processing",
+    "orders": [
+        {
+            "quantity": "0.1", // order quantity
+            "avgPrice": "0", // average transaction price
+            "timestamp": 1418008467000,// order time
+            "dealQuantity": "0", // filled quantity
+            "orderId": 10000591, // order ID
+            "price": "500", // order price
+            "orderState":1, // 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
+            "orderSide":"buy" // buy/sell
+        },
+        {
+            "quantity": "0.2",
+            "avgPrice": "0",
+            "timestamp": 1417417957000,
+            "dealQuantity": "0",
+            "orderId": 10000724,
+            "price": "0.1",
+            "orderState":1,
+            "orderSide":"sell"
+        }],
+        "total": 1
+}
+```
+
+### 6, Order List
+
+> Description
+
+Get Order Information in Batch
+
+> URL
+
+/api/v2/orderList
+
+> Http Method
+
+POST
+
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| key | string | true | apiKey of the user |
+| pair | string | true | IDAX supports trade pairs |
+| orderId | string | true | order ID (multiple orders are separated by ',', 50 orders at most are allowed per request)|
+| timestamp | long | true | Request timestamp (valid for 3 minutes) |
+| sign | string | true | signature of request parameters|
+
+> Request
+
+```bash
+TODO
+```
+
+> Response
+
+```json
+{
+    "code":10000,
+    "msg":"Successful request processing",
+    "orders": [
+        {
+            "quantity": "0.1", //order quantity
+            "avgPrice": "0", // average transaction price
+            "timestamp": 1418008467000, // order time
+            "dealQuantity": "0", // filled quantity
+            "orderId": 10000591, // order ID
+            "price": "500", // order price
+            "orderState":1, // 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
+            "orderSide":"buy" // buy/sell
+        },
+        {
+            "quantity": "0.2",
+            "avgPrice": "0",
+            "timestamp": 1417417957000,
+            "dealQuantity": "0",
+            "orderId": 10000724,
+            "price": "0.1",
+            "orderState":1,
+            "orderSide":"sell"
+        }]
+}
+```
+
+### 7, Order History
+
+> Description
+
+Get historical order information and return information only for the last two days
+
+> URL
+
+/api/v2/orderHistory  
+
+> Http Method
+
+POST
+
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| key | string | true | apiKey of the user |
+| pair | string | true | IDAX supports trade pairs |
+| orderState | integer | true | query status: 0 for all orders,query status: 0 for unfilled orders, 1 for filled orders  (only the data of the last two days are returned) |
+| currentPage | integer | true | current page number |
+| pageLength | integer | true | number of orders returned per page, maximum 100 |
+| timestamp | long | true | request timestamp (valid for 3 minutes) |
+| sign | string | true | signature of request parameters |
+
+> Request
+
+```bash
+
+```
+
+> Response
+
+```json
+{
+        "code":10000,
+        "msg":"Successful request processing",
+        "currentPage": 1, // current page number
+        "orders": // detailed order information
+        [
+            {
+                "quantity": "0.2", // order quantity
+                "avgPrice": "0", // average transaction price
+                "timestamp": 1417417957000, // order time
+                "dealQuantity": "0", // filled quantity
+                "orderId": 10000724, // order ID
+                "price": "0.1", // order price
+                "orderState":1, // orderState: 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
+                "pair": "ETH_BTC",
+                "orderSide":"buy" // buy/sell
+            }
+        ],
+        "pageLength": 1, // number of orders per page
+        "total": 3 // The total number of records
+}
+```
+
+### 8, Trades
+
+> Description
+
+Get Recently 60 Trades
+
+> URL
+
+/api/v2/trades
+
+> Http Method
+
+GET
+
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| pair | string | true  | IDAX supports trade pairs. |
+
+> Request
+
+```bash
+curl https://openapi.idax.pro/api/v2/trades?pair=ETH_BTC
+```
+
+> Response
+
+```json
+{
+    "code": 10000,
+    "msg": "Successful request processing",
+    "trades": [
+        {
+            "timestamp": 1536322351000, //trade time
+            "price": "0.03428800", //deal price
+            "quantity": "1.19400000", //qty in base coin
+            "id": "6ce36df8-c87a-4517-8a6f-a67affe0481b", //trade id
+            "maker": "Sell" //deal direction Buy/Sell
+        },
+        {
+            "timestamp": 1536322353000,
+            "price": "0.03428800",
+            "quantity": "0.97200000",
+            "id": "a1870119-fdd1-484e-b86b-794554075326",
+            "maker": "Buy"
+        },
+        {
+            "timestamp": 1536322354000,
+            "price": "0.03428700",
+            "quantity": "0.96700000",
+            "id": "c0e752c4-f20c-48ac-8cd9-c65823b1ea01",
+            "maker": "Sell"
+        },
+        //.....
+    ]
+}
+```
+
+### 9, Trade History
+
+> Description
+
+get trade history for specific pairs
+
+> URL
+
+/api/v2/tradesHistory
+
+> Http Method
+
+POST
+
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| key | string | true | apiKey of the user |
+| pair | string | true | IDAX supports trade pairs |
+| since | long | false|Get the latest 600 pieces of data from a given ID(Since fetches the returned trade ID) |
+| timestamp | long | true | Request timestamp (valid for 3 minutes) |
+| sign | string | true | signature of request parameters |
+
+> Request
+
+```bash
+TODO
+```
+
+> Response
+
+```json
+{
+    "code":10000,
+    "msg":"Successful request processing",
+    "trades":[{
+        "timestamp": 1367130137, // trade time
+        "price": "787.71", // deal price
+        "quantity": "0.003", // qty in base coin
+        "id": 2304331234, // trade id
+        "maker":"buy" // buy/sell
+    },
+    {
+        "timestamp": 1367130137,
+        "price": "787.71",
+        "quantity": "0.003",
+        "id": 2304330000,
+        "maker":"sell"
+    }]
+}
+```
+
+### 10, MyTrades
+
+> Description
+
+Get my historical trading information
+
+> URL
+
+/api/v2/myTrades  
+
+> Http Method
+
+POST
+
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| key | string | true | apiKey of the user |
+| pair | string | false | IDAX supports trade pairs |
+| orderSide | string | false | buy，sell |
+| currentPage | integer | true | current page number |
+| pageLength | integer | true | number of trade returned per page, maximum 1000 |
+| startDate | long | false | start date and timestamp (Millisecond) |
+| endDate   | long | false | end date and timestamp (Millisecond) |
+| timestamp | long | true | request timestamp (valid for 3 minutes) |
+| sign | string | true | signature of request parameters |
+
+> Request
+
+```bash
+
+```
+
+> Response
+
+```json
+{
+    "code":10000,
+    "msg":"request success",
+    "trades":[{
+        "timestamp": 1367130137,
+        "price": "787.71",    // order price
+        "quantity": "0.003", //order quantity
+        "pair": "ETH_BTC",
+        "maker":"buy"  // buy/sell
+    },
+    {
+        "timestamp": 1367130137,
+        "price": "787.71",
+        "quantity": "0.003",
+        "pair": "EOS_BTC",
+        "maker":"sell" 
+    }],
+     "total": 2 // The total number of records
+}
+```
+
+### 11， Account Info
+
+> Description
+
+Get account info
+
+> URL
+
+/api/v2/userinfo
+
+> Http Method
+
+POST
+
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| key | string | true  | apiKey of the user. |
+| timestamp | long | true | Request timestamp (valid for 3 minutes)|
+| sign | string | true | signature of request parameters |
+
+> Request
+
+```bash
+curl -H "Content-Type: application/json" -x POST https://openapi.idax.pro/api/v2/userinfo --data '{"key":"VmhrcrQEF3ATxV2JtVMEH4dFpGEmYzixOL4VrvAeR2COXtc9pzXbvFV1jLbFXEQf","timestamp":1536323160000,"sign":"c69d8ec9e274dd20126972b2dfaedc8c74cf06fbb19f968eedcc0a300a95b9f6"}'
+```
+
+> Response
+
+```json
+{
+    "code":10000,
+    "msg":"Successful request processing",
+    "total": { //total fund
+        "BTC": "0",
+        "ETH": "0",
+        "USDT": "0"
+    },
+    "free": {  //available fund
+        "BTC": "0",
+        "ETH": "0",
+        "USDT": "0"
+    },
+    "freezed": { //frozen fund
+        "BTC": "0",
+        "ETH": "0",
+        "USDT": "0"
+    }
+}
+```
+
+
+### 12, Ticker Price
 
 > Description
 
@@ -346,7 +749,7 @@ curl https://openapi.idax.pro/api/v2/ticker?pair=ETH_BTC
 }
 ```
 
-### 3, Depth
+### 13, Depth
 
 > Description
 
@@ -427,66 +830,7 @@ curl https://openapi.idax.pro/api/v2/depth?pair=ETH_BTC&size=5&merge=8
 }
 ```
 
-### 4, Trades
-
-> Description
-
-Get Recently 60 Trades
-
-> URL
-
-/api/v2/trades
-
-> Http Method
-
-GET
-
-> Parameters
-
-| name | type | required | description |
-|------|------|----------|-------------|
-| pair | string | true  | IDAX supports trade pairs. |
-
-> Request
-
-```bash
-curl https://openapi.idax.pro/api/v2/trades?pair=ETH_BTC
-```
-
-> Response
-
-```json
-{
-    "code": 10000,
-    "msg": "Successful request processing",
-    "trades": [
-        {
-            "timestamp": 1536322351000, //trade time
-            "price": "0.03428800", //deal price
-            "quantity": "1.19400000", //qty in base coin
-            "id": "6ce36df8-c87a-4517-8a6f-a67affe0481b", //trade id
-            "maker": "Sell" //deal direction Buy/Sell
-        },
-        {
-            "timestamp": 1536322353000,
-            "price": "0.03428800",
-            "quantity": "0.97200000",
-            "id": "a1870119-fdd1-484e-b86b-794554075326",
-            "maker": "Buy"
-        },
-        {
-            "timestamp": 1536322354000,
-            "price": "0.03428700",
-            "quantity": "0.96700000",
-            "id": "c0e752c4-f20c-48ac-8cd9-c65823b1ea01",
-            "maker": "Sell"
-        },
-        //.....
-    ]
-}
-```
-
-### 5, Kline
+### 14, Kline
 
 > Description
 
@@ -545,333 +889,7 @@ approximately 2000 pieces of data are returned each cycle
 }
 ```
 
-### 6， Account Info
-
-> Description
-
-Get account info
-
-> URL
-
-/api/v2/userinfo
-
-> Http Method
-
-POST
-
-> Parameters
-
-| name | type | required | description |
-|------|------|----------|-------------|
-| key | string | true  | apiKey of the user. |
-| timestamp | long | true | Request timestamp (valid for 3 minutes)|
-| sign | string | true | signature of request parameters |
-
-> Request
-
-```bash
-curl -H "Content-Type: application/json" -x POST https://openapi.idax.pro/api/v2/userinfo --data '{"key":"VmhrcrQEF3ATxV2JtVMEH4dFpGEmYzixOL4VrvAeR2COXtc9pzXbvFV1jLbFXEQf","timestamp":1536323160000,"sign":"c69d8ec9e274dd20126972b2dfaedc8c74cf06fbb19f968eedcc0a300a95b9f6"}'
-```
-
-> Response
-
-```json
-{
-    "code":10000,
-    "msg":"Successful request processing",
-    "total": { //total fund
-        "BTC": "0",
-        "ETH": "0",
-        "USDT": "0"
-    },
-    "free": {  //available fund
-        "BTC": "0",
-        "ETH": "0",
-        "USDT": "0"
-    },
-    "freezed": { //frozen fund
-        "BTC": "0",
-        "ETH": "0",
-        "USDT": "0"
-    }
-}
-```
-
-### 8, Trade History
-
-> Description
-
-get trade history for specific pairs
-
-> URL
-
-/api/v2/tradesHistory
-
-> Http Method
-
-POST
-
-> Parameters
-
-| name | type | required | description |
-|------|------|----------|-------------|
-| key | string | true | apiKey of the user |
-| pair | string | true | IDAX supports trade pairs |
-| since | long | false|Get the latest 600 pieces of data from a given ID(Since fetches the returned trade ID) |
-| timestamp | long | true | Request timestamp (valid for 3 minutes) |
-| sign | string | true | signature of request parameters |
-
-> Request
-
-```bash
-TODO
-```
-
-> Response
-
-```json
-{
-    "code":10000,
-    "msg":"Successful request processing",
-    "trades":[{
-        "timestamp": 1367130137, // trade time
-        "price": "787.71", // deal price
-        "quantity": "0.003", // qty in base coin
-        "id": 2304331234, // trade id
-        "maker":"buy" // buy/sell
-    },
-    {
-        "timestamp": 1367130137,
-        "price": "787.71",
-        "quantity": "0.003",
-        "id": 2304330000,
-        "maker":"sell"
-    }]
-}
-```
-
-### 10, Order Info
-
-> Description
-
-Get Order Info
-
-> URL
-
-/api/v2/orderInfo
-
-> Http Method
-
-POST
-
-> Parameters
-
-| name | type | required | description |
-|------|------|----------|-------------|
-| key| string | true | apiKey of the user |
-| pair | string | true | IDAX supports trade pairs|
-| orderId | string or long | true |if order_id is -1, then return all unfilled orders, otherwise return the order specified|
-| pageIndex | int | true | current page number |
-| pageSize | int | true | number of orders returned per page |
-| timestamp | long | true | request timestamp (valid for 3 minutes) |
-| sign| string | true | signature of request parameters|
-
-> Request
-
-```bash
-TODO
-```
-
-> Response
-
-```json
-{
-    "code":10000,
-    "msg":"Successful request processing",
-    "orders": [
-        {
-            "quantity": "0.1", // order quantity
-            "avgPrice": "0", // average transaction price
-            "timestamp": 1418008467000,// order time
-            "dealQuantity": "0", // filled quantity
-            "orderId": 10000591, // order ID
-            "price": "500", // order price
-            "orderState":1, // 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
-            "orderSide":"buy" // buy/sell
-        },
-        {
-            "quantity": "0.2",
-            "avgPrice": "0",
-            "timestamp": 1417417957000,
-            "dealQuantity": "0",
-            "orderId": 10000724,
-            "price": "0.1",
-            "orderState":1,
-            "orderSide":"sell"
-        }],
-        "total": 1
-}
-```
-
-### 11, Order List
-
-> Description
-
-Get Order Information in Batch
-
-> URL
-
-/api/v2/orderList
-
-> Http Method
-
-POST
-
-> Parameters
-
-| name | type | required | description |
-|------|------|----------|-------------|
-| key | string | true | apiKey of the user |
-| pair | string | true | IDAX supports trade pairs |
-| orderId | string | true | order ID (multiple orders are separated by ',', 50 orders at most are allowed per request)|
-| timestamp | long | true | Request timestamp (valid for 3 minutes) |
-| sign | string | true | signature of request parameters|
-
-> Request
-
-```bash
-TODO
-```
-
-> Response
-
-```json
-{
-    "code":10000,
-    "msg":"Successful request processing",
-    "orders": [
-        {
-            "quantity": "0.1", //order quantity
-            "avgPrice": "0", // average transaction price
-            "timestamp": 1418008467000, // order time
-            "dealQuantity": "0", // filled quantity
-            "orderId": 10000591, // order ID
-            "price": "500", // order price
-            "orderState":1, // 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
-            "orderSide":"buy" // buy/sell
-        },
-        {
-            "quantity": "0.2",
-            "avgPrice": "0",
-            "timestamp": 1417417957000,
-            "dealQuantity": "0",
-            "orderId": 10000724,
-            "price": "0.1",
-            "orderState":1,
-            "orderSide":"sell"
-        }]
-}
-```
-
-### 12, Order History
-
-> Description
-
-Get historical order information and return information only for the last two days
-
-> URL
-
-/api/v2/orderHistory  
-
-> Http Method
-
-POST
-
-> Parameters
-
-| name | type | required | description |
-|------|------|----------|-------------|
-| key | string | true | apiKey of the user |
-| pair | string | true | IDAX supports trade pairs |
-| orderState | integer | true | query status: 0 for all orders,query status: 0 for unfilled orders, 1 for filled orders  (only the data of the last two days are returned) |
-| currentPage | integer | true | current page number |
-| pageLength | integer | true | number of orders returned per page, maximum 100 |
-| timestamp | long | true | request timestamp (valid for 3 minutes) |
-| sign | string | true | signature of request parameters |
-
-> Request
-
-```bash
-
-```
-
-> Response
-
-```json
-{
-        "code":10000,
-        "msg":"Successful request processing",
-        "currentPage": 1, // current page number
-        "orders": // detailed order information
-        [
-            {
-                "quantity": "0.2", // order quantity
-                "avgPrice": "0", // average transaction price
-                "timestamp": 1417417957000, // order time
-                "dealQuantity": "0", // filled quantity
-                "orderId": 10000724, // order ID
-                "price": "0.1", // order price
-                "orderState":1, // orderState: 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
-                "pair": "ETH_BTC",
-                "orderSide":"buy" // buy/sell
-            }
-        ],
-        "pageLength": 1, // number of orders per page
-        "total": 3 // The total number of records
-}
-```
-### 13, PairLimits
-
-> Description
-
-Gets the maximum, minimum, price, and quantity of the supported transaction pairs.
-
-> URL
-
-/api/v2/pairLimits
-
-> Http Method
-
-GET
-
-> Parameters
-
-| name | type | required | description |
-|------|------|----------|-------------|
-| pair | string | false  | IDAX supports trade pairs. |
-
-> Request
-
-```bash
-curl https://openapi.idax.pro/api/v2/pairLimits?pair=ETH_BTC
-```
-
-> Response
-
-```json
-{
-    "code": 10000,
-    "msg": "Successful request processing",
-    "pairRuleVo": [{
-        "pairName": "ETH_BTC",  //pair
-        "maxAmount": "1000000000000.00000000",  //max amount
-        "minAmount": "0.00100000", //min amount
-        "priceDecimalPlace": 6,  // price decimal 
-        "qtyDecimalPlace": 3  //quantity decimal
-    }]
-}
-```
-### 14, Pairs
+### 15, Pairs
 
 > Description
 
@@ -924,63 +942,48 @@ curl https://openapi.idax.pro/api/v2/pairs
 } 
 ```
 
-### 15, MyTrades
+### 16, PairLimits
 
 > Description
 
-Get my historical trading information
+Gets the maximum, minimum, price, and quantity of the supported transaction pairs.
 
 > URL
 
-/api/v2/myTrades  
+/api/v2/pairLimits
 
 > Http Method
 
-POST
+GET
 
 > Parameters
 
 | name | type | required | description |
 |------|------|----------|-------------|
-| key | string | true | apiKey of the user |
-| pair | string | false | IDAX supports trade pairs |
-| orderSide | string | false | buy，sell |
-| currentPage | integer | true | current page number |
-| pageLength | integer | true | number of trade returned per page, maximum 1000 |
-| startDate | long | false | start date and timestamp (Millisecond) |
-| endDate   | long | false | end date and timestamp (Millisecond) |
-| timestamp | long | true | request timestamp (valid for 3 minutes) |
-| sign | string | true | signature of request parameters |
+| pair | string | false  | IDAX supports trade pairs. |
 
 > Request
 
 ```bash
-
+curl https://openapi.idax.pro/api/v2/pairLimits?pair=ETH_BTC
 ```
 
 > Response
 
 ```json
 {
-    "code":10000,
-    "msg":"request success",
-    "trades":[{
-        "timestamp": 1367130137,
-        "price": "787.71",    // order price
-        "quantity": "0.003", //order quantity
-        "pair": "ETH_BTC",
-        "maker":"buy"  // buy/sell
-    },
-    {
-        "timestamp": 1367130137,
-        "price": "787.71",
-        "quantity": "0.003",
-        "pair": "EOS_BTC",
-        "maker":"sell" 
-    }],
-     "total": 2 // The total number of records
+    "code": 10000,
+    "msg": "Successful request processing",
+    "pairRuleVo": [{
+        "pairName": "ETH_BTC",  //pair
+        "maxAmount": "1000000000000.00000000",  //max amount
+        "minAmount": "0.00100000", //min amount
+        "priceDecimalPlace": 6,  // price decimal 
+        "qtyDecimalPlace": 3  //quantity decimal
+    }]
 }
 ```
+
 
 ## 7, FAQ
 
