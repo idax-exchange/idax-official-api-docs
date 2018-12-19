@@ -7,7 +7,6 @@ Interface list:
 |Interface data type| Request  method   | type |Need to verify signature|describe|
 | ------------------| ----------------- | ----- |----- |-----------------------|
 | system information|[/api/v2/time](#1-server-time) | GET  |  N   | Get Server timestamp |
-| system information|[/api/v2/getSign](#2-getSign) | GET  |  N   |Get signature|
 | trade             |[/api/v2/placeOrder](#3-place-orders) | POST  |  Y   | Create new order      |
 | trade             |[/api/v2/cancelOrder](#4-cancel-order) | POST  |  Y   | Cancel orders        |
 | Order information |[/api/v2/orderInfo](#5-order-info) | POST  |  Y   | Get Order Info |
@@ -183,43 +182,7 @@ curl https://openapi.idax.pro/api/v2/time
 }
 ```
 
-### 2, GetSign
-
-> Description
-
-getSign
-
-> URL
-
-/api/v2/getSign
-
-> Http Method
-
-GET
-
-> Parameters
-
-| name | type | required | description |
-|------|------|----------|-------------|
-| needSignature | string | true  |Signature string to be signed,Must be JSON format|
-
-> Request
-
-```bash
-curl https://openapi.idax.pro/api/v2/getSign?needSignature=?needSignature={"secret":"l8rUKhFDymz0C0EKV4cKW8rZi6x5nmPC5NFKP8WqMcGSRTM4EpkqkKqmRBMNUKpl","currentPage":0,"key":"otcyACN3wfloCLpAHGcf6jIdHErASs4m7Rbi4ei0QgQRI7TwxhF54hJeV905lnkd","pageLength":10,"timestamp":1545177403216}
-```
-
-> Response
-
-```json
-{
-	"code": 10000,
-	"msg": "Successful request processing",
-	"sign": "8a180c7c725523034068fe18399b2499678cc474b2bf5e59a1fad31f161c1c5d"
-} 
-```
-
-### 3, Place Orders
+### 2, Place Orders
 
 > Description
 
@@ -261,7 +224,7 @@ curl -H "Content-Type: application/json" -X POST "https://openapi.idax.pro/api/v
     "orderId":"2000000000008832432"  //type String  order ID
 }
 ```
-### 4, Cancel Order
+### 3, Cancel Order
 
 > Description
 
@@ -300,7 +263,7 @@ TODO
 }
 ```
 
-### 5, Order Info
+### 4, Order Info
 
 > Description
 
@@ -363,7 +326,7 @@ TODO
 }
 ```
 
-### 6, Order List
+### 5, Order List
 
 > Description
 
@@ -423,7 +386,7 @@ TODO
 }
 ```
 
-### 7, Order History
+### 6, Order History
 
 > Description
 
@@ -481,7 +444,7 @@ POST
 }
 ```
 
-### 8, Trades
+### 7, Trades
 
 > Description
 
@@ -540,7 +503,7 @@ curl https://openapi.idax.pro/api/v2/trades?pair=ETH_BTC
 }
 ```
 
-### 9, Trade History
+### 8, Trade History
 
 > Description
 
@@ -593,7 +556,7 @@ TODO
 }
 ```
 
-### 10, MyTrades
+### 9, MyTrades
 
 > Description
 
@@ -651,7 +614,7 @@ POST
 }
 ```
 
-### 11, Account Info
+### 10, Account Info
 
 > Description
 
@@ -704,7 +667,7 @@ curl -H "Content-Type: application/json" -x POST https://openapi.idax.pro/api/v2
 ```
 
 
-### 12, Ticker Price
+### 11, Ticker Price
 
 > Description
 
@@ -750,7 +713,7 @@ curl https://openapi.idax.pro/api/v2/ticker?pair=ETH_BTC
 }
 ```
 
-### 13, Depth
+### 12, Depth
 
 > Description
 
@@ -831,7 +794,7 @@ curl https://openapi.idax.pro/api/v2/depth?pair=ETH_BTC&size=5&merge=8
 }
 ```
 
-### 14, Kline
+### 13, Kline
 
 > Description
 
@@ -890,7 +853,7 @@ approximately 2000 pieces of data are returned each cycle
 }
 ```
 
-### 15, Pairs
+### 14, Pairs
 
 > Description
 
@@ -943,7 +906,7 @@ curl https://openapi.idax.pro/api/v2/pairs
 } 
 ```
 
-### 16, PairLimits
+### 15, PairLimits
 
 > Description
 
