@@ -20,7 +20,8 @@ Interface list:
 | trade information |[/api/v2/trades](#4-trades) | GET  |  N   | Get Recently  Trades|
 | trade variety information|[/api/v2/pairs](#14-pairs) | GET  |  N   | All trading pairs supported by exchanges|
 | trade variety information|[/api/v2/pairLimits](#13-pairlimits) | GET  |  N   |Gets the maximum, minimum, price, and quantity of the supported transaction pairs|
-
+| trade|[/api/v2/myTrades](#15-myTrades) | POST  |  Y   |Get my historical trading information|
+| system information|[/api/v2/getSign](#16-getSign) | GET  |  N   |Get signature|
 
 If you have any problem when using APIs , pls contact our support team.
 
@@ -541,7 +542,7 @@ POST
 |------|------|----------|-------------|
 | key | string | true | apiKey of the user |
 | pair | string | true | IDAX supports trade pairs |
-| since | long | false|get 600 pieces of data starting from the given tid (Required)|
+| since | long | false|Get the latest 600 pieces of data from a given ID(Since fetches the returned trade ID) |
 | timestamp | long | true | Request timestamp (valid for 3 minutes) |
 | sign | string | true | signature of request parameters |
 
@@ -633,7 +634,7 @@ POST
 |------|------|----------|-------------|
 | key| string | true | apiKey of the user |
 | pair | string | true | IDAX supports trade pairs|
-| orderId | long | true |if order_id is -1, then return all unfilled orders, otherwise return the order specified|
+| orderId | string or long | true |if order_id is -1, then return all unfilled orders, otherwise return the order specified|
 | pageIndex | int | true | current page number |
 | pageSize | int | true | number of orders returned per page |
 | timestamp | long | true | request timestamp (valid for 3 minutes) |
@@ -887,6 +888,99 @@ curl https://openapi.idax.pro/api/v2/pairs
 } 
 ```
 
+### 15, MyTrades
+
+> Description
+
+Get my historical trading information
+
+> URL
+
+/api/v2/myTrades  
+
+> Http Method
+
+POST
+
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| key | string | true | apiKey of the user |
+| pair | string | false | IDAX supports trade pairs |
+| orderSide | string | false | buy，sell |
+| currentPage | integer | true | current page number |
+| pageLength | integer | true | number of trade returned per page, maximum 1000 |
+| startDate | long | false | start date and timestamp (Millisecond) |
+| endDate   | long | false | end date and timestamp (Millisecond) |
+| timestamp | long | true | request timestamp (valid for 3 minutes) |
+| sign | string | true | signature of request parameters |
+
+> Request
+
+```bash
+
+```
+
+> Response
+
+```json
+{
+    "code":10000,
+    "msg":"request success",
+    "trades":[{
+        "timestamp": 1367130137,
+        "price": "787.71",    // order price
+        "quantity": "0.003", //order quantity
+        "pair": "ETH_BTC",
+        "maker":"buy"  // buy/sell
+    },
+    {
+        "timestamp": 1367130137,
+        "price": "787.71",
+        "quantity": "0.003",
+        "pair": "EOS_BTC",
+        "maker":"sell" 
+    }],
+     "total": 2 // The total number of records
+}
+```
+### 16, GetSign
+
+> Description
+
+getSign
+
+> URL
+
+/api/v2/getSign
+
+> Http Method
+
+GET
+
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| needSignature | string | true  |Signature string to be signed,Must be JSON format|
+
+> Request
+
+```bash
+curl https://openapi.idax.pro/api/v2/getSign?needSignature=?needSignature={"secret":"l8rUKhFDymz0C0EKV4cKW8rZi6x5nmPC5NFKP8WqMcGSRTM4EpkqkKqmRBMNUKpl","currentPage":0,"key":"otcyACN3wfloCLpAHGcf6jIdHErASs4m7Rbi4ei0QgQRI7TwxhF54hJeV905lnkd","pageLength":10,"timestamp":1545177403216}
+```
+
+> Response
+
+```json
+{
+	"code": 10000,
+	"msg": "Successful request processing",
+	"sign": "8a180c7c725523034068fe18399b2499678cc474b2bf5e59a1fad31f161c1c5d"
+} 
+```
+
 ## 7, FAQ
 
 > 1, Access restrictions
@@ -922,6 +1016,7 @@ Answer:All requests go over https protocol, The field 'contentType' in request h
 | 10018 |    Currency price is empty
 | 10019 |    A maximum of 5 orders can be revoked at a time
 | 10020 |    orderId is empty
+| 10021 |    secret is empty
 | 101001|    Unlawful price input
 | 101002|    Unlawful quantity input
 | 101003|    Unlawful order side input
@@ -945,3 +1040,4 @@ Answer:All requests go over https protocol, The field 'contentType' in request h
 | 101021|    the order is cancel
 | 101022|    Trade is not allowed to be traded on no shelf
 | 101023|    This order is invalid
+
