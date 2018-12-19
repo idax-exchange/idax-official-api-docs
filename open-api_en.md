@@ -182,6 +182,124 @@ curl https://openapi.idax.pro/api/v2/time
 }
 ```
 
+### 2, GetSign
+
+> Description
+
+getSign
+
+> URL
+
+/api/v2/getSign
+
+> Http Method
+
+GET
+
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| needSignature | string | true  |Signature string to be signed,Must be JSON format|
+
+> Request
+
+```bash
+curl https://openapi.idax.pro/api/v2/getSign?needSignature=?needSignature={"secret":"l8rUKhFDymz0C0EKV4cKW8rZi6x5nmPC5NFKP8WqMcGSRTM4EpkqkKqmRBMNUKpl","currentPage":0,"key":"otcyACN3wfloCLpAHGcf6jIdHErASs4m7Rbi4ei0QgQRI7TwxhF54hJeV905lnkd","pageLength":10,"timestamp":1545177403216}
+```
+
+> Response
+
+```json
+{
+	"code": 10000,
+	"msg": "Successful request processing",
+	"sign": "8a180c7c725523034068fe18399b2499678cc474b2bf5e59a1fad31f161c1c5d"
+} 
+```
+
+### 3, Place Orders
+
+> Description
+
+Create new order
+
+> URL
+
+/api/v2/placeOrder
+
+> Http Method 
+
+POST
+
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| key | string | true  | apiKey of the user. |
+| pair | string | true | IDAX supports trade pairs|
+| orderType | string | true | order type: (limit/market) |
+| orderSide | string | true | order side:(buy/sell) |
+| price | decimal | true | order price |
+| amount | decimal | true | order qty |
+| timestamp | long | true | Request timestamp (valid for 3 minutes) |
+| sign | string | true | signature of request parameters |
+
+> Request
+
+```bash
+curl -H "Content-Type: application/json" -X POST "https://openapi.idax.pro/api/v2/placeOrder" --data '{"amount": 1.05,"key": "VmhrcrQEF3ATxV2JtVMEH4dFpGEmYzixOL4VrvAeR2COXtc9pzXbvFV1jLbFXEQf","orderSide": "buy","orderType": "limit","pair": "ETH_BTC","price": 0.034775,"sign": "c69d8ec9e274dd20126972b2dfaedc8c74cf06fbb19f968eedcc0a300a95b9f6","timestamp":1532522823039}'
+```
+
+> Response
+
+```json
+{
+    "code":10000,
+    "msg":"Successful request processing",
+    "orderId":"2000000000008832432"  //type String  order ID
+}
+```
+### 4, Cancel Order
+
+> Description
+
+Cancel orders (Support multiple orders per request)
+
+> URL
+
+/api/v2/cancelOrder
+
+> Http Method
+
+POST
+
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| key | string | true | apiKey of the user |
+| orderId | string | true | order ID (multiple orders are separated by a comma ',', Max of 5 orders are allowed per request)|
+| timestamp | long | true |Request timestamp (valid for 3 minutes)|
+| sign | string | true | signature of request parameters|
+
+> Request
+
+```bash
+TODO
+```
+
+> Response
+
+```json
+{
+    "code":10000,
+    "msg":"Successful request processing",
+    "accepted":"123456789,123456000" // IDs(Accepted request for cancellation of order)
+}
+```
+
+
 ### 2, Ticker Price
 
 > Description
@@ -479,49 +597,6 @@ curl -H "Content-Type: application/json" -x POST https://openapi.idax.pro/api/v2
 }
 ```
 
-### 7, Place Orders
-
-> Description
-
-Create new order
-
-> URL
-
-/api/v2/placeOrder
-
-> Http Method 
-
-POST
-
-> Parameters
-
-| name | type | required | description |
-|------|------|----------|-------------|
-| key | string | true  | apiKey of the user. |
-| pair | string | true | IDAX supports trade pairs|
-| orderType | string | true | order type: (limit/market) |
-| orderSide | string | true | order side:(buy/sell) |
-| price | decimal | true | order price |
-| amount | decimal | true | order qty |
-| timestamp | long | true | Request timestamp (valid for 3 minutes) |
-| sign | string | true | signature of request parameters |
-
-> Request
-
-```bash
-curl -H "Content-Type: application/json" -X POST "https://openapi.idax.pro/api/v2/placeOrder" --data '{"amount": 1.05,"key": "VmhrcrQEF3ATxV2JtVMEH4dFpGEmYzixOL4VrvAeR2COXtc9pzXbvFV1jLbFXEQf","orderSide": "buy","orderType": "limit","pair": "ETH_BTC","price": 0.034775,"sign": "c69d8ec9e274dd20126972b2dfaedc8c74cf06fbb19f968eedcc0a300a95b9f6","timestamp":1532522823039}'
-```
-
-> Response
-
-```json
-{
-    "code":10000,
-    "msg":"Successful request processing",
-    "orderId":"2000000000008832432"  //type String  order ID
-}
-```
-
 ### 8, Trade History
 
 > Description
@@ -572,45 +647,6 @@ TODO
         "id": 2304330000,
         "maker":"sell"
     }]
-}
-```
-
-### 9, Cancel Order
-
-> Description
-
-Cancel orders (Support multiple orders per request)
-
-> URL
-
-/api/v2/cancelOrder
-
-> Http Method
-
-POST
-
-> Parameters
-
-| name | type | required | description |
-|------|------|----------|-------------|
-| key | string | true | apiKey of the user |
-| orderId | string | true | order ID (multiple orders are separated by a comma ',', Max of 5 orders are allowed per request)|
-| timestamp | long | true |Request timestamp (valid for 3 minutes)|
-| sign | string | true | signature of request parameters|
-
-> Request
-
-```bash
-TODO
-```
-
-> Response
-
-```json
-{
-    "code":10000,
-    "msg":"Successful request processing",
-    "accepted":"123456789,123456000" // IDs(Accepted request for cancellation of order)
 }
 ```
 
@@ -944,41 +980,6 @@ POST
     }],
      "total": 2 // The total number of records
 }
-```
-### 16, GetSign
-
-> Description
-
-getSign
-
-> URL
-
-/api/v2/getSign
-
-> Http Method
-
-GET
-
-> Parameters
-
-| name | type | required | description |
-|------|------|----------|-------------|
-| needSignature | string | true  |Signature string to be signed,Must be JSON format|
-
-> Request
-
-```bash
-curl https://openapi.idax.pro/api/v2/getSign?needSignature=?needSignature={"secret":"l8rUKhFDymz0C0EKV4cKW8rZi6x5nmPC5NFKP8WqMcGSRTM4EpkqkKqmRBMNUKpl","currentPage":0,"key":"otcyACN3wfloCLpAHGcf6jIdHErASs4m7Rbi4ei0QgQRI7TwxhF54hJeV905lnkd","pageLength":10,"timestamp":1545177403216}
-```
-
-> Response
-
-```json
-{
-	"code": 10000,
-	"msg": "Successful request processing",
-	"sign": "8a180c7c725523034068fe18399b2499678cc474b2bf5e59a1fad31f161c1c5d"
-} 
 ```
 
 ## 7, FAQ
