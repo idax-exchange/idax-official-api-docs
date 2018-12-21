@@ -21,7 +21,7 @@ Interface list:
 | Market quotation  |[/api/v2/kline](#13-kline) | GET |  N   | Get kline data|
 | trade variety information|[/api/v2/pairs](#14-pairs) | GET  |  N   | All trading pairs supported by exchanges|
 | trade variety information|[/api/v2/pairLimits](#15-pairlimits) | GET  |  N   |Gets the maximum, minimum, price, and quantity of the supported transaction pairs|
-
+| system information|[/api/v2/getSign](#16-getSign) | GET  |  N   | Get sign |
 
 If you have any problem when using APIs , pls contact our support team.
 
@@ -945,6 +945,43 @@ curl https://openapi.idax.pro/api/v2/pairLimits?pair=ETH_BTC
         "priceDecimalPlace": 6,  // price decimal 
         "qtyDecimalPlace": 3  //quantity decimal
     }]
+}
+```
+### 16, GetSign
+
+> Description
+
+Computational Signature Interface (getSign) is used by developers to verify that the signature algorithm is correct and write to death.
+Key = "otcyACN3wfloCLpAHGcf6jIdHErASs4m7Rbi4ei0QgQRI7TwxhF54hJeV905lnkd";
+SECRET= "l8rUKhFDymz0C0EKV4cKW8rZi6x5nmPC5NFKP8WqMcGSRTM4EpkqkKqmRBMNUKpl";
+
+> URL
+
+/api/v2/getSign
+
+> Http Method
+
+GET
+
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| needSignature | string | true  | The string to be signed must be in JSON format |
+
+> Request
+
+```bash
+curl https://openapi.idax.pro/api/v2/getSign?needSignature={"amount":10,"key":"otcyACN3wfloCLpAHGcf6jIdHErASs4m7Rbi4ei0QgQRI7TwxhF54hJeV905lnkd","orderSide":"buy","orderType":"limit","pair":"ETH_BTC","price":0,"sign":"47c63e8c8dfac216e3e2182b0eb909a85e38b9c4aec4aaf9cb1f65c24bc52c63","timestamp":1545347383600}
+```
+
+> Response
+
+```json
+{
+	"code": 10000,
+	"msg": "Successful request processing",
+	"sign": "907ab44a485727b604354da47acc6e54e1abeff73defcaa282f38c50b21877ec"
 }
 ```
 
