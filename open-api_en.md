@@ -14,7 +14,7 @@ Interface list:
 | Order information |[/api/v2/orderHistory](#6-order-history) | POST  |  Y   |Get historical order information and return information only for the last two days|
 | trade information |[/api/v2/trades](#7-trades) | GET  |  N   | Get Recently  Trades|
 | trade information |[/api/v2/tradesHistory](#8-trade-history) | POST  |  Y   | get trade history for specific pairs|
-| trade|[/api/v2/myTrades](#9-myTrades) | POST  |  Y   |Get my historical trading information|
+| trade information |[/api/v2/myTrades](#9-myTrades) | POST  |  Y   |Get my historical trading information|
 | Account information|[/api/v2/userinfo](#10-account-info) | POST  |  Y   |Get account info|
 | Market quotation  |[/api/v2/ticker](#11-ticker-price) | GET  |  N   | Get the price of specific ticker |
 | Market quotation  |[/api/v2/depth](#12-depth) | GET  |  N   | Get the market depth for specific market.  |
