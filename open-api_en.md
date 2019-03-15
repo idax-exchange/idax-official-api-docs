@@ -282,7 +282,7 @@ POST
 | name | type | required | description |
 |------|------|----------|-------------|
 | key| string | true | apiKey of the user |
-| pair | string | true | IDAX supports trade pairs|
+| pair | string | false | IDAX supports trade pairs|
 | orderId | string or long | true |if order_id is -1, then return all unfilled orders, otherwise return the order specified|
 | pageIndex | int | true | current page number |
 | pageSize | int | true | number of orders returned per page |
@@ -345,7 +345,7 @@ POST
 | name | type | required | description |
 |------|------|----------|-------------|
 | key | string | true | apiKey of the user |
-| pair | string | true | IDAX supports trade pairs |
+| pair | string | false | IDAX supports trade pairs |
 | orderId | string | true | order ID (multiple orders are separated by ',', 50 orders at most are allowed per request)|
 | timestamp | long | true | Request timestamp (valid for 3 minutes) |
 | sign | string | true | signature of request parameters|
