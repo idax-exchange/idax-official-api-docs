@@ -10,18 +10,19 @@ Interface list:
 | trade             |[/api/v2/placeOrder](#2-place-orders) | POST  |  Y   | Create new order      |
 | trade             |[/api/v2/cancelOrder](#3-cancel-order) | POST  |  Y   | Cancel orders        |
 | Order information |[/api/v2/orderInfo](#4-order-info) | POST  |  Y   | Get Order Info |
-| Order information |[/api/v2/orderList](#5-order-list) | POST  |  Y   | Get Order Information in Batch|
-| Order information |[/api/v2/orderHistory](#6-order-history) | POST  |  Y   |Get historical order information and return information only for the last two days|
-| trade information |[/api/v2/trades](#7-trades) | GET  |  N   | Get Recently  Trades|
-| trade information |[/api/v2/tradesHistory](#8-trade-history) | POST  |  Y   | get trade history for specific pairs|
-| trade information |[/api/v2/myTrades](#9-myTrades) | POST  |  Y   |Get my historical trading information|
-| Account information|[/api/v2/userinfo](#10-account-info) | POST  |  Y   |Get account info|
-| Market quotation  |[/api/v2/ticker](#11-ticker-price) | GET  |  N   | Get the price of specific ticker |
-| Market quotation  |[/api/v2/depth](#12-depth) | GET  |  N   | Get the market depth for specific market.  |
-| Market quotation  |[/api/v2/kline](#13-kline) | GET |  N   | Get kline data|
-| trade variety information|[/api/v2/pairs](#14-pairs) | GET  |  N   | All trading pairs supported by exchanges|
-| trade variety information|[/api/v2/pairLimits](#15-pairlimits) | GET  |  N   |Gets the maximum, minimum, price, and quantity of the supported transaction pairs|
-| system information|[/api/v2/getSign](#16-getSign) | GET  |  N   | Get sign |
+| Order information |[/api/v2/orderList](#5-order-list) | POST  |  Y   | The interface suspends service|
+| Order information |[/api/v2/orderHistory](#6-order-history) | POST  |  Y   |Order information within the last 24 hours|
+| Order information |[/api/v2/beforeOrderHistory](#7-before-order-history) | POST  |  Y   |Query 24 hours outside history commission|
+| trade information |[/api/v2/trades](#8-trades) | GET  |  N   | Get Recently  Trades|
+| trade information |[/api/v2/tradesHistory](#9-trade-history) | POST  |  Y   | The interface suspends service|
+| trade information |[/api/v2/myTrades](#10-mytrades) | POST  |  Y   |Get my historical trading information|
+| Account information|[/api/v2/userinfo](#11-account-info) | POST  |  Y   |Get account info|
+| Market quotation  |[/api/v2/ticker](#12-ticker-price) | GET  |  N   | Get the price of specific ticker |
+| Market quotation  |[/api/v2/depth](#13-depth) | GET  |  N   | Get the market depth for specific market.  |
+| Market quotation  |[/api/v2/kline](#14-kline) | GET |  N   | Get kline data|
+| trade variety information|[/api/v2/pairs](#15-pairs) | GET  |  N   | All trading pairs supported by exchanges|
+| trade variety information|[/api/v2/pairLimits](#16-pairlimits) | GET  |  N   |Gets the maximum, minimum, price, and quantity of the supported transaction pairs|
+| system information|[/api/v2/getSign](#17-getsign) | GET  |  N   | Get sign |
 
 If you have any problem when using APIs , pls contact our support team.
 
@@ -282,7 +283,7 @@ POST
 | name | type | required | description |
 |------|------|----------|-------------|
 | key| string | true | apiKey of the user |
-| pair | string | false | IDAX supports trade pairs|
+| pair | string | true | IDAX supports trade pairs|
 | orderId | string or long | true |if order_id is -1, then return all unfilled orders, otherwise return the order specified|
 | pageIndex | int | true | current page number |
 | pageSize | int | true | number of orders returned per page |
@@ -330,7 +331,7 @@ TODO
 
 > Description
 
-Get Order Information in Batch
+The interface suspends service
 
 > URL
 
@@ -345,7 +346,7 @@ POST
 | name | type | required | description |
 |------|------|----------|-------------|
 | key | string | true | apiKey of the user |
-| pair | string | false | IDAX supports trade pairs |
+| pair | string | true | IDAX supports trade pairs |
 | orderId | string | true | order ID (multiple orders are separated by ',', 50 orders at most are allowed per request)|
 | timestamp | long | true | Request timestamp (valid for 3 minutes) |
 | sign | string | true | signature of request parameters|
@@ -390,11 +391,11 @@ TODO
 
 > Description
 
-Get historical order information and return information only for the last two days
+Order information within the last 24 hours
 
 > URL
 
-/api/v2/orderHistory  
+/api/v2/orderHistory  
 
 > Http Method
 
@@ -444,11 +445,72 @@ POST
 }
 ```
 
-### 7, Trades
+### 7, Before Order History
 
 > Description
 
-Get Recently 60 Trades
+Query 24 hours outside history commission
+
+> URL
+
+/api/v2/beforeOrderHistory  
+
+> Http Method
+
+POST
+
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| key | string | true | apiKey of the user |
+| pair | string | true | IDAX supports trade pairs |
+| orderState | integer | true | query status: -1 for all orders,query status: 0 for unfilled orders, 1 for filled orders  |
+| currentPage | integer | false | current page number |
+| pageLength | integer | false | number of orders returned per page, maximum 100 |
+| timestamp | long | true | request timestamp (valid for 3 minutes) |
+| sign | string | true | signature of request parameters |
+| orderSide | int | false | 0 all 1 buy  2 sell |
+| startTime | long | false | startTime |
+| endTime | long | false | startTime |
+
+> Request
+
+```bash
+
+```
+
+> Response
+
+```json
+{
+        "code":10000,
+        "msg":"Successful request processing",
+        "currentPage": 1, // current page number
+        "orders": // detailed order information
+        [
+            {
+                "quantity": "0.2", // order quantity
+                "avgPrice": "0", // average transaction price
+                "timestamp": 1417417957000, // order time
+                "dealQuantity": "0", // filled quantity
+                "orderId": 10000724, // order ID
+                "price": "0.1", // order price
+                "orderState":1, // orderState: 1 = unfilled,2 = partially filled, 9 = fully filled, 19 = cancelled
+                "pair": "ETH_BTC",
+                "orderSide":"buy" // buy/sell
+            }
+        ],
+        "pageLength": 1, // number of orders per page
+        "total": 3 // The total number of records
+}
+```
+
+### 8, Trades
+
+> Description
+
+The default total does not return one, and returns up to 2000 at a time.
 
 > URL
 
@@ -463,11 +525,12 @@ GET
 | name | type | required | description |
 |------|------|----------|-------------|
 | pair | string | true  | IDAX supports trade pairs. |
+| total | int | false  | Number of items; no default display 1 |
 
 > Request
 
 ```bash
-curl https://openapi.idax.pro/api/v2/trades?pair=ETH_BTC
+curl https://openapi.idax.pro/api/v2/trades?pair=ETH_BTC&total=3
 ```
 
 > Response
@@ -503,11 +566,11 @@ curl https://openapi.idax.pro/api/v2/trades?pair=ETH_BTC
 }
 ```
 
-### 8, Trade History
+### 9, Trade History
 
 > Description
 
-get trade history for specific pairs
+The interface suspends service
 
 > URL
 
@@ -556,7 +619,7 @@ TODO
 }
 ```
 
-### 9, MyTrades
+### 10, MyTrades
 
 > Description
 
@@ -564,7 +627,7 @@ Get my historical trading information
 
 > URL
 
-/api/v2/myTrades  
+/api/v2/myTrades  
 
 > Http Method
 
@@ -595,7 +658,7 @@ POST
 ```json
 {
     "code":10000,
-    "msg":"request success",
+    "msg":"request success",
     "trades":[{
         "timestamp": 1367130137,
         "price": "787.71",    // order price
@@ -614,7 +677,7 @@ POST
 }
 ```
 
-### 10, Account Info
+### 11, Account Info
 
 > Description
 
@@ -667,7 +730,7 @@ curl -H "Content-Type: application/json" -x POST https://openapi.idax.pro/api/v2
 ```
 
 
-### 11, Ticker Price
+### 12, Ticker Price
 
 > Description
 
@@ -713,7 +776,7 @@ curl https://openapi.idax.pro/api/v2/ticker?pair=ETH_BTC
 }
 ```
 
-### 12, Depth
+### 13, Depth
 
 > Description
 
@@ -794,7 +857,7 @@ curl https://openapi.idax.pro/api/v2/depth?pair=ETH_BTC&size=5&merge=8
 }
 ```
 
-### 13, Kline
+### 14, Kline
 
 > Description
 
@@ -853,7 +916,7 @@ approximately 2000 pieces of data are returned each cycle
 }
 ```
 
-### 14, Pairs
+### 15, Pairs
 
 > Description
 
@@ -906,7 +969,7 @@ curl https://openapi.idax.pro/api/v2/pairs
 } 
 ```
 
-### 15, PairLimits
+### 16, PairLimits
 
 > Description
 
@@ -947,13 +1010,12 @@ curl https://openapi.idax.pro/api/v2/pairLimits?pair=ETH_BTC
     }]
 }
 ```
-### 16, GetSign
+### 17, GetSign
 
 > Description
 
-Computational Signature Interface (getSign) is used by developers to verify that the signature algorithm is correct and write to death.
-Key = "otcyACN3wfloCLpAHGcf6jIdHErASs4m7Rbi4ei0QgQRI7TwxhF54hJeV905lnkd";
-SECRET= "l8rUKhFDymz0C0EKV4cKW8rZi6x5nmPC5NFKP8WqMcGSRTM4EpkqkKqmRBMNUKpl";
+Developers use getsign to verify that the signature algorithm is correct. 
+The secret is fixed as: otcyACN3wfloCLpAHGcf6jIdHErASs4m7Rbi4ei0QgQRI7TwxhF54hJeV905lnkd.
 
 > URL
 
