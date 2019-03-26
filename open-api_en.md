@@ -10,11 +10,11 @@ Interface list:
 | trade             |[/api/v2/placeOrder](#2-place-orders) | POST  |  Y   | Create new order      |
 | trade             |[/api/v2/cancelOrder](#3-cancel-order) | POST  |  Y   | Cancel orders        |
 | Order information |[/api/v2/orderInfo](#4-order-info) | POST  |  Y   | Get Order Info |
-| Order information |[/api/v2/orderList](#5-order-list) | POST  |  Y   | The interface suspends service|
+| Order information |[/api/v2/orderList](#5-order-list) | POST  |  Y   | This interface is obsoleted|
 | Order information |[/api/v2/orderHistory](#6-order-history) | POST  |  Y   |Order information within the last 24 hours|
 | Order information |[/api/v2/beforeOrderHistory](#7-before-order-history) | POST  |  Y   |Query 24 hours outside history commission|
 | trade information |[/api/v2/trades](#8-trades) | GET  |  N   | Get Recently  Trades|
-| trade information |[/api/v2/tradesHistory](#9-trade-history) | POST  |  Y   | The interface suspends service|
+| trade information |[/api/v2/tradesHistory](#9-trade-history) | POST  |  Y   | This interface is obsoleted|
 | trade information |[/api/v2/myTrades](#10-mytrades) | POST  |  Y   |Get my historical trading information|
 | Account information|[/api/v2/userinfo](#11-account-info) | POST  |  Y   |Get account info|
 | Market quotation  |[/api/v2/ticker](#12-ticker-price) | GET  |  N   | Get the price of specific ticker |
@@ -331,7 +331,7 @@ TODO
 
 > Description
 
-The interface suspends service
+This interface is obsoleted
 
 > URL
 
@@ -570,7 +570,7 @@ curl https://openapi.idax.pro/api/v2/trades?pair=ETH_BTC&total=3
 
 > Description
 
-The interface suspends service
+This interface is obsoleted
 
 > URL
 
