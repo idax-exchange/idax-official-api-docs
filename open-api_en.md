@@ -23,6 +23,7 @@ Interface list:
 | trade variety information|[/api/v2/pairs](#15-pairs) | GET  |  N   | All trading pairs supported by exchanges|
 | trade variety information|[/api/v2/pairLimits](#16-pairlimits) | GET  |  N   |Gets the maximum, minimum, price, and quantity of the supported transaction pairs|
 | system information|[/api/v2/getSign](#17-getsign) | GET  |  N   | Get sign |
+| system information|[/api/v2/pairRate](#18-pairRate) | GET  |  N   | Get Transaction-to-Price-to-French Currency Conversion |
 
 If you have any problem when using APIs , pls contact our support team.
 
@@ -1046,7 +1047,47 @@ curl https://openapi.idax.pro/api/v2/getSign?needSignature={"amount":10,"key":"o
 	"sign": "907ab44a485727b604354da47acc6e54e1abeff73defcaa282f38c50b21877ec"
 }
 ```
+### 18, pairRate
 
+> Description
+
+Transaction-to-Price-to-French Currency Conversion
+
+> URL
+
+/api/v2/pairRate
+
+> Http Method
+
+GET
+
+> Request
+
+```bash
+curl https://openapi.idax.pro/api/v2/pairRate
+```
+
+> Response
+
+```json
+{
+	"code": 10000,
+	"msg": "Successful request processing",
+	"marketValuationCnies": [{
+		"coinName": "BTC",
+		"cny": "35203.948166",
+		"usd": "5238.89637256"
+	}, {
+		"coinName": "ETH",
+		"cny": "1209.3710803",
+		"usd": "179.973272765"
+	}, {
+		"coinName": "USDT",
+		"cny": "6.8006186881",
+		"usd": "1.0120380932"
+	}]
+}
+```
 
 ## 7, FAQ
 
