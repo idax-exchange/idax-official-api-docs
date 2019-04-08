@@ -23,7 +23,7 @@ Interface list:
 | trade variety information|[/api/v2/pairs](#15-pairs) | GET  |  N   | All trading pairs supported by exchanges|
 | trade variety information|[/api/v2/pairLimits](#16-pairlimits) | GET  |  N   |Gets the maximum, minimum, price, and quantity of the supported transaction pairs|
 | system information|[/api/v2/getSign](#17-getsign) | GET  |  N   | Get sign |
-| system information|[/api/v2/pairRate](#18-pairRate) | GET  |  N   | Get Transaction-to-Price-to-French Currency Conversion |
+| system information|[/api/v2/pairRate](#18-pairRate) | GET  |  N   | Pair Conversion with French Currency |
 
 If you have any problem when using APIs , pls contact our support team.
 
@@ -1051,7 +1051,7 @@ curl https://openapi.idax.pro/api/v2/getSign?needSignature={"amount":10,"key":"o
 
 > Description
 
-Transaction-to-Price-to-French Currency Conversion
+Pair Conversion with French Currency
 
 > URL
 
