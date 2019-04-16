@@ -206,8 +206,8 @@ POST
 | pair | string | true | IDAX supports trade pairs|
 | orderType | string | true | order type: (limit/market) |
 | orderSide | string | true | order side:(buy/sell) |
-| price | decimal | true | order price |
-| amount | decimal | true | order qty |
+| price | decimal or string | true | order price (It is suggested that string be used to solve scientific counting method)|
+| amount | decimal or string | true | order qty (It is suggested that string be used to solve scientific counting method)|
 | timestamp | long | true | Request timestamp (valid for 3 minutes) |
 | sign | string | true | signature of request parameters |
 
