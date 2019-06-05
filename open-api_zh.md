@@ -24,7 +24,7 @@ IDAX接口是提供服务的基础，开发者在IDAX网站创建账号后，可
 | 市场行情  |[/api/v2/kline](#14kline) | GET |  N   | 获取K线数据|
 | 交易品种信息|[/api/v2/pairs](#15pairs) | GET  |  N   | 交易所支持的所有交易对|
 | 交易品种信息|[/api/v2/pairLimits](#16pairlimits) | GET  |  N   |获取支持的交易对的最大值、最小值、价格和数量|
-| 交易品种信息|[/api/v2/pairRate](#17pairRate) | GET  |  N   | 法币转换 |
+| 交易品种信息|[/api/v2/pairRate](#17pairRate) | GET  |  N   | 数字货币对法币转换估值 |
 | 系统信息|[/api/v2/getSign](#18getsign) | GET  |  N   | 签名算法验证example |
 
 
@@ -1047,7 +1047,7 @@ pair		String			否				IDAX支持的交易对
 ### 17．pairRate 
 > 说明
 ```
-  获取法币转换
+  数字货币对法币转换估值
 ```
 > URL
 ```
