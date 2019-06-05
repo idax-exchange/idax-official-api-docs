@@ -16,10 +16,10 @@ IDAX接口是提供服务的基础，开发者在IDAX网站创建账号后，可
 | 订单信息 |[/api/v2/orderHistory](#6orderhistory) | POST  |  Y   |获取24小时内的订单信息|
 | 订单信息 |[/api/v2/beforeOrderHistory](#7beforeorderhistory) | POST  |  Y   |获取24小时外订单信息|
 | 交易信息 |[/api/v2/trades](#8trades) | GET  |  N   | 获取最近成交信息|
-| 交易信息 |[/api/v2/tradesHistory](#9tradehistory) | POST  |  Y   | 接口停止使用|
+| 交易信息 |[/api/v2/tradesHistory](#9tradeshistory) | POST  |  Y   | 接口停止使用|
 | 交易信息 |[/api/v2/myTrades](#10mytrades) | POST  |  Y   |获取我的历史交易信息|
-| 账户信息|[/api/v2/userinfo](#11accountinfo) | POST  |  Y   |获取我的帐户信息|
-| 市场行情  |[/api/v2/ticker](#12tickerprice) | GET  |  N   | 全部symbol的交易行情 |
+| 账户信息|[/api/v2/userinfo](#11userinfo) | POST  |  Y   |获取我的帐户信息|
+| 市场行情  |[/api/v2/ticker](#12ticker) | GET  |  N   | 全部symbol的交易行情 |
 | 市场行情  |[/api/v2/depth](#13depth) | GET  |  N   | 市场深度行情（单个symbol） |
 | 市场行情  |[/api/v2/kline](#14kline) | GET |  N   | 获取K线数据|
 | 交易品种信息|[/api/v2/pairs](#15pairs) | GET  |  N   | 交易所支持的所有交易对|
