@@ -9,7 +9,7 @@ IDAX接口是提供服务的基础，开发者在IDAX网站创建账号后，可
 |接口数据类型|请求方法| 类 型 |是否需要验签|描述|
 | ------------------| ----------------- | ----- |----- |-----------------------|
 |系统信息|[/api/v2/time](#1time) | GET  |  N   | 获取服务器时间戳 |
-| 交易             |[/api/v2/placeOrder](#2-place-orders) | POST  |  Y   | 下单      |
+| 交易             |[/api/v2/placeOrder](#2placeorder) | POST  |  Y   | 下单      |
 | 交易             |[/api/v2/cancelOrder](#3-cancel-order) | POST  |  Y   | 撤单        |
 | 订单信息 |[/api/v2/orderInfo](#4-order-info) | POST  |  Y   | 获取订单信息 |
 | 订单信息 |[/api/v2/orderList](#5-order-list) | POST  |  Y   | 接口停止使用|
@@ -95,21 +95,23 @@ REST访问的根URL：https://openapi.idax.pro/api/v2 
 ### 1.time  
 
 > 说明
+```
   获取服务器时间戳
-  
+```
 > URL
+```
   /api/v2/time
-  
+```
 > 请求方式
+```
   Get
-
-> Request 
-
+```
+> Request
 ```java
   GET https://openapi.idax.pro/api/v2/time
 ```
 
-  > Response
+> Response
 
 ```java
   {
@@ -124,17 +126,21 @@ REST访问的根URL：https://openapi.idax.pro/api/v2 
 ```
   timestamp: 1417449600000：服务器时间戳
 ```
+
 ### 2．placeOrder 
 
 > 说明
+```
   下单交易（除此接口外，其他接口均采用quantity表示"量"，amount表示"额"）
-  
+```
 > URL
+```
   /api/api/v2/placeOrder
-  
+```
 > 请求方式
+```
   POST
-  
+```
 > Request
 
 ```java
