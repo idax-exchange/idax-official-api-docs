@@ -197,13 +197,13 @@ POST https://openapi.idax.pro/api/v2/cancelOrder
 > Response
 
 ```java
-{"code":10000,"msg":"request success","accepted":"123456789,123456000"}
+{"code":10000,"msg":"request success","accepted":"123456789"}
 ```
 
 > 返回值说明
 
 ```
-accepted:订单ID(已受理的撤单请求)
+accepted:订单号(已接受取消订单请求的最后一个订单号)
 ```
 
 > 请求参数说明
