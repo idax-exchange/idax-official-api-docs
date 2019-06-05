@@ -24,8 +24,9 @@ IDAX接口是提供服务的基础，开发者在IDAX网站创建账号后，可
 | 市场行情  |[/api/v2/kline](#14kline) | GET |  N   | 获取K线数据|
 | 交易品种信息|[/api/v2/pairs](#15pairs) | GET  |  N   | 交易所支持的所有交易对|
 | 交易品种信息|[/api/v2/pairLimits](#16pairlimits) | GET  |  N   |获取支持的交易对的最大值、最小值、价格和数量|
-| 系统信息|[/api/v2/getSign](#17getsign) | GET  |  N   | 签名算法验证example |
-| 系统信息|[/api/v2/pairRate](#18pairRate) | GET  |  N   | 法币转换 |
+| 交易品种信息|[/api/v2/pairRate](#17pairRate) | GET  |  N   | 法币转换 |
+| 系统信息|[/api/v2/getSign](#18getsign) | GET  |  N   | 签名算法验证example |
+
 
 
 获取接口权限后，可以通过阅读本接口文档来帮助开发。如果您在使用过程中遇到任何问题，请联系我们，将在第一时间为您做出解答。
