@@ -92,8 +92,13 @@ REST访问的根URL：https://openapi.idax.pro/api/v2 
 
 **六、REST API参考**
 
-### 1.Get /api/v2/time  获取服务器时间戳
-
+### 1./api/v2/time  
+> 说明
+  获取服务器时间戳
+> URL
+  /api/v2/time
+> 请求方式
+  Get
 >（1）请求示例
   # Request 
 
