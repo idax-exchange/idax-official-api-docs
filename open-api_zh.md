@@ -8,7 +8,7 @@ IDAX接口是提供服务的基础，开发者在IDAX网站创建账号后，可
 
 |接口数据类型|请求方法| 类 型 |是否需要验签|描述|
 | ------------------| ----------------- | ----- |----- |-----------------------|
-|系统信息|[/api/v2/time](#1get-apiv2time) | GET  |  N   | 获取服务器时间戳 |
+|系统信息|[/api/v2/time](#1get-apiv2time￨ﾎﾷ￥ﾏﾖ￦ﾜﾍ￥ﾊﾡ￥ﾙﾨ￦ﾗﾶ￩ﾗﾴ￦ﾈﾳ) | GET  |  N   | 获取服务器时间戳 |
 | 交易             |[/api/v2/placeOrder](#2-place-orders) | POST  |  Y   | 下单      |
 | 交易             |[/api/v2/cancelOrder](#3-cancel-order) | POST  |  Y   | 撤单        |
 | 订单信息 |[/api/v2/orderInfo](#4-order-info) | POST  |  Y   | 获取订单信息 |
@@ -94,7 +94,7 @@ REST访问的根URL：https://openapi.idax.pro/api/v2 
 
 ### 1.Get /api/v2/time  获取服务器时间戳
 
-  （1）请求示例
+>（1）请求示例
   # Request 
 
 ```java
