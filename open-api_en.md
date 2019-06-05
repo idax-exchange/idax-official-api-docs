@@ -1124,27 +1124,57 @@ Answer:All requests go over https protocol, The field 'contentType' in request h
 | 10018 |    Currency price is empty
 | 10019 |    A maximum of 5 orders can be revoked at a time
 | 10020 |    orderId is empty
-| 10021 |    secret is empty
-| 101001|    Unlawful price input
-| 101002|    Unlawful quantity input
-| 101003|    Unlawful order side input
-| 101004|    Coin Pair UnKnown
-| 101005|    Trade CreateOrder Price Decimal Place Error
-| 101006|    Trade CreateOrder Qty Decimal Place Error
-| 101007|    Trade Amount Max
-| 101008|    Trade Amount Min
-| 101009|    Insufficient account balance
-| 101010|    Available Amount Not Enough
-| 101011|    OrderId NotExist
-| 101012|    cancel OrderFail
-| 101013|    Query  Floating Rate Fail
-| 101014|    Buy Price Fail
-| 101015|    Sell Price Fail
-| 101016|    Create order maintenance
-| 101017|    Query Setting Empty
-| 101018|    Price input is empty
-| 101019|    Amount input is empty
-| 101020|    the order is finished
-| 101021|    the order is cancel
-| 101022|    Trade is not allowed to be traded on no shelf
-| 101023|    This order is invalid
+| 10021 |    Only data outside 24 hours can be queried
+| 10022 |    The interface suspends service
+| 10023 |    secret is empty
+| 10024 |    No trading rights
+| 10025 |    No query permission
+| 10026 |    request expired
+| 10027 |    Unlawful price input
+| 10028 |    Unlawful quantity input
+| 10029 |    Unlawful orderside input
+| 10030 |    Coin Pair UnKnown
+| 10031 |    Trade CreateOrder Price Decimal Place Error
+| 10032 |    Trade CreateOrder Qty Decimal Place Error
+| 10033 |    Trade Amount Max
+| 10034 |    Trade Amount Min
+| 10035 |    Create order maintenance
+| 10036 |    Price input is empty
+| 10037 |    Amount input is empty
+| 10038 |    Trade is not allowed to be traded on no shelf
+| 10039 |    Cannot be sold during subscription period
+| 100100|    Order side is not correct
+| 100200|    Order type is not correct
+| 100300|    Pair state is not correct
+| 100400|    Price cannot be null
+| 100500|    Price is too low
+| 100550|    Price is too high
+| 100600|    Amount is too low
+| 100650|    Amount is too high
+| 100700|    User is not found
+| 100800|    Account is not found
+| 100900|    Request is invalid
+| 101000|    Available amount not enough
+| 101100|    Order cannot be canceled
+| 101200|    Cancel order failed
+| 101300|    Pair name cannot be null
+| 101400|    The object to be created is already exist
+| 101500|    The object is not exist
+| 101600|    Frozen amount not enough
+| 101700|    The positive action is not exist
+| 101800|    Coin is not found
+| 101900|    The string length is too long
+| 102000|    User is frozen
+| 102200|    System is busy, please try later
+| 102300|    The reverse action is already exist
+| 102400|    GUID cannot be null
+| 102500|    User is forbidden to create order
+| 102600|    Either order property is invalid or order type is market
+| 102650|    Order mode is invalid
+| 102700|    No market price exist, so please use NORMAL mode
+| 102800|    TriggerPrice must greater than 0
+| 102900|    PriceGap must greater than 0
+| 103000|    TrailingStopLoss only support market order
+| 103100|    TriggerPrice is too low
+| 103100|    TriggerPrice is too high
+| 103100|    Cannot transfer capital to self
