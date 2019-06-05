@@ -93,20 +93,23 @@ REST访问的根URL：https://openapi.idax.pro/api/v2 
 **六、REST API参考**
 
 ### 1.time  
+
 > 说明
   获取服务器时间戳
+  
 > URL
   /api/v2/time
+  
 > 请求方式
   Get
->（1）请求示例
-  # Request 
+
+> Request 
 
 ```java
   GET https://openapi.idax.pro/api/v2/time
 ```
 
-  # Response
+  > Response
 
 ```java
   {
@@ -116,37 +119,45 @@ REST访问的根URL：https://openapi.idax.pro/api/v2 
   } 
 ```
 
-  （2）返回值说明
+> 返回值说明
 
 ```
   timestamp: 1417449600000：服务器时间戳
 ```
-### 2．POST /api/api/v2/placeOrder 下单交易（除此接口外，其他接口均采用quantity表示"量"，amount表示"额"）
+### 2．placeOrder 
 
-（1）请求示例
-# Request
+> 说明
+  下单交易（除此接口外，其他接口均采用quantity表示"量"，amount表示"额"）
+  
+> URL
+  /api/api/v2/placeOrder
+  
+> 请求方式
+  POST
+  
+> Request
 
 ```java
 POST https://openapi.idax.pro/api/v2/placeOrder
 ```
 
-# Response
+> Response
 
 ```java
 {"code":10000, "msg":"request success", "orderId":"2000000000008832432"}
 ```
 
-（2）返回值说明
+> 返回值说明
 
 ```
 orderId: 订单ID
 ```
 
-（3）请求参数
+> 请求参数说明
 
 ```
 参数名		参数类型		必填				描述
-key			String			是			用户申请的key
+key		String			是			用户申请的key
 pair		String			是			IDAX支持的交易对
 orderType	String			是			limit:限价，market:市价
 orderSide	String			是			buy:买，sell:卖
@@ -155,6 +166,7 @@ amount		Double			是			下单数量
 timestamp	Long			是			请求时间戳（3分钟内有效）
 sign		String			是			请求参数的签名
 ```
+
 ### 3．POST /api/api/v2/cancelOrder  撤销订单（支持批量撤单）
 
 （1）请求示例
