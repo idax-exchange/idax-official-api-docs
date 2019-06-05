@@ -363,16 +363,27 @@ timestamp	Long		是		请求时间戳（3分钟内有效）
 sign		String		是		请求参数的签名
 ```
 
-### 6．POST /api/api/v2/orderHistory  获取最近24小时历史订单信息
+### 6．orderHistory  
 
->（1）请求示例
-# Request
+> 说明
+```
+  获取最近24小时历史订单信息
+```
+> URL
+```
+  /api/api/v2/orderHistory
+```
+> 请求方式
+```
+  POST
+```
+> Request
 
 ```java
 POST https://openapi.idax.pro/api/v2/orderHistory
 ```
 
-# Response
+> Response
 
 ```java
 {
@@ -395,7 +406,7 @@ POST https://openapi.idax.pro/api/v2/orderHistory
 }
 ```
 
-（2）返回值说明
+> 返回值说明
 
 ```
 currentPage:当前页码
@@ -411,8 +422,7 @@ orderSide: 1:buy / 2:sell
 pageLength:每页数据条数
 total: 总记录数
 ```
-
-（3）请求参数
+> 请求参数
 
 ```
 参数名			参数类型	必填			描述
@@ -425,16 +435,27 @@ timestamp		Long		是		请求时间戳（3分钟内有效）
 sign			String		是		请求参数的签名
 ```
 
-### 7．POST /api/api/v2/beforeOrderHistory    获取24最近小时外历史订单信息
+### 7．beforeOrderHistory
 
-（1）请求示例
-# Request
+> 说明
+```
+  获取24最近小时外历史订单信息
+```
+> URL
+```
+  /api/api/v2/beforeOrderHistory
+```
+> 请求方式
+```
+  POST
+```
+> Request
 
 ```java
 POST https://openapi.idax.pro/api/v2/beforeOrderHistory
 ```
 
-# Response
+> Response
 
 ```java
 {
@@ -456,8 +477,7 @@ POST https://openapi.idax.pro/api/v2/beforeOrderHistory
 		"total": 3
 }
 ```
-
-（2）返回值说明
+>返回值说明
 
 ```
 currentPage:当前页码
@@ -473,8 +493,7 @@ orderSide: 1:buy / 2:sell
 pageLength:每页数据条数
 total: 总记录数
 ```
-
-（3）请求参数
+>请求参数
 
 ```
 参数名			参数类型	必填			描述
@@ -490,17 +509,26 @@ startTime		Long		是		开始时间
 endTime			Long		是		结束时间
 ```
 
-
-### 8．Get /api/api/v2/trades 获取IDAX交易信息(60条)
-
-（1）请求示例
-# Request
+### 8．trades 
+> 说明
+```
+  获取IDAX交易信息
+```
+> URL
+```
+  /api/api/v2/trades 
+```
+> 请求方式
+```
+  GET
+```
+> Request
 
 ```java
 GET https://openapi.idax.pro/api/v2/trades?pair=ETH_BTC
 ```
 
-# Response
+> Response
 
 ```java
 {
@@ -523,7 +551,7 @@ GET https://openapi.idax.pro/api/v2/trades?pair=ETH_BTC
 }
 ```
 
-（2）返回值说明
+> 返回值说明
 
 ```
 timestamp: 成交时间(ms)
@@ -533,24 +561,33 @@ id: 交易记录ID
 maker: 成交类型buy / sell
 ```
 
-（3）请求参数
+> 请求参数
 
 ```
 参数名		参数类型		必填			描述
 pair		String			是			IDAX支持的交易对
 ```
 
-### 9．POST /api/api/v2/tradesHistory 获取IDAX历史交易信息（非个人)
-
-（1）请求示例
-
-# Request
+### 9．tradesHistory 
+> 说明
+```
+  获取IDAX历史交易信息（非个人)
+```
+> URL
+```
+  /api/api/v2/tradesHistory 
+```
+> 请求方式
+```
+  POST
+```
+> Request
 
 ```java
 POST https://openapi.idax.mn/api/v2/tradesHistory
 ```
 
-# Response
+> Response
 
 ```java
 {
@@ -573,7 +610,7 @@ POST https://openapi.idax.mn/api/v2/tradesHistory
 }
 ```
 
-（2）返回值说明
+>返回值说明
 
 ```
 timestamp: 成交时间(ms)
@@ -583,7 +620,7 @@ id: 交易生成ID
 maker: 成交类型buy / sell
 ```
 
-（3）请求参数
+> 请求参数
 
 ```
 参数名			参数类型	必填				描述
@@ -594,17 +631,27 @@ timestamp		Long		是			请求时间戳（3分钟内有效）
 sign			String		是			请求参数的签名
 ```
 
-### 10．POST /api/api/v2/myTrades 获取我的历史交易信息
+### 10．myTrades 
+> 说明
+```
+  获取我的历史交易信息
+```
+> URL
+```
+  /api/api/v2/myTrades 
+```
+> 请求方式
+```
+  POST
+```
 
->（1）请求示例
-
-# Request
+> Request
 
 ```java
 POST https://openapi.idax.pro/api/v2/myTrades
 ```
 
-# Response
+> Response
 
 ```java
 {
@@ -628,7 +675,7 @@ POST https://openapi.idax.pro/api/v2/myTrades
 }
 ```
 
-（2）返回值说明
+> 返回值说明
 
 ```
 timestamp: 成交时间(ms)
@@ -638,7 +685,7 @@ pair: 交易对
 maker: 成交类型buy / sell
 ```
 
-（3）请求参数
+> 请求参数
 
 ```
 参数名			参数类型	必填				描述
@@ -653,16 +700,26 @@ timestamp		Long		是			请求时间戳（3分钟内有效）
 sign			String		是			请求参数的签名
 ```
 
-### 11．POST /api/api/v2/userinfo 获取用户账户信息（返回总资产不为0的数据）
-
->（1）请求示例
-# Request
+### 11．userinfo 
+> 说明
+```
+  获取用户账户信息（返回总资产不为0的数据）
+```
+> URL
+```
+  /api/api/v2/userinfo 
+```
+> 请求方式
+```
+  POST
+```
+> Request
 
 ```java
 POST https://openapi.idax.pro/api/v2/userinfo
 ```
 
-# Response
+> Response
 
 ```java
 {
@@ -683,7 +740,7 @@ POST https://openapi.idax.pro/api/v2/userinfo
 }
 ```
 
-（2）返回值说明
+> 返回值说明
 
 ```
 total:总资产
@@ -691,7 +748,7 @@ free:可用
 freezed:冻结
 ```
 
-（3）请求参数
+> 请求参数
 
 ```
 参数名		参数类型	必填			描述
@@ -700,16 +757,26 @@ timestamp	Long		是		请求时间戳（3分钟内有效）
 sign		String		是		请求参数的签名
 ```
 
-### 12．Get /api/v2/ticker  获取IDAX行情
-
->（1）请求示例
-# Request 
+### 12．ticker
+> 说明
+```
+  获取IDAX行情
+```
+> URL
+```
+  /api/v2/ticker
+```
+> 请求方式
+```
+  GET
+```
+> Request 
 
 ```java
 GET https://openapi.idax.pro/api/v2/ticker?pair=ETH_BTC
 ```
 
-# Response
+> Response
 
 ```java
 {
@@ -727,7 +794,7 @@ GET https://openapi.idax.pro/api/v2/ticker?pair=ETH_BTC
 } 
 ```
 
-（2）返回值说明
+> 返回值说明
 
 ```
 timestamp: 服务器时间
@@ -739,23 +806,34 @@ last: 最新成交价
 vol: 成交量(最近的24小时)
 ```
 
-（3）请求参数
+> 请求参数
 
 
 ```
 参数名		参数类型	必填							 描述
 pair		String		否    IDAX支持的交易对。指定pair时返回特定交易对市场行情；未指定pair时返回全部交易对市场行情；
 ```
-### 13．Get /api/api/v2/depth  获取IDAX市场深度
-
->（1）请求示例
-# Request
-
-```java
-GET https://openapi.idax.mn/api/v2/depth?pair=ETH_BTC
+### 13．depth  
+> 说明
+```
+  获取IDAX市场深度
+```
+> URL
+```
+  /api/api/v2/depth
+```
+> 请求方式
+```
+  GET
 ```
 
-# Response
+> Request
+
+```java
+GET https://openapi.idax.pro/api/v2/depth?pair=ETH_BTC
+```
+
+> Response
 
 ```java
 {
@@ -778,14 +856,14 @@ GET https://openapi.idax.mn/api/v2/depth?pair=ETH_BTC
 }
 ```
 
-（2）返回值说明
+> 返回值说明
 
 ```
 asks:卖方深度[价格，数量]
 bids:买方深度[价格，数量]
 ```
 
-（3）请求参数
+> 请求参数
 
 ```
 参数名			 参数类型		必填							 描述
@@ -795,16 +873,27 @@ merge			Integer			否（默认0.00000001深度）	   value: 0~8(行情页面不�
 ```
 
 
-### 14．Get /api/api/v2/kline 获取IDAX的K线数据（每种周期数据条数2000左右）
+### 14．kline 
+> 说明
+```
+  获取IDAX的K线数据（每种周期数据条数2000左右）
+```
+> URL
+```
+  /api/api/v2/kline 
+```
+> 请求方式
+```
+  GET
+```
 
->（1）请求示例
-# Request
+> Request
 
 ```java
 GET https://openapi.idax.pro/api/v2/kline?pair=ETH_BTC&period=1min
 ```
 
-# Response
+> Response
 
 ```java
 {
@@ -821,7 +910,7 @@ GET https://openapi.idax.pro/api/v2/kline?pair=ETH_BTC&period=1min
 }
 ```
 
-（2）返回值说明
+> 返回值说明
 
 ```
 [
@@ -834,7 +923,7 @@ GET https://openapi.idax.pro/api/v2/kline?pair=ETH_BTC&period=1min
 ]
 ```
 
-（3）请求参数
+> 请求参数
 
 ```
 参数名		参数类型		必填					描述
@@ -844,16 +933,27 @@ size		Integer			否(默认全部获取)	指定获取数据的条数
 since		Long			否(默认全部获取)	时间戳。返回指定时间戳前的数据
 ```
 
-### 15.Get /api/v2/pairs  获取交易所支持的所有交易对
+### 15.pairs
+> 说明
+```
+  获取交易所支持的所有交易对
+```
+> URL
+```
+  /api/v2/pairs
+```
+> 请求方式
+```
+  GET
+```
 
->（1）请求示例
-  # Request 
+> Request 
 
 ```java
   GET https://openapi.idax.pro/api/v2/pairs
 ```
 
-  # Response
+> Response
 
 ```java
     {
@@ -886,24 +986,32 @@ since		Long			否(默认全部获取)	时间戳。返回指定时间戳前的数
     } 
 ```
 
-  （2）返回值说明
+> 返回值说明
 
 ```
   pairs: "DROP_BTC"：交易对
 ```
 
-
-
-### 16．GET /api/v2/pairLimits  获取所支持交易对的最大金额，最小金额，价格小数位，数量小数位
-
-（1）请求示例
-# Request
+### 16．pairLimits 
+> 说明
+```
+  获取所支持交易对的最大金额，最小金额，价格小数位，数量小数位
+```
+> URL
+```
+  /api/v2/pairLimits
+```
+> 请求方式
+```
+  GET
+```
+> Request
 
 ```java
 GET https://openapi.idax.pro/api/v2/pairLimits?pair=ETH_BTC
 ```
 
-# Response
+> Response
 
 ```java
 {
@@ -919,7 +1027,7 @@ GET https://openapi.idax.pro/api/v2/pairLimits?pair=ETH_BTC
 }
 ```
 
-（2）返回值说明
+> 返回值说明
 
 ```
 pairName:交易对
@@ -929,7 +1037,7 @@ priceDecimalPlace:价格小数位
 qtyDecimalPlace:数量小数位
 ```
 
-（3）请求参数
+> 请求参数
 
 ```
 参数名		参数类型		必填					描述
