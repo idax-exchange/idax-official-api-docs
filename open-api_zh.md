@@ -10,22 +10,22 @@ IDAX接口是提供服务的基础，开发者在IDAX网站创建账号后，可
 | ------------------| ----------------- | ----- |----- |-----------------------|
 |系统信息|[/api/v2/time](#1time) | GET  |  N   | 获取服务器时间戳 |
 | 交易             |[/api/v2/placeOrder](#2placeorder) | POST  |  Y   | 下单      |
-| 交易             |[/api/v2/cancelOrder](#3-cancel-order) | POST  |  Y   | 撤单        |
-| 订单信息 |[/api/v2/orderInfo](#4-order-info) | POST  |  Y   | 获取订单信息 |
-| 订单信息 |[/api/v2/orderList](#5-order-list) | POST  |  Y   | 接口停止使用|
-| 订单信息 |[/api/v2/orderHistory](#6-order-history) | POST  |  Y   |获取24小时内的订单信息|
-| 订单信息 |[/api/v2/beforeOrderHistory](#7-before-order-history) | POST  |  Y   |获取24小时外订单信息|
-| 交易信息 |[/api/v2/trades](#8-trades) | GET  |  N   | 获取最近成交信息|
-| 交易信息 |[/api/v2/tradesHistory](#9-trade-history) | POST  |  Y   | 接口停止使用|
-| 交易信息 |[/api/v2/myTrades](#10-mytrades) | POST  |  Y   |获取我的历史交易信息|
-| 账户信息|[/api/v2/userinfo](#11-account-info) | POST  |  Y   |获取我的帐户信息|
-| 市场行情  |[/api/v2/ticker](#12-ticker-price) | GET  |  N   | 全部symbol的交易行情 |
-| 市场行情  |[/api/v2/depth](#13-depth) | GET  |  N   | 市场深度行情（单个symbol） |
-| 市场行情  |[/api/v2/kline](#14-kline) | GET |  N   | 获取K线数据|
-| 交易品种信息|[/api/v2/pairs](#15-pairs) | GET  |  N   | 交易所支持的所有交易对|
-| 交易品种信息|[/api/v2/pairLimits](#16-pairlimits) | GET  |  N   |获取支持的交易对的最大值、最小值、价格和数量|
-| 系统信息|[/api/v2/getSign](#17-getsign) | GET  |  N   | 签名算法验证example |
-| 系统信息|[/api/v2/pairRate](#18-pairRate) | GET  |  N   | 法币转换 |
+| 交易             |[/api/v2/cancelOrder](#3cancelorder) | POST  |  Y   | 撤单        |
+| 订单信息 |[/api/v2/orderInfo](#4orderinfo) | POST  |  Y   | 获取订单信息 |
+| 订单信息 |[/api/v2/orderList](#5orderlist) | POST  |  Y   | 接口停止使用|
+| 订单信息 |[/api/v2/orderHistory](#6orderhistory) | POST  |  Y   |获取24小时内的订单信息|
+| 订单信息 |[/api/v2/beforeOrderHistory](#7beforeorderhistory) | POST  |  Y   |获取24小时外订单信息|
+| 交易信息 |[/api/v2/trades](#8trades) | GET  |  N   | 获取最近成交信息|
+| 交易信息 |[/api/v2/tradesHistory](#9tradehistory) | POST  |  Y   | 接口停止使用|
+| 交易信息 |[/api/v2/myTrades](#10mytrades) | POST  |  Y   |获取我的历史交易信息|
+| 账户信息|[/api/v2/userinfo](#11accountinfo) | POST  |  Y   |获取我的帐户信息|
+| 市场行情  |[/api/v2/ticker](#12tickerprice) | GET  |  N   | 全部symbol的交易行情 |
+| 市场行情  |[/api/v2/depth](#13depth) | GET  |  N   | 市场深度行情（单个symbol） |
+| 市场行情  |[/api/v2/kline](#14kline) | GET |  N   | 获取K线数据|
+| 交易品种信息|[/api/v2/pairs](#15pairs) | GET  |  N   | 交易所支持的所有交易对|
+| 交易品种信息|[/api/v2/pairLimits](#16pairlimits) | GET  |  N   |获取支持的交易对的最大值、最小值、价格和数量|
+| 系统信息|[/api/v2/getSign](#17getsign) | GET  |  N   | 签名算法验证example |
+| 系统信息|[/api/v2/pairRate](#18pairRate) | GET  |  N   | 法币转换 |
 
 
 获取接口权限后，可以通过阅读本接口文档来帮助开发。如果您在使用过程中遇到任何问题，请联系我们，将在第一时间为您做出解答。
