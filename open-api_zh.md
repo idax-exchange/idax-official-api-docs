@@ -173,28 +173,39 @@ timestamp	Long		是			请求时间戳（3分钟内有效）
 sign		String		是			请求参数的签名
 ```
 
-### 3．POST /api/api/v2/cancelOrder  撤销订单（支持批量撤单）
+### 3．cancelOrder
 
-（1）请求示例
-# Request
+> 说明
+```
+  撤销订单（支持批量撤单）
+```
+> URL
+```
+  /api/api/v2/cancelOrder
+```
+> 请求方式
+```
+  POST
+```
+> Request
 
 ```java
 POST https://openapi.idax.pro/api/v2/cancelOrder
 ```
 
-# Response
+> Response
 
 ```java
 {"code":10000,"msg":"request success","accepted":"123456789,123456000"}
 ```
 
-（2）返回值说明
+> 返回值说明
 
 ```
 accepted:订单ID(已受理的撤单请求)
 ```
 
-（3）请求参数
+> 请求参数说明
 
 ```
 参数名		参数类型	必填				描述
@@ -203,16 +214,28 @@ orderId		String		是			订单ID(多个订单ID中间以","分隔,一次最多允
 timestamp	Long		是			请求时间戳（3分钟内有效）
 sign		String		是			请求参数的签名
 ```
-### 4．POST /api/api/v2/orderInfo  获取用户的订单信息
 
-（1）请求示例
-# Request
+### 4．orderInfo
+
+> 说明
+```
+  获取用户的订单信息
+```
+> URL
+```
+  /api/api/v2/orderInfo
+```
+> 请求方式
+```
+  POST
+```
+> Request
 
 ```java
 POST https://openapi.idax.pro/api/v2/orderInfo
 ```
 
-# Response
+> Response
 
 ```java
 {
@@ -242,7 +265,7 @@ POST https://openapi.idax.pro/api/v2/orderInfo
 }
 ```
 
-（2）返回值说明
+> 返回值说明
 
 ```
 quantity:委托数量
@@ -256,7 +279,7 @@ orderSide: buy/sell
 total:总条数
 ```
 
-（3）请求参数
+> 请求参数
 
 ```
 参数名		参数类型	必填			描述
@@ -269,16 +292,26 @@ timestamp	Long		是		请求时间戳（3分钟内有效）
 sign		String		是		请求参数的签名
 ```
 
-### 5．POST /api/api/v2/orderList  批量获取用户订单
+### 5．orderList  
 
-（1）请求示例
-# Request
+> 说明
+```
+  批量获取用户订单
+```
+> URL
+```
+  /api/api/v2/orderList
+```
+> 请求方式
+```
+  POST
+```
+> Request
 
 ```java
 POST https://openapi.idax.pro/api/v2/orderList
 ```
-
-# Response
+> Response
 
 ```java
 {
@@ -307,7 +340,7 @@ POST https://openapi.idax.pro/api/v2/orderList
 }
 ```
 
-（2）返回值说明
+>返回值说明
 
 ```
 quantity:委托数量
@@ -319,8 +352,7 @@ price:委托价格
 orderState:1:未成交,2:部分成交,9:完全成交,19:已撤单
 orderSide: 1:buy/2:sell
 ```
-
-（3）请求参数
+> 请求参数
 
 ```
 参数名		参数类型	必填			描述
@@ -330,7 +362,6 @@ orderId		String		是		订单ID(多个订单ID中间以","分隔,一次最多允�
 timestamp	Long		是		请求时间戳（3分钟内有效）
 sign		String		是		请求参数的签名
 ```
-
 
 ### 6．POST /api/api/v2/orderHistory  获取最近24小时历史订单信息
 
