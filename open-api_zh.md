@@ -391,15 +391,15 @@ POST https://openapi.idax.pro/api/v2/orderHistory
     	"msg":"request success",
 		"currentPage": 1,
 		"orders": [{
-            "quantity": "0.2",
-            "avgPrice": "0",
-            "timestamp": 1417417957000,
-            "dealQuantity": "0",
-            "orderId": 10000724,
-            "price": "0.1",
-            "orderState":1,
-            "pair": "ETH_BTC",
-            "orderSide":"buy"
+		    "quantity": "0.2",
+		    "avgPrice": "0",
+		    "timestamp": 1417417957000,
+		    "dealQuantity": "0",
+		    "orderId": 10000724,
+		    "price": "0.1",
+		    "orderState":1,
+		    "pair": "ETH_BTC",
+		    "orderSide":"buy"
 		}],
 		"pageLength": 1,
 		"total": 3
@@ -463,15 +463,15 @@ POST https://openapi.idax.pro/api/v2/beforeOrderHistory
     	"msg":"Successful request processing",
 		"currentPage": 1,
 		"orders": [{
-            "quantity": "0.2",
-            "avgPrice": "0",
-            "timestamp": 1417417957000,
-            "dealQuantity": "0",
-            "orderId": 10000724,
-            "price": "0.1",
-            "orderState":1,
-            "pair": "ETH_BTC",
-            "orderSide":"buy"
+		    "quantity": "0.2",
+		    "avgPrice": "0",
+		    "timestamp": 1417417957000,
+		    "dealQuantity": "0",
+		    "orderId": 10000724,
+		    "price": "0.1",
+		    "orderState":1,
+		    "pair": "ETH_BTC",
+		    "orderSide":"buy"
 		}],
 		"pageLength": 1,
 		"total": 3
