@@ -262,7 +262,7 @@ TODO
 {
     "code":10000,
     "msg":"Successful request processing",
-    "accepted":"123456789,123456000" // IDs(Accepted request for cancellation of order)
+    "accepted":"123456789" // Cancellation request accepted last order number
 }
 ```
 
