@@ -585,7 +585,7 @@ pair		String			是			IDAX支持的交易对
 > Request
 
 ```java
-POST https://openapi.idax.mn/api/v2/tradesHistory
+POST https://openapi.idax.pro/api/v2/tradesHistory
 ```
 
 > Response
