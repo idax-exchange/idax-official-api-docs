@@ -1097,12 +1097,14 @@ curl https://openapi.idax.pro/api/v2/getSign?needSignature={"amount":10,"key":"o
 ### 19, pairList
 
 > Description
-
+```
 Gets the maximum, minimum, price, and quantity of the supported transaction pairs.
+```
 
 > URL
-
+```
 /api/v2/pairList
+```
 
 > Http Method
 
@@ -1142,12 +1144,14 @@ curl https://openapi.idax.pro/api/v2/pairList?pair=ETH_BTC
 ### 20, coinList
 
 > Description
-
+```
 Gets the coin info of the supported coins.
+```
 
 > URL
-
+```
 /api/v2/coinList
+```
 
 > Http Method
 
