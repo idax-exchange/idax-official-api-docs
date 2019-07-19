@@ -24,6 +24,8 @@ Interface list:
 | trade variety information|[/api/v2/pairLimits](#16-pairlimits) | GET  |  N   |Gets the maximum, minimum, price, and quantity of the supported transaction pairs|
 | trade variety information|[/api/v2/pairRate](#17-pairRate) | GET  |  N   | Pair Conversion with French Currency |
 | system information|[/api/v2/getSign](#18-getsign) | GET  |  N   | Get sign |
+| system information|[/api/v2/pairList](#19-pairList) | GET  |  N   | All trading pairs supported by exchanges |
+| system information|[/api/v2/coinList](#20-coinList) | GET  |  N   | All coins/tokens supported by exchanges |
 
 
 If you have any problem when using APIs , pls contact our support team.
@@ -1055,7 +1057,7 @@ curl https://openapi.idax.pro/api/v2/pairRate
 }
 ```
 
-### 18, GetSign
+### 18, getSign
 
 > Description
 
@@ -1089,6 +1091,99 @@ curl https://openapi.idax.pro/api/v2/getSign?needSignature={"amount":10,"key":"o
 	"code": 10000,
 	"msg": "Successful request processing",
 	"sign": "907ab44a485727b604354da47acc6e54e1abeff73defcaa282f38c50b21877ec"
+}
+```
+
+### 19, pairList
+
+> Description
+
+Gets the maximum, minimum, price, and quantity of the supported transaction pairs.
+
+> URL
+
+/api/v2/pairList
+
+> Http Method
+
+GET
+
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| pair | string | false  | IDAX supports trade pairs. |
+
+> Request
+
+```bash
+curl https://openapi.idax.pro/api/v2/pairList?pair=ETH_BTC
+```
+
+> Response
+
+```json
+{
+	"code": 10000,
+	"msg": "Successful request processing",
+	"pairList": [{
+		"pairName": "ETH_BTC",
+		"status": "Open",
+		"maxAmount": "1000000000000.00000000",
+		"minAmount": "0.00100000",
+		"priceDecimalPlace": 6,
+		"qtyDecimalPlace": 3,
+		"baseCoinCode": "ETH",
+		"quoteCoinCode": "BTC"
+	}]
+}
+```
+
+### 20, coinList
+
+> Description
+
+Gets the coin info of the supported coins.
+
+> URL
+
+/api/v2/coinList
+
+> Http Method
+
+GET
+
+> Request
+
+```bash
+curl https://openapi.idax.pro/api/v2/coinList
+```
+
+> Response
+
+```json
+{
+	"code": 10000,
+	"msg": "Successful request processing",
+	"coinList": [{
+		"coinCode": "BTC",
+		"coinName": "Bitcoin",
+		"canDeposit": true,
+		"canWithdraw": true,
+		"minWithdrawal": 0.00100000
+	}, {
+		"coinCode": "ETH",
+		"coinName": "Ethereum",
+		"canDeposit": true,
+		"canWithdraw": true,
+		"minWithdrawal": 0.01000000
+	}, {
+		"coinCode": "EOS",
+		"coinName": "EOS",
+		"canDeposit": true,
+		"canWithdraw": true,
+		"minWithdrawal": 1.00000000
+	}]
 }
 ```
 
