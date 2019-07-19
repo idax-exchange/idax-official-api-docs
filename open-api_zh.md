@@ -1151,7 +1151,7 @@ needSignature	   String	      是		         待签名数据
 
 > 说明
 
-Gets the maximum, minimum, price, and quantity of the supported transaction pairs.
+获取所支持交易对的最大金额，最小金额，价格小数位，数量小数位
 
 > URL
 
@@ -1160,12 +1160,6 @@ Gets the maximum, minimum, price, and quantity of the supported transaction pair
 > 请求方式
 
 GET
-
-> Parameters
-
-| name | type | required | description |
-|------|------|----------|-------------|
-| pair | string | false  | IDAX supports trade pairs. |
 
 > Request
 
@@ -1208,7 +1202,7 @@ quoteCoinCode:报价币Code
 
 ```
 参数名		参数类型		必填					描述
-pair		String			否				IDAX支持的交易对
+pair		String		否				IDAX支持的交易对
 ```
 
 ### 20, coinList
