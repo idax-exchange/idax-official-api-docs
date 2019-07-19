@@ -23,10 +23,10 @@ IDAX接口是提供服务的基础，开发者在IDAX网站创建账号后，可
 | 市场行情  |[/api/v2/depth](#13depth) | GET  |  N   | 市场深度行情（单个symbol） |
 | 市场行情  |[/api/v2/kline](#14kline) | GET |  N   | 获取K线数据|
 | 交易品种信息|[/api/v2/pairs](#15pairs) | GET  |  N   | 交易所支持的所有交易对|
-| 交易品种信息|[/api/v2/pairLimits](#16pairlimits) | GET  |  N   |获取支持的交易对的最大值、最小值、价格和数量|
+| 交易品种信息|[/api/v2/pairLimits](#16pairlimits) | GET  |  N   |获取支持的交易对的最大值、最小值、价格和数量等|
 | 交易品种信息|[/api/v2/pairRate](#17pairRate) | GET  |  N   | 数字货币对法币转换估值 |
 | 系统信息|[/api/v2/getSign](#18getsign) | GET  |  N   | 签名算法验证example |
-| 交易品种信息|[/api/v2/pairList](#19-pairList) | GET  |  N   | 获取支持的交易对的最大值、最小值、价格和数量 |
+| 交易品种信息|[/api/v2/pairList](#19-pairList) | GET  |  N   | 获取支持的交易对的最大值、最小值、价格和数量等|
 | 币种信息|[/api/v2/coinList](#20-coinList) | GET  |  N   | 获取支持的Coin/Token列表 |
 
 
@@ -998,7 +998,7 @@ since		Long			否(默认全部获取)	时间戳。返回指定时间戳前的数
 ### 16．pairLimits 
 > 说明
 ```
-  获取所支持交易对的最大金额，最小金额，价格小数位，数量小数位
+  获取所支持交易对的最大金额，最小金额，价格小数位，数量小数位等
 ```
 > URL
 ```
@@ -1150,12 +1150,14 @@ needSignature	   String	      是		         待签名数据
 ### 19, pairList
 
 > 说明
-
-获取所支持交易对的最大金额，最小金额，价格小数位，数量小数位
+```
+  获取所支持交易对的最大金额，最小金额，价格小数位，数量小数位等
+```
 
 > URL
-
+```
 /api/v2/pairList
+```
 
 > 请求方式
 
@@ -1208,12 +1210,14 @@ pair		String		否				IDAX支持的交易对
 ### 20, coinList
 
 > 说明
-
+```
 获取交易所支持的币种/Token信息列表
+```
 
 > URL
-
+```
 /api/v2/coinList
+```
 
 > 请求方式
 
