@@ -26,6 +26,8 @@ IDAX接口是提供服务的基础，开发者在IDAX网站创建账号后，可
 | 交易品种信息|[/api/v2/pairLimits](#16pairlimits) | GET  |  N   |获取支持的交易对的最大值、最小值、价格和数量|
 | 交易品种信息|[/api/v2/pairRate](#17pairRate) | GET  |  N   | 数字货币对法币转换估值 |
 | 系统信息|[/api/v2/getSign](#18getsign) | GET  |  N   | 签名算法验证example |
+| 交易品种信息|[/api/v2/pairList](#19-pairList) | GET  |  N   | 获取支持的交易对的最大值、最小值、价格和数量 |
+| 币种信息|[/api/v2/coinList](#20-coinList) | GET  |  N   | 获取支持的Coin/Token列表 |
 
 
 
@@ -1145,6 +1147,126 @@ needSignature	   String	      是		         待签名数据
 ```
 
 
+### 19, pairList
+
+> 说明
+
+Gets the maximum, minimum, price, and quantity of the supported transaction pairs.
+
+> URL
+
+/api/v2/pairList
+
+> 请求方式
+
+GET
+
+> Parameters
+
+| name | type | required | description |
+|------|------|----------|-------------|
+| pair | string | false  | IDAX supports trade pairs. |
+
+> Request
+
+```bash
+curl https://openapi.idax.pro/api/v2/pairList?pair=ETH_BTC
+```
+
+> Response
+
+```json
+{
+	"code": 10000,
+	"msg": "Successful request processing",
+	"pairList": [{
+		"pairName": "ETH_BTC",
+		"status": "Open",
+		"maxAmount": "1000000000000.00000000",
+		"minAmount": "0.00100000",
+		"priceDecimalPlace": 6,
+		"qtyDecimalPlace": 3,
+		"baseCoinCode": "ETH",
+		"quoteCoinCode": "BTC"
+	}]
+}
+```
+> 返回值说明
+
+```
+pairName:交易对
+status:状态
+maxAmount:最大金额
+minAmount:最小金额
+priceDecimalPlace:价格小数位
+qtyDecimalPlace:数量小数位
+baseCoinCode:基准币Code
+quoteCoinCode:报价币Code
+```
+
+> 请求参数
+
+```
+参数名		参数类型		必填					描述
+pair		String			否				IDAX支持的交易对
+```
+
+### 20, coinList
+
+> 说明
+
+获取交易所支持的币种/Token信息列表
+
+> URL
+
+/api/v2/coinList
+
+> 请求方式
+
+GET
+
+> Request
+
+```bash
+curl https://openapi.idax.pro/api/v2/coinList
+```
+
+> Response
+
+```json
+{
+	"code": 10000,
+	"msg": "Successful request processing",
+	"coinList": [{
+		"coinCode": "BTC",
+		"coinName": "Bitcoin",
+		"canDeposit": true,
+		"canWithdraw": true,
+		"minWithdrawal": 0.00100000
+	}, {
+		"coinCode": "ETH",
+		"coinName": "Ethereum",
+		"canDeposit": true,
+		"canWithdraw": true,
+		"minWithdrawal": 0.01000000
+	}, {
+		"coinCode": "EOS",
+		"coinName": "EOS",
+		"canDeposit": true,
+		"canWithdraw": true,
+		"minWithdrawal": 1.00000000
+	}]
+}
+```
+> 返回值说明
+
+```
+coinCode:币种代码
+coinName:币种名称
+canDeposit:是否允许充值
+canWithdraw:是否允许提现
+minWithdrawal:最小提现额度
+```
 
 **七、RestAPI 常见问题**
 
