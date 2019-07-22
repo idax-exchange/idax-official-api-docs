@@ -569,6 +569,7 @@ maker: 成交类型buy / sell
 ```
 参数名		参数类型		必填			描述
 pair		String			是			IDAX支持的交易对
+total		Integer			否			获取条数
 ```
 
 ### 9．tradesHistory 
