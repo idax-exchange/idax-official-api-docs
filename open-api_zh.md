@@ -568,8 +568,8 @@ maker: 成交类型buy / sell
 
 ```
 参数名		参数类型		必填			描述
-pair		String			是			IDAX支持的交易对
-total		Integer			否			获取条数
+pair		String		是			IDAX支持的交易对
+total		Integer		否			获取条数（默认:1; 最大:2000）
 ```
 
 ### 9．tradesHistory 
