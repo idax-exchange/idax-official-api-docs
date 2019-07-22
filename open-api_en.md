@@ -529,7 +529,7 @@ GET
 | name | type | required | description |
 |------|------|----------|-------------|
 | pair | string | true  | IDAX supports trade pairs. |
-| total | int | false  | Number of items; no default display 1 |
+| total | int | false  | Number of items; default:1; max:2000|
 
 > Request
 
