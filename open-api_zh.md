@@ -80,7 +80,7 @@ amount=1.05&key=123456789&orderSide=buy&orderType=limit&pair=ETH_BTC&price=0.069
 
 REST访问的根URL：https://openapi.idax.pro/api/v2 
 
-每个接口都限制了请求频次（不需要验签的接口，同一IP请求频率<=10次/sec；需要验签的接口，同一key请求频率<=10次/sec）
+每个接口都限制了请求频次（不需要验签的接口，同一IP请求频率<=5次/sec；需要验签的接口，同一key请求频率<=5次/sec）
 所有请求基于https协议，请求头中contentType须统一设置为:'application/json’。 
 
 请求交互说明(Rest服务的返回值，均包含了code和msg)：
