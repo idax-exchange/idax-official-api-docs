@@ -1218,7 +1218,7 @@ Answer:All requests go over https protocol, The field 'contentType' in request h
 | 10009 |    Timestamp is empty
 | 10010 |    Timestamp Expirated
 | 10011 |    Sign is empty
-| 10012 |    Ip is not on the white list of requests
+| 10012 |    Trading subject to temporary restriction
 | 10013 |    Signature mismatch
 | 10014 |    Place Order failed
 | 10015 |    Cancel  Order  failed
