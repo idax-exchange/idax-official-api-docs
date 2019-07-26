@@ -1222,7 +1222,7 @@ Answer:All requests go over https protocol, The field 'contentType' in request h
 | 10013 |    Signature mismatch
 | 10014 |    Place Order failed
 | 10015 |    Cancel  Order  failed
-| 10016 |    The request interface is too frequent. Please try again later
+| 10016 |    The request interface is too frequent
 | 10017 |    Exchanges do not support trading pair
 | 10018 |    Currency price is empty
 | 10019 |    A maximum of 5 orders can be revoked at a time
