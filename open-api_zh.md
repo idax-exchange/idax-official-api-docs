@@ -159,7 +159,7 @@ POST https://openapi.idax.pro/api/v2/placeOrder
 > 返回值说明
 
 ```
-orderId: 订单ID
+orderId: （下单成功后返回）订单ID
 ```
 
 > 请求参数说明
@@ -413,7 +413,7 @@ POST https://openapi.idax.pro/api/v2/orderHistory
 
 ```
 currentPage:当前页码
-orders:订单信息
+orders:订单列表
 quantity:委托数量
 avgPrice:平均成交价
 timestamp:委托时间
@@ -558,9 +558,9 @@ GET https://openapi.idax.pro/api/v2/trades?pair=ETH_BTC
 
 ```
 timestamp: 成交时间(ms)
-price: 交易价格
-quantity: 交易数量
-id: 交易记录ID
+price: 成交价格
+quantity: 成交数量
+id: 成交记录ID
 maker: 成交类型buy / sell
 ```
 
@@ -618,9 +618,9 @@ POST https://openapi.idax.pro/api/v2/tradesHistory
 
 ```
 timestamp: 成交时间(ms)
-price: 交易价格
-quantity: 交易数量
-id: 交易生成ID
+price: 成交价格
+quantity: 成交数量
+id: 成交记录ID
 maker: 成交类型buy / sell
 ```
 
