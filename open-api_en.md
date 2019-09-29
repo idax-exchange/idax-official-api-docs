@@ -18,7 +18,7 @@ Interface list:
 | trade information |[/api/v2/myTrades](#10-mytrades) | POST  |  Y   |Get my historical trading information|
 | Account information|[/api/v2/userinfo](#11-account-info) | POST  |  Y   |Get account info|
 | Market quotation  |[/api/v2/ticker](#12-ticker-price) | GET  |  N   | Get the price of specific ticker |
-| Market quotation  |[/api/v2/depth](#13-depth) | GET  |  N   | Get the market depth for specific market.  |
+| Market quotation  |[/api/v2/depth](#13-order-book) | GET  |  N   | Get the market orderbook for specific market.  |
 | Market quotation  |[/api/v2/kline](#14-kline) | GET |  N   | Get kline data|
 | trade variety information|[/api/v2/pairs](#15-pairs) | GET  |  N   | All trading pairs supported by exchanges|
 | trade variety information|[/api/v2/pairLimits](#16-pairlimits) | GET  |  N   |Gets the maximum, minimum, price, and quantity of the supported transaction pairs|
@@ -780,7 +780,7 @@ curl https://openapi.idax.pro/api/v2/ticker?pair=ETH_BTC
 }
 ```
 
-### 13, Depth
+### 13, Order Book
 
 > Description
 
