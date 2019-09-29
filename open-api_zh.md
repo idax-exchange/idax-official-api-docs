@@ -20,7 +20,7 @@ IDAX接口是提供服务的基础，开发者在IDAX网站创建账号后，可
 | 交易信息 |[/api/v2/myTrades](#10mytrades) | POST  |  Y   |获取我的历史交易信息|
 | 账户信息|[/api/v2/userinfo](#11userinfo) | POST  |  Y   |获取我的帐户信息|
 | 市场行情  |[/api/v2/ticker](#12ticker) | GET  |  N   | 全部symbol的交易行情 |
-| 市场行情  |[/api/v2/depth](#13depth) | GET  |  N   | 市场深度行情（单个symbol） |
+| 市场行情  |[/api/v2/depth](#13depth) | GET  |  N   | 获取depth数据（单个symbol） |
 | 市场行情  |[/api/v2/kline](#14kline) | GET |  N   | 获取K线数据|
 | 交易品种信息|[/api/v2/pairs](#15pairs) | GET  |  N   | 交易所支持的所有交易对|
 | 交易品种信息|[/api/v2/pairLimits](#16pairlimits) | GET  |  N   |获取支持的交易对的最大值、最小值、价格和数量等|
@@ -817,7 +817,7 @@ vol: 成交量(最近的24小时)
 参数名		参数类型	必填							 描述
 pair		String		否    IDAX支持的交易对。指定pair时返回特定交易对市场行情；未指定pair时返回全部交易对市场行情；
 ```
-### 13．depth  
+### 13．OrderBook
 > 说明
 ```
   获取IDAX市场深度
