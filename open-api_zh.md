@@ -25,7 +25,7 @@ IDAX接口是提供服务的基础，开发者在IDAX网站创建账号后，可
 | 交易品种信息|[/api/v2/pairs](#15pairs) | GET  |  N   | 交易所支持的所有交易对|
 | 交易品种信息|[/api/v2/pairLimits](#16pairlimits) | GET  |  N   |获取支持的交易对的最大值、最小值、价格和数量等|
 | 交易品种信息|[/api/v2/pairRate](#17pairRate) | GET  |  N   | 数字货币对法币转换估值 |
-| 系统信息|[/api/v2/getSign](#18getsign) | GET  |  N   | 签名算法验证example |
+| 系统信息|[/api/v2/getSign](#18getsign) | POST  |  N   | 签名算法验证example |
 | 交易品种信息|[/api/v2/pairList](#19-pairList) | GET  |  N   | 获取支持的交易对的最大值、最小值、价格和数量等|
 | 币种信息|[/api/v2/coinList](#20-coinList) | GET  |  N   | 获取支持的Coin/Token列表 |
 
@@ -1107,6 +1107,7 @@ usd: usd
 ```
   此方法用于帮助接入端的开发人员验证接入端所实现的签名算法是否正确。
   尝试调用本方法时，必须包含公钥key（key的值，在当前示例中可以随意指定）和timestamp(系统时间3分钟以内)参数
+  请求数据格式为Json类型，譬如：{"key":"123456789","exchange":"idax","timestamp":1545347383600}
   本方法使用的私钥固定是：otcyacn3wfloclpahgcf6jidherass4m7rbi4ei0qgqri7twxhf54hjev905lnkd
   本方法将使用上述私钥对请求数据进行签名，并返回签名结果sign，如果接入端对相同的请求数据签名的sign与返回的sign相同，则表示接入端签名算法正确。
 ```
@@ -1116,12 +1117,12 @@ usd: usd
 ```
 > 请求方式
 ```
-  GET
+  POST
 ```
 > Request
 
 ```java
-curl https://openapi.idax.pro/api/v2/getSign?needSignature={"key":"123456789","exchange":"idax","timestamp":1545347383600}
+POST https://openapi.idax.pro/api/v2/getSign
 ```
 
 > Response
