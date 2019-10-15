@@ -1105,8 +1105,10 @@ usd: usd
 ### 18．getSign 
 > 说明
 ```
-  开发人员调用getsign接口验证签名算法是否正确。
-  秘密固定为：otcyacn3wfloclpahgcf6jidherass4m7rbi4ei0qgqri7twxhf54hjev905lnkd
+  此方法用于帮助接入端的开发人员验证接入端所实现的签名算法是否正确。
+  尝试调用本方法时，必须包含公钥key（key的值，在当前示例中可以随意指定）和timestamp(系统时间3分钟以内)参数
+  本方法使用的私钥固定是：otcyacn3wfloclpahgcf6jidherass4m7rbi4ei0qgqri7twxhf54hjev905lnkd
+  本方法将使用上述私钥对请求数据进行签名，并返回签名结果sign，如果接入端对相同的请求数据签名的sign与返回的sign相同，则表示接入端签名算法正确。
 ```
 > URL
 ```
@@ -1119,7 +1121,7 @@ usd: usd
 > Request
 
 ```java
-curl https://openapi.idax.pro/api/v2/getSign?needSignature={"amount":10,"key":"otcyACN3wfloCLpAHGcf6jIdHErASs4m7Rbi4ei0QgQRI7TwxhF54hJeV905lnkd","orderSide":"buy","orderType":"limit","pair":"ETH_BTC","price":0,"sign":"47c63e8c8dfac216e3e2182b0eb909a85e38b9c4aec4aaf9cb1f65c24bc52c63","timestamp":1545347383600}
+curl https://openapi.idax.pro/api/v2/getSign?needSignature={"key":"123456789","exchange":"idax","timestamp":1545347383600}
 ```
 
 > Response
