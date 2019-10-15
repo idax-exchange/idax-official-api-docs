@@ -23,7 +23,7 @@ Interface list:
 | trade variety information|[/api/v2/pairs](#15-pairs) | GET  |  N   | All trading pairs supported by exchanges|
 | trade variety information|[/api/v2/pairLimits](#16-pairlimits) | GET  |  N   |Gets the maximum, minimum, price, and quantity of the supported transaction pairs|
 | trade variety information|[/api/v2/pairRate](#17-pairRate) | GET  |  N   | Pair Conversion with French Currency |
-| system information|[/api/v2/getSign](#18-getsign) | GET  |  N   | Get sign |
+| system information|[/api/v2/getSign](#18-getsign) | POST  |  N   | Get sign |
 | system information|[/api/v2/pairList](#19-pairList) | GET  |  N   | All trading pairs supported by exchanges |
 | system information|[/api/v2/coinList](#20-coinList) | GET  |  N   | All coins/tokens supported by exchanges |
 
@@ -1061,8 +1061,11 @@ curl https://openapi.idax.pro/api/v2/pairRate
 
 > Description
 
-Developers use getsign to verify that the signature algorithm is correct. 
-The secret is fixed as: otcyACN3wfloCLpAHGcf6jIdHErASs4m7Rbi4ei0QgQRI7TwxhF54hJeV905lnkd.
+This method is used to help developers verify that the signature algorithm implemented at the access end is correct or not.
+When you attempt to call this method, you must include the public key (the value of the key, which can be arbitrarily specified in the current example) and timestamp (the system time is less than 3 minutes).
+The request data format is Json type, such as {key":"123456789","exchange","idax","time stamp": 1545347383600}.
+The private key fixed in this method is: "otcyacn3wfloclpahgcf6jidherass4m7rbi4ei0qgqri7twxhf54hjev905lnkd"
+This method will use the above private key to sign the request data and return the signature result "sign". If the signature of the same request data is the same as the return "sign", the access signature algorithm is correct.
 
 > URL
 
@@ -1070,18 +1073,20 @@ The secret is fixed as: otcyACN3wfloCLpAHGcf6jIdHErASs4m7Rbi4ei0QgQRI7TwxhF54hJe
 
 > Http Method
 
-GET
+POST
 
 > Parameters
 
 | name | type | required | description |
 |------|------|----------|-------------|
-| needSignature | string | true  | The string to be signed must be in JSON format |
+| key | string | true | apiKey of the user |
+| timestamp | long | true | Request timestamp (valid for 3 minutes) |
+| ... | string | false | other parameters |
 
 > Request
 
 ```bash
-curl https://openapi.idax.pro/api/v2/getSign?needSignature={"amount":10,"key":"otcyACN3wfloCLpAHGcf6jIdHErASs4m7Rbi4ei0QgQRI7TwxhF54hJeV905lnkd","orderSide":"buy","orderType":"limit","pair":"ETH_BTC","price":0,"sign":"47c63e8c8dfac216e3e2182b0eb909a85e38b9c4aec4aaf9cb1f65c24bc52c63","timestamp":1545347383600}
+POST https://openapi.idax.pro/api/v2/getSign
 ```
 
 > Response
