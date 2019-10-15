@@ -1062,10 +1062,16 @@ curl https://openapi.idax.pro/api/v2/pairRate
 > Description
 
 This method is used to help developers verify that the signature algorithm implemented at the access end is correct or not.
+
 When you attempt to call this method, you must include the public key (the value of the key, which can be arbitrarily specified in the current example) and timestamp (the system time is less than 3 minutes).
-The request data format is Json type, such as {key":"123456789","exchange","idax","time stamp": 1545347383600}.
+
+The request data format is Json type, such as {"key":"123456789","exchange","idax","timestamp": 1545347383600}.
+
 The private key fixed in this method is: "otcyacn3wfloclpahgcf6jidherass4m7rbi4ei0qgqri7twxhf54hjev905lnkd"
-This method will use the above private key to sign the request data and return the signature result "sign". If the signature of the same request data is the same as the return "sign", the access signature algorithm is correct.
+
+This method will use the above private key to sign the request data and return the signature result "sign". 
+
+If the signature of the same request data is the same as the return "sign", the access signature algorithm is correct.
 
 > URL
 
