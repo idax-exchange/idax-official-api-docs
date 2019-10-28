@@ -211,6 +211,10 @@ POST
 | orderSide | string | true | order side:(buy/sell) |
 | price | decimal or string | true | order price (It is suggested that string be used to solve scientific counting method)|
 | amount | decimal or string | true | order qty (It is suggested that string be used to solve scientific counting method)|
+| orderMode | Integer | false | order mode:(NORMAL:0; StopLoss:10; TakeProfit:11; TrailingStopLoss:20)
+| orderProperty | Integer | false | order property:(NORMAL:0; FAK:1; FOK:2; PostOnly:3)
+| triggerPrice | Double | false | trigger price
+| priceGap | Double | false | price gap
 | timestamp | long | true | Request timestamp (valid for 3 minutes) |
 | sign | string | true | signature of request parameters |
 
