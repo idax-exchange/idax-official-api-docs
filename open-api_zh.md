@@ -172,6 +172,10 @@ orderType	String		是			limit:限价，market:市价
 orderSide	String		是			buy:买，sell:卖
 price		Double		是			下单价格
 amount		Double		是			下单数量
+orderMode	Integer		否			订单模式:(普通:0; 止损:10; 止盈:11; 移动止损:20)
+orderProperty	Integer		否			订单属性:(普通:0; FAK:1; FOK:2; 摆盘:3)
+triggerPrice	Double		否			触发价格
+priceGap	Double		否			回调价差
 timestamp	Long		是			请求时间戳（3分钟内有效）
 sign		String		是			请求参数的签名
 ```
