@@ -1,6 +1,6 @@
 # Overview
 
-IDAX provide powerful and robust APIs to help user write program to automatic the tradings. With this guide you can learn how to use APIs.
+IDAX provides powerful and robust APIs to help users write programs to automate their trading. With this guide you can learn how to use the APIs.
 
 Interface list:
 
@@ -51,9 +51,9 @@ If you have any problem when using APIs , pls contact our support team.
 
 ## 2, Get start
 
-Before get start, you need get the api key and secret first. The 'api key' is a unique string IDAX allocated for you (you can think it as the speicial username used in api) and the 'secret' is the private key used to sign your request data(and you can think it as the password for api).
+Before getting started, you need to get the api key and secret first. The 'api key' is a unique string IDAX allocated for you (you can think it as the speicial username used in the api) and the 'secret' is the private key used to sign your request data (and you can think of it as the password for the api).
 
-You can get the apiKey and secret key from idax website : https://www.idax.pro.
+You can get the apiKey and secret key from the idax website : https://www.idax.pro.
 
 To get the API key and secret, please visit the "My API" links in user center.(only available on PC website)
 
@@ -80,13 +80,13 @@ REST API has following advantages:
 
 WebSocket protocol is a new HTML5 protocol, which provides full-duplex communication between web browsers and web servers. Connection can be established after one handshake. Web server can then push business logic data to web browsers.
 
-Websocket has follwoing advantages:
+Websocket has the following advantages:
 
 * Request header is small in size (around 2 bytes) during communication
 * Web servers and clients can send data bi-directionaly
 * Since there is no need to create and delete TCP connection repeatedly, it saves resources
 
-> We strongly recommend developers to use Websocket API to access market related information and trading depth.
+> We strongly recommend developers to use the Websocket API to access market related information and trading depth.
 
 ## 4, Sign Params
 
@@ -1211,7 +1211,7 @@ curl https://openapi.idax.pro/api/v2/coinList
 
 > 1, Access restrictions
 
-Answer: Each IP can send maximum of 10 https requests within 1 second. If the 10 limit is exceeded, the system will automatically block the IP for one hour. After that hour, the IP will be automatically unfrozen.
+Answer: Each IP can send a maximum of 10 https requests within 1 second. If the 10 limit is exceeded, the system will automatically block the IP for one hour. After that hour, the IP will be automatically unfrozen.
 
 > 2, Server returns 10000 error code
 
